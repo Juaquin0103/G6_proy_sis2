@@ -472,7 +472,7 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_UsuarioActionPerformed
 
     private void ApellidoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApellidoTxtActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_ApellidoTxtActionPerformed
 
     private void CITxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CITxtActionPerformed
