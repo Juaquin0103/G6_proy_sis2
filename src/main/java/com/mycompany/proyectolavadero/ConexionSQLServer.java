@@ -15,10 +15,10 @@ import javax.swing.JOptionPane;
 public class ConexionSQLServer {
     Connection conexion = null;
     
-    String usuario = "usuarioJuaco";
+    String usuario = "usuarioSql";
     String contrasena = "root";
-    String db = "dbOriginal";
-    String ip = "localhost\\SQLEXPRESS01";
+    String db = "dbEjemplo";
+    String ip = "localhost\\SQLEXPRESS";
     String puerto = "1433";
     
     public Connection obtenerConexion() {
