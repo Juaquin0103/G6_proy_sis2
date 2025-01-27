@@ -167,10 +167,12 @@ public class listaDeVehiculosInterfaz extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(236, 240, 241));
         jPanel1.setPreferredSize(new java.awt.Dimension(1124, 90));
 
+        jButton3.setBackground(new java.awt.Color(236, 240, 241));
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/soporte-en-linea (1).png"))); // NOI18N
         jButton3.setText("Soporte");
 
+        jButton4.setBackground(new java.awt.Color(236, 240, 241));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/avatar.png"))); // NOI18N
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
