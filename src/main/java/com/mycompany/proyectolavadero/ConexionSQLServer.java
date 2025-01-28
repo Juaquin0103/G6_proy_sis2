@@ -16,7 +16,7 @@ public class ConexionSQLServer {
     Connection conexion = null;
     
 
-    String usuario = "usuarioSql";
+    String usuario = "usuariojuaco";
     String contrasena = "root";
     String db = "dbEjemplo";
     String ip = "localhost\\SQLEXPRESS";
