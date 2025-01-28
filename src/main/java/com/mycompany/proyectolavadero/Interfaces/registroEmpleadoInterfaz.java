@@ -62,7 +62,6 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
         FotoBT = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1440, 1024));
 
         Background.setBackground(new java.awt.Color(255, 255, 255));
         Background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -242,9 +241,8 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
             .addGroup(PanelSuperiorLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(PanelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Soporte)
-                        .addComponent(Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Soporte)
+                    .addComponent(Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
@@ -378,8 +376,8 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(PanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(NombreTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ApellidoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(ApellidoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(PanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelCentralLayout.createSequentialGroup()
                         .addGap(184, 184, 184)

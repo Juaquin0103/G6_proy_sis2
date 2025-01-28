@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.proyectolavadero;
-
+//hola no se hacer commits
 import java.sql.Connection;
 import java.sql.DriverManager;
 import javax.swing.JOptionPane;
