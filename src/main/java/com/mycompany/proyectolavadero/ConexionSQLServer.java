@@ -35,6 +35,6 @@ public class ConexionSQLServer {
             JOptionPane.showMessageDialog(null, "Error: "+e.toString());
         }
         return conexion;
-        //hola
+        //ho
     }
 }
