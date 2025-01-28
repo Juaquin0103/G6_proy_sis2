@@ -84,7 +84,6 @@ public class registroPropietariosInterfaz extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Logo.png"))); // NOI18N
         jLabel2.setAlignmentX(0.5F);
-        jLabel2.setMaximumSize(new java.awt.Dimension(306, 254));
 
         javax.swing.GroupLayout LogoLayout = new javax.swing.GroupLayout(Logo);
         Logo.setLayout(LogoLayout);
@@ -375,7 +374,7 @@ public class registroPropietariosInterfaz extends javax.swing.JFrame {
                 .addComponent(Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 304, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 302, Short.MAX_VALUE)
                 .addComponent(btn_soporte, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
@@ -461,7 +460,6 @@ public class registroPropietariosInterfaz extends javax.swing.JFrame {
             }
         });
 
-        btn_Cancelar.setBackground(new java.awt.Color(255, 255, 255));
         btn_Cancelar.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         btn_Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Close.png"))); // NOI18N
         btn_Cancelar.setText("Cancelar");
@@ -472,7 +470,6 @@ public class registroPropietariosInterfaz extends javax.swing.JFrame {
             }
         });
 
-        btn_Aceptar.setBackground(new java.awt.Color(255, 255, 255));
         btn_Aceptar.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         btn_Aceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Ok.png"))); // NOI18N
         btn_Aceptar.setText("Aceptar");
@@ -619,10 +616,10 @@ public class registroPropietariosInterfaz extends javax.swing.JFrame {
     private void btn_AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AceptarActionPerformed
         // TODO add your handling code here:
         String nombre = txt_name.getText();
-    String ci = txt_identificacion.getText();
-    String telefono = txt_telefono.getText();
-    String direccion = txt_direccion.getText();
-    String correo = txt_correo.getText();
+        String ci = txt_identificacion.getText();
+        String telefono = txt_telefono.getText();
+        String direccion = txt_direccion.getText();
+        String correo = txt_correo.getText();
 
     // Aquí puedes agregar la lógica para guardar los datos (por ejemplo, en una base de datos)
     // Por ahora, mostraremos un mensaje

@@ -131,9 +131,6 @@
                       <Image iconType="3" name="/images/Logo.png"/>
                     </Property>
                     <Property name="alignmentX" type="float" value="0.5"/>
-                    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[306, 254]"/>
-                    </Property>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -596,7 +593,7 @@
                       <Component id="Busqueda" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btn_Buscar" min="-2" pref="30" max="-2" attributes="0"/>
-                      <EmptySpace pref="304" max="32767" attributes="0"/>
+                      <EmptySpace pref="302" max="32767" attributes="0"/>
                       <Component id="btn_soporte" min="-2" pref="45" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -939,9 +936,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="btn_Cancelar">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="SansSerif" size="24" style="1"/>
                 </Property>
@@ -959,9 +953,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="btn_Aceptar">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="SansSerif" size="24" style="1"/>
                 </Property>
