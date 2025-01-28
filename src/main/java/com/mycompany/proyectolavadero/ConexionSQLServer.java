@@ -16,10 +16,10 @@ public class ConexionSQLServer {
     Connection conexion = null;
     
 
-    String usuario = "usuariojuaco";
+    String usuario = "admin";
     String contrasena = "root";
-    String db = "dbEjemplo";
-    String ip = "localhost\\SQLEXPRESS";
+    String db = "dbOriginal";
+    String ip = "localhost";
 
     String puerto = "1433";
     
@@ -35,6 +35,5 @@ public class ConexionSQLServer {
             JOptionPane.showMessageDialog(null, "Error: "+e.toString());
         }
         return conexion;
-        //ho
     }
 }
