@@ -11,12 +11,11 @@
         <exec.mainClass>com.mycompany.proyectolavadero.ProyectoLavadero</exec.mainClass>
     </properties>
     <dependencies>
-                    <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
+            <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
             <dependency>
                 <groupId>com.microsoft.sqlserver</groupId>
                 <artifactId>mssql-jdbc</artifactId>
                 <version>12.9.0.jre11-preview</version>
             </dependency>
-
     </dependencies>
 </project>
