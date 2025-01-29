@@ -4,6 +4,7 @@
  */
 package com.mycompany.proyectolavadero.Interfaces;
 import com.mycompany.proyectolavadero.Backend.registroEmpleado;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Windows
@@ -28,7 +29,6 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
 
         Background = new javax.swing.JPanel();
         BarraLateral = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -39,8 +39,6 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         BarraSuperior = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
         BarraCentral = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -66,50 +64,39 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
 
         BarraLateral.setBackground(new java.awt.Color(17, 17, 29));
 
-        jButton1.setBackground(new java.awt.Color(17, 17, 29));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/Logo.png"))); // NOI18N
-        jButton1.setBorder(null);
-
         jButton2.setBackground(new java.awt.Color(17, 17, 29));
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/casa (4).png"))); // NOI18N
         jButton2.setText("Inicio");
 
         jButton3.setBackground(new java.awt.Color(17, 17, 29));
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/carro-de-la-carretilla.png"))); // NOI18N
         jButton3.setText("Cotizacion");
 
         jButton4.setBackground(new java.awt.Color(17, 17, 29));
         jButton4.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/coche frontal.png"))); // NOI18N
         jButton4.setText("Vehiculos");
 
         jButton5.setBackground(new java.awt.Color(17, 17, 29));
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/clientes.png"))); // NOI18N
         jButton5.setText("Clientes");
 
         jButton6.setBackground(new java.awt.Color(17, 17, 29));
         jButton6.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/trabajo-en-equipo.png"))); // NOI18N
         jButton6.setText("Equipo de lavado");
 
         jButton7.setBackground(new java.awt.Color(17, 17, 29));
         jButton7.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/envio.png"))); // NOI18N
         jButton7.setText("Inventario");
 
         jButton8.setBackground(new java.awt.Color(17, 17, 29));
         jButton8.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/informe-seo.png"))); // NOI18N
         jButton8.setText("Reportes");
 
         jButton9.setBackground(new java.awt.Color(17, 17, 29));
@@ -122,12 +109,8 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
         BarraLateral.setLayout(BarraLateralLayout);
         BarraLateralLayout.setHorizontalGroup(
             BarraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BarraLateralLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraLateralLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 38, Short.MAX_VALUE)
                 .addGroup(BarraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton9)
                     .addComponent(jButton8)
@@ -142,9 +125,7 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
         BarraLateralLayout.setVerticalGroup(
             BarraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BarraLateralLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
+                .addGap(324, 324, 324)
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
@@ -168,15 +149,6 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jTextField1.setText("Buscar");
 
-        jButton10.setBackground(new java.awt.Color(236, 240, 241));
-        jButton10.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/soporte-en-linea (1).png"))); // NOI18N
-        jButton10.setText("Soporte");
-
-        jButton11.setBackground(new java.awt.Color(236, 240, 241));
-        jButton11.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/avatar.png"))); // NOI18N
-
         javax.swing.GroupLayout BarraSuperiorLayout = new javax.swing.GroupLayout(BarraSuperior);
         BarraSuperior.setLayout(BarraSuperiorLayout);
         BarraSuperiorLayout.setHorizontalGroup(
@@ -184,21 +156,13 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
             .addGroup(BarraSuperiorLayout.createSequentialGroup()
                 .addGap(69, 69, 69)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 327, Short.MAX_VALUE)
-                .addComponent(jButton10)
-                .addGap(69, 69, 69)
-                .addComponent(jButton11)
-                .addGap(54, 54, 54))
+                .addContainerGap(632, Short.MAX_VALUE))
         );
         BarraSuperiorLayout.setVerticalGroup(
             BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BarraSuperiorLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton10)
-                        .addComponent(jButton11))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
@@ -227,11 +191,9 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
         jLabel8.setText("Equipo de lavado:");
 
         jButton12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosRegistroPropietario/Close.png"))); // NOI18N
         jButton12.setText("Cancelar");
 
         jButton13.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosRegistroPropietario/Ok.png"))); // NOI18N
         jButton13.setText("Guardar trabajador");
         jButton13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -441,9 +403,6 @@ if (resultado) {
     private javax.swing.JPanel BarraCentral;
     private javax.swing.JPanel BarraLateral;
     private javax.swing.JPanel BarraSuperior;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
