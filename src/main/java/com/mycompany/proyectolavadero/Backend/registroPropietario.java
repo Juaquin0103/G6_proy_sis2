@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -112,35 +113,41 @@ public class registroPropietario {
         return correo.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$") && correo.length() <= 50;
     }
     
+    
+    /*
     /////////////////////////////////////////////////
-    // 1️⃣ Cargar datos en el JTable
+    // Método para cargar datos en la tabla
     public void cargarDatosEnTabla(JTable tabla) {
-        Connection conexion = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
+        // Obtener el modelo actual de la tabla
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
-        modelo.setRowCount(0); // Limpiar la tabla antes de cargar datos
+        modelo.setRowCount(0);  // Limpiar la tabla antes de llenarla
+
+        Connection conexion = null;
+        Statement stmt = null;
+        ResultSet rs = null;
 
         try {
             ConexionSQLServer conexionDB = new ConexionSQLServer();
             conexion = conexionDB.obtenerConexion();
 
-            String sql = "SELECT Ci, Nombre_Completo, telefono, email, direccion FROM cliente";
-            stmt = conexion.prepareStatement(sql);
-            rs = stmt.executeQuery();
+            String sql = "SELECT Ci, Nombre_Completo, telefono, direccion, email FROM cliente";
+            stmt = conexion.createStatement();
+            rs = stmt.executeQuery(sql);
 
+            // Llenar el modelo de la tabla con los datos obtenidos
             while (rs.next()) {
-                Object[] fila = {
-                    rs.getString("Ci"),
-                    rs.getString("Nombre_Completo"),
-                    rs.getString("telefono"),
-                    rs.getString("email"),
-                    rs.getString("direccion")
-                };
-                modelo.addRow(fila);
+                String ci = rs.getString("Ci");
+                String nombre = rs.getString("Nombre_Completo");
+                String telefono = rs.getString("telefono");
+                String direccion = rs.getString("direccion");
+                String email = rs.getString("email");
+
+                modelo.addRow(new Object[]{ci, nombre, telefono, direccion, email});
             }
+
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al cargar datos: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al cargar los datos: " + e.getMessage());
+            e.printStackTrace();
         } finally {
             try {
                 if (rs != null) rs.close();
@@ -152,82 +159,58 @@ public class registroPropietario {
         }
     }
 
-    // 2️⃣ Actualizar cliente seleccionado
+    // Método para actualizar los datos del cliente desde la tabla
     public boolean actualizarClienteDesdeTabla(JTable tabla) {
         int filaSeleccionada = tabla.getSelectedRow();
-        if (filaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(null, "Seleccione un cliente para editar.");
-            return false;
-        }
 
-        // Obtener datos desde el JTable
-        String ci = tabla.getValueAt(filaSeleccionada, 0).toString();
-        String nombre = tabla.getValueAt(filaSeleccionada, 1).toString();
-        String telefono = tabla.getValueAt(filaSeleccionada, 2).toString();
-        String correo = tabla.getValueAt(filaSeleccionada, 3).toString();
-        String direccion = tabla.getValueAt(filaSeleccionada, 4).toString();
-
-        // Validaciones
-        if (!validarNombre(nombre) || !validarCI(ci) || !validarTelefono(telefono) || !validarDireccion(direccion) || !validarCorreo(correo)) {
-            JOptionPane.showMessageDialog(null, "Error en la validación de los datos. No se guardaron los cambios.");
-            return false;
-        }
-
-        // Actualizar en la base de datos
-        Connection conexion = null;
-        PreparedStatement stmt = null;
-
-        try {
-            ConexionSQLServer conexionDB = new ConexionSQLServer();
-            conexion = conexionDB.obtenerConexion();
-
-            String sql = "UPDATE cliente SET Nombre_Completo=?, telefono=?, email=?, direccion=? WHERE Ci=?";
-            stmt = conexion.prepareStatement(sql);
-            stmt.setString(1, nombre);
-            stmt.setString(2, telefono);
-            stmt.setString(3, correo);
-            stmt.setString(4, direccion);
-            stmt.setString(5, ci);
-
-            int filasActualizadas = stmt.executeUpdate();
-            if (filasActualizadas > 0) {
-                JOptionPane.showMessageDialog(null, "Cliente actualizado correctamente.");
-                return true;
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al actualizar cliente: " + e.getMessage());
-        } finally {
-            try {
-                if (stmt != null) stmt.close();
-                if (conexion != null) conexion.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
+    if (filaSeleccionada == -1) {
+        JOptionPane.showMessageDialog(null, "Por favor, seleccione una fila para editar.");
         return false;
     }
 
-    // Validaciones (Mismas que las del registro)
-    /*
-    private boolean validarNombre(String nombre) {
-        return nombre.matches("^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+( [A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)*$") && nombre.length() <= 50;
+    // Obtener los datos de la fila seleccionada
+    String ci = (String) tabla.getValueAt(filaSeleccionada, 0);
+    String nombre = (String) tabla.getValueAt(filaSeleccionada, 1);
+    String telefono = (String) tabla.getValueAt(filaSeleccionada, 2);
+    String direccion = (String) tabla.getValueAt(filaSeleccionada, 3);
+    String correo = (String) tabla.getValueAt(filaSeleccionada, 4);
+
+    // Actualizar en la base de datos
+    Connection conexion = null;
+    PreparedStatement stmt = null;
+
+    try {
+        ConexionSQLServer conexionDB = new ConexionSQLServer();
+        conexion = conexionDB.obtenerConexion();
+
+        String sql = "UPDATE cliente SET Nombre_Completo=?, telefono=?, direccion=?, email=? WHERE Ci=?";
+        stmt = conexion.prepareStatement(sql);
+        stmt.setString(1, nombre);
+        stmt.setString(2, telefono);
+        stmt.setString(3, direccion);
+        stmt.setString(4, correo);
+        stmt.setString(5, ci);
+
+        int filasActualizadas = stmt.executeUpdate();
+        if (filasActualizadas > 0) {
+            JOptionPane.showMessageDialog(null, "Cliente actualizado exitosamente.");
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo actualizar el cliente. Verifica los datos.");
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al actualizar cliente: " + e.getMessage());
+    } finally {
+        try {
+            if (stmt != null) stmt.close();
+            if (conexion != null) conexion.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    private boolean validarCI(String ci) {
-        return ci.matches("^[0-9]{10}$");
-    }
-
-    private boolean validarTelefono(String telefono) {
-        return telefono.matches("^[0-9]{10}$");
-    }
-
-    private boolean validarDireccion(String direccion) {
-        return direccion.length() <= 250;
-    }
-
-    private boolean validarCorreo(String correo) {
-        return correo.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$") && correo.length() <= 50;
+    return false;
     }*/
 }
 

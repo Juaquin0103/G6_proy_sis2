@@ -4,7 +4,9 @@
  */
 package com.mycompany.proyectolavadero.Interfaces;
 
-import com.mycompany.proyectolavadero.Backend.registroPropietario;
+import com.mycompany.proyectolavadero.Backend.listarPropietario;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,13 +17,31 @@ public class listaDePropietariosInterfaz extends javax.swing.JFrame {
     /**
      * Creates new form listaDePropietariosInterfaz
      */
+    listarPropietario listar;
     public listaDePropietariosInterfaz() {
         initComponents();
-        registroPropietario registro = new registroPropietario();
-        registro.cargarDatosEnTabla(T); // 'T' es el nombre del JTable
-
+        listar = new listarPropietario();
+        configurarTabla();
+        cargarDatosEnTabla();
     }
+    private void configurarTabla() {
+        T.setModel(new DefaultTableModel(
+            new Object[][]{},
+            new String[]{
+                "CI o NIT", "Nombre del Cliente", "Telefono", "Direccion", "Correo"
+            }
+        ) {
+            boolean[] canEdit = new boolean[]{false, true, true, true, true};
 
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+    }
+    private void cargarDatosEnTabla() {
+        listar.cargarDatosEnTabla(T);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -126,7 +146,7 @@ public class listaDePropietariosInterfaz extends javax.swing.JFrame {
         jButton12.setBackground(new java.awt.Color(17, 17, 29));
         jButton12.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton12.setForeground(new java.awt.Color(255, 255, 255));
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/catalogar.png"))); // NOI18N
+        //jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/catalogar.png"))); // NOI18N
         jButton12.setText("Catalogo");
 
         jButton13.setBackground(new java.awt.Color(17, 17, 29));
@@ -194,7 +214,7 @@ public class listaDePropietariosInterfaz extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "CI o NIT", "Nombre del Cliente ", "Telefono", "Correo", "Direccion"
+                "CI o NIT", "Nombre del Cliente ", "Telefono", "Direccion", "Correo"
             }
         ));
         T.setToolTipText("");
@@ -337,18 +357,19 @@ public class listaDePropietariosInterfaz extends javax.swing.JFrame {
         registroPropietarioInterfaz ventanaRegistro = new registroPropietarioInterfaz();
         ventanaRegistro.setVisible(true);
         ventanaRegistro.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
-
         // Cerrar la ventana actual
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        registroPropietario registro = new registroPropietario();
-        boolean actualizado = registro.actualizarClienteDesdeTabla(T);
+        boolean actualizado = listar.actualizarClienteDesdeTabla(T);
+
         if (actualizado) {
-            registro.cargarDatosEnTabla(T); // Recargar datos para ver los cambios
-    }
+            cargarDatosEnTabla();  // Recargar los datos después de actualizar
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo actualizar el cliente. Verifica los datos.");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

@@ -366,8 +366,8 @@
                         <Column editable="true" title="CI o NIT" type="java.lang.Object"/>
                         <Column editable="true" title="Nombre del Cliente " type="java.lang.Object"/>
                         <Column editable="true" title="Telefono" type="java.lang.Object"/>
-                        <Column editable="true" title="Correo" type="java.lang.Object"/>
                         <Column editable="true" title="Direccion" type="java.lang.Object"/>
+                        <Column editable="true" title="Correo" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="toolTipText" type="java.lang.String" value=""/>
