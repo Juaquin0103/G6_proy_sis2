@@ -315,14 +315,14 @@ public class registroVehiculoInterfaz extends javax.swing.JFrame {
         jLabel9.setText("Preferencias:");
 
         jButton12.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Close.png"))); // NOI18N
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosRegistroPropietario/Close.png"))); // NOI18N
         jButton12.setText("Cancelar");
         jButton12.setMaximumSize(new java.awt.Dimension(267, 71));
         jButton12.setMinimumSize(new java.awt.Dimension(267, 71));
         jButton12.setPreferredSize(new java.awt.Dimension(267, 71));
 
         jButton13.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Ok.png"))); // NOI18N
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosRegistroPropietario/Ok.png"))); // NOI18N
         jButton13.setText("Guardar vehiculo");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

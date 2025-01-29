@@ -233,11 +233,11 @@ public class registroPropietarioInterfaz extends javax.swing.JFrame {
         });
 
         jButton12.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Close.png"))); // NOI18N
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosRegistroPropietario/Close.png"))); // NOI18N
         jButton12.setText("Cancelar");
 
         jButton13.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Ok.png"))); // NOI18N
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosRegistroPropietario/Ok.png"))); // NOI18N
         jButton13.setText("Guardar Cliente");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);

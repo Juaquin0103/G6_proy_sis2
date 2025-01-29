@@ -533,7 +533,7 @@
                   <Font name="Segoe UI" size="22" style="1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/images/Close.png"/>
+                  <Image iconType="3" name="/com/mycompany/proyectolavadero/Iconos/IconosRegistroPropietario/Close.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cancelar"/>
               </Properties>
@@ -544,7 +544,7 @@
                   <Font name="Segoe UI" size="22" style="1"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/images/Ok.png"/>
+                  <Image iconType="3" name="/com/mycompany/proyectolavadero/Iconos/IconosRegistroPropietario/Ok.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Guardar Cliente"/>
               </Properties>
