@@ -38,10 +38,10 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
         CatalogoBT = new javax.swing.JButton();
         LogoBT = new javax.swing.JButton();
         PanelSuperior = new javax.swing.JPanel();
-        Busqueda = new com.mycompany.proyectolavadero.Interfaces.PanelRound();
-        jTextField1 = new javax.swing.JTextField();
         Soporte = new javax.swing.JButton();
         Usuario = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
         PanelCentral = new javax.swing.JPanel();
         TextoCabeza = new javax.swing.JLabel();
         Nombre = new javax.swing.JLabel();
@@ -185,38 +185,6 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
 
         PanelSuperior.setBackground(new java.awt.Color(236, 240, 241));
 
-        Busqueda.setBackground(new java.awt.Color(255, 255, 255));
-        Busqueda.setRoundBottomLeft(50);
-        Busqueda.setRoundBottomRight(50);
-        Busqueda.setRoundTopLeft(50);
-        Busqueda.setRoundTopRight(50);
-
-        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField1.setText("Buscar...");
-        jTextField1.setBorder(null);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout BusquedaLayout = new javax.swing.GroupLayout(Busqueda);
-        Busqueda.setLayout(BusquedaLayout);
-        BusquedaLayout.setHorizontalGroup(
-            BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BusquedaLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
-        );
-        BusquedaLayout.setVerticalGroup(
-            BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BusquedaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         Soporte.setBackground(new java.awt.Color(236, 240, 241));
         Soporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/company/proyectolavadero/Iconos/IconosIngresoEmpleado/soporte-en-linea (1).png"))); // NOI18N
         Soporte.setText("Soporte");
@@ -234,14 +202,35 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
+        jTextField1.setText("Buscar...");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTextField1)
+        );
+
         javax.swing.GroupLayout PanelSuperiorLayout = new javax.swing.GroupLayout(PanelSuperior);
         PanelSuperior.setLayout(PanelSuperiorLayout);
         PanelSuperiorLayout.setHorizontalGroup(
             PanelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelSuperiorLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 517, Short.MAX_VALUE)
+                .addGap(48, 48, 48)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 634, Short.MAX_VALUE)
                 .addComponent(Soporte)
                 .addGap(18, 18, 18)
                 .addComponent(Usuario)
@@ -251,10 +240,10 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
             PanelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelSuperiorLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(PanelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Soporte)
-                    .addComponent(Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(PanelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Soporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Usuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -543,7 +532,6 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
     private javax.swing.JLabel Apellido;
     private javax.swing.JTextField ApellidoTxt;
     private javax.swing.JPanel Background;
-    private com.mycompany.proyectolavadero.Interfaces.PanelRound Busqueda;
     private javax.swing.JLabel CI;
     private javax.swing.JTextField CITxt;
     private javax.swing.JButton CatalogoBT;
@@ -573,6 +561,7 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
     private javax.swing.JLabel TextoCabeza;
     private javax.swing.JButton Usuario;
     private javax.swing.JButton VehiculosBT;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
