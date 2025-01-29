@@ -68,55 +68,47 @@ public class registroPropietarioInterfaz extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(17, 17, 29));
         jButton1.setForeground(new java.awt.Color(17, 17, 29));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/Logo.png"))); // NOI18N
+        jButton1.setText("hola");
         jButton1.setBorder(null);
 
         jButton4.setBackground(new java.awt.Color(17, 17, 29));
         jButton4.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/casa (4).png"))); // NOI18N
         jButton4.setText("Inicio");
 
         jButton5.setBackground(new java.awt.Color(17, 17, 29));
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/carro-de-la-carretilla.png"))); // NOI18N
         jButton5.setText("Cotizacion");
 
         jButton6.setBackground(new java.awt.Color(17, 17, 29));
         jButton6.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/coche frontal.png"))); // NOI18N
         jButton6.setText("Vehiculos");
 
         jButton7.setBackground(new java.awt.Color(17, 17, 29));
         jButton7.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/clientes.png"))); // NOI18N
         jButton7.setText("Clientes");
 
         jButton8.setBackground(new java.awt.Color(17, 17, 29));
         jButton8.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/trabajo-en-equipo.png"))); // NOI18N
         jButton8.setText("Equipo de Lavado");
 
         jButton9.setBackground(new java.awt.Color(17, 17, 29));
         jButton9.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/envio.png"))); // NOI18N
         jButton9.setText("Inventario");
 
         jButton10.setBackground(new java.awt.Color(17, 17, 29));
         jButton10.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton10.setForeground(new java.awt.Color(255, 255, 255));
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/informe-seo.png"))); // NOI18N
         jButton10.setText("Reportes");
 
         jButton11.setBackground(new java.awt.Color(17, 17, 29));
         jButton11.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton11.setForeground(new java.awt.Color(255, 255, 255));
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/catalogar.png"))); // NOI18N
         jButton11.setText("Catalogo");
 
         javax.swing.GroupLayout BarraLateralLayout = new javax.swing.GroupLayout(BarraLateral);
@@ -171,12 +163,10 @@ public class registroPropietarioInterfaz extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(236, 240, 241));
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/soporte-en-linea (1).png"))); // NOI18N
         jButton2.setText("Soporte");
 
         jButton3.setBackground(new java.awt.Color(236, 240, 241));
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/avatar.png"))); // NOI18N
 
         javax.swing.GroupLayout BarraSuperiorLayout = new javax.swing.GroupLayout(BarraSuperior);
         BarraSuperior.setLayout(BarraSuperiorLayout);
@@ -236,11 +226,14 @@ public class registroPropietarioInterfaz extends javax.swing.JFrame {
         });
 
         jButton12.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosRegistroPropietario/Close.png"))); // NOI18N
         jButton12.setText("Cancelar");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton13.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosRegistroPropietario/Ok.png"))); // NOI18N
         jButton13.setText("Guardar Cliente");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -332,7 +325,7 @@ public class registroPropietarioInterfaz extends javax.swing.JFrame {
                     .addGroup(BackgroundLayout.createSequentialGroup()
                         .addGap(66, 66, 66)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 56, Short.MAX_VALUE))))
+                        .addGap(0, 232, Short.MAX_VALUE))))
         );
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,7 +334,7 @@ public class registroPropietarioInterfaz extends javax.swing.JFrame {
                 .addComponent(BarraSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(88, 88, 88)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 31, Short.MAX_VALUE))
+                .addGap(0, 48, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -369,24 +362,20 @@ public class registroPropietarioInterfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // Obtener datos de los JTextFields
-        String nombre = jTextField2.getText();
-        String ci = jTextField3.getText();
-        String telefono = jTextField4.getText();
-        String direccion = jTextField5.getText();
-        String correo = jTextField6.getText();
+        // Obtener datos de los JTextFields y eliminar espacios en blanco innecesarios
+        String nombre = jTextField2.getText().trim();
+        String ci = jTextField3.getText().trim();
+        String telefono = jTextField4.getText().trim();
+        String direccion = jTextField5.getText().trim();
+        String correo = jTextField6.getText().trim();
 
-        // Validar que los campos no estén vacíos
-        if (nombre.isEmpty() || ci.isEmpty() || telefono.isEmpty() || direccion.isEmpty() || correo.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // Instancia del Backend para registrar el cliente
+        // Instancia del Backend
         registroPropietario registro = new registroPropietario();
+
+        // Llamar a la función de validación y registro
         boolean resultado = registro.registrarCliente(nombre, ci, telefono, direccion, correo);
 
-        // Si se registró correctamente, limpiar los campos
+        // Si el registro fue exitoso, limpiar los campos
         if (resultado) {
             jTextField2.setText("");
             jTextField3.setText("");
@@ -395,6 +384,17 @@ public class registroPropietarioInterfaz extends javax.swing.JFrame {
             jTextField6.setText("");
         }
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        // Abrir la interfaz de lista de propietarios
+        listaDePropietariosInterfaz ventanaLista = new listaDePropietariosInterfaz();
+        ventanaLista.setVisible(true);
+        ventanaLista.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+
+        // Cerrar la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
      * @param args the command line arguments
