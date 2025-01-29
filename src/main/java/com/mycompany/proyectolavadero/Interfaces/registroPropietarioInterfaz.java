@@ -4,6 +4,9 @@
  */
 package com.mycompany.proyectolavadero.Interfaces;
 
+import com.mycompany.proyectolavadero.Backend.registroPropietario;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Windows
@@ -239,6 +242,11 @@ public class registroPropietarioInterfaz extends javax.swing.JFrame {
         jButton13.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosRegistroPropietario/Ok.png"))); // NOI18N
         jButton13.setText("Guardar Cliente");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -359,6 +367,34 @@ public class registroPropietarioInterfaz extends javax.swing.JFrame {
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // Obtener datos de los JTextFields
+        String nombre = jTextField2.getText();
+        String ci = jTextField3.getText();
+        String telefono = jTextField4.getText();
+        String direccion = jTextField5.getText();
+        String correo = jTextField6.getText();
+
+        // Validar que los campos no estén vacíos
+        if (nombre.isEmpty() || ci.isEmpty() || telefono.isEmpty() || direccion.isEmpty() || correo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Instancia del Backend para registrar el cliente
+        registroPropietario registro = new registroPropietario();
+        boolean resultado = registro.registrarCliente(nombre, ci, telefono, direccion, correo);
+
+        // Si se registró correctamente, limpiar los campos
+        if (resultado) {
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField6.setText("");
+        }
+    }//GEN-LAST:event_jButton13ActionPerformed
 
     /**
      * @param args the command line arguments

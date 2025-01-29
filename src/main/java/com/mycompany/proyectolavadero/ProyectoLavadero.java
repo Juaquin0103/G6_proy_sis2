@@ -4,6 +4,8 @@
 
 package com.mycompany.proyectolavadero;
 
+import com.mycompany.proyectolavadero.Interfaces.registroPropietarioInterfaz;
+
 /**
  *
  * @author juaco
