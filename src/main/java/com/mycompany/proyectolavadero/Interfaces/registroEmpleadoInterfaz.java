@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.proyectolavadero.Interfaces;
-
+import com.mycompany.proyectolavadero.Backend.registroEmpleado;
 /**
  *
  * @author Windows
@@ -233,6 +233,11 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
         jButton13.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosRegistroPropietario/Ok.png"))); // NOI18N
         jButton13.setText("Guardar trabajador");
+        jButton13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton13MouseClicked(evt);
+            }
+        });
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -372,6 +377,29 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseClicked
+        String nombre = jTextField2.getText().trim();
+        String apellido = jTextField3.getText().trim();
+        String ci = jTextField4.getText().trim();
+        String telefono = jTextField5.getText().trim();
+        String correo = jTextField6.getText().trim();
+        String direccion = jTextField7.getText().trim();
+        String equipoLavado = jComboBox1.getSelectedItem().toString(); 
+
+registroEmpleado registro = new registroEmpleado();
+
+boolean resultado = registro.registrarEmpleado(nombre, apellido, ci, telefono, correo, direccion, equipoLavado);
+
+if (resultado) {
+    jTextField2.setText("");
+    jTextField3.setText("");
+    jTextField4.setText("");
+    jTextField5.setText("");
+    jTextField6.setText("");
+    jComboBox1.setSelectedIndex(0); 
+}
+    }//GEN-LAST:event_jButton13MouseClicked
 
     /**
      * @param args the command line arguments
