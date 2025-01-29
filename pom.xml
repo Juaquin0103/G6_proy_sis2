@@ -17,5 +17,11 @@
                 <artifactId>mssql-jdbc</artifactId>
                 <version>12.9.0.jre11-preview</version>
             </dependency>
+        <dependency>
+            <groupId>cn.bee-cloud</groupId>
+            <artifactId>beecloud-service-core</artifactId>
+            <version>6.1.9b</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 </project>
