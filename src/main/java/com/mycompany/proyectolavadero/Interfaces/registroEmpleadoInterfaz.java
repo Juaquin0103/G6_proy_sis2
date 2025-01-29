@@ -39,7 +39,7 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
         LogoBT = new javax.swing.JButton();
         PanelSuperior = new javax.swing.JPanel();
         Busqueda = new com.mycompany.proyectolavadero.Interfaces.PanelRound();
-        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         Soporte = new javax.swing.JButton();
         Usuario = new javax.swing.JButton();
         PanelCentral = new javax.swing.JPanel();
@@ -64,6 +64,7 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Background.setBackground(new java.awt.Color(255, 255, 255));
+        Background.setForeground(new java.awt.Color(255, 255, 255));
         Background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         PanelIzq.setBackground(new java.awt.Color(17, 17, 29));
@@ -190,20 +191,30 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
         Busqueda.setRoundTopLeft(50);
         Busqueda.setRoundTopRight(50);
 
-        jLabel1.setText("Buscar");
+        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
+        jTextField1.setText("Buscar...");
+        jTextField1.setBorder(null);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout BusquedaLayout = new javax.swing.GroupLayout(Busqueda);
         Busqueda.setLayout(BusquedaLayout);
         BusquedaLayout.setHorizontalGroup(
             BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BusquedaLayout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+            .addGroup(BusquedaLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         BusquedaLayout.setVerticalGroup(
             BusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+            .addGroup(BusquedaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         Soporte.setBackground(new java.awt.Color(236, 240, 241));
@@ -489,6 +500,10 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_FotoBTActionPerformed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -558,6 +573,6 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
     private javax.swing.JLabel TextoCabeza;
     private javax.swing.JButton Usuario;
     private javax.swing.JButton VehiculosBT;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,7 +11,7 @@ package com.mycompany.proyectolavadero.Interfaces;
 public class registroVehiculoInterfaz extends javax.swing.JFrame {
 
     /**
-     * Creates new form registroVehiculoInterfaz
+     * Creates new form asignacionEquipoLavadoInterfaz
      */
     public registroVehiculoInterfaz() {
         initComponents();
@@ -67,6 +67,9 @@ public class registroVehiculoInterfaz extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(registroVehiculoInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
