@@ -20,7 +20,7 @@ public class registroPropietario {
 
         // 🔍 VALIDACIONES
         if (!validarNombre(nombre)) {
-            JOptionPane.showMessageDialog(null, "Error: El nombre debe iniciar con mayúsculas, sin números ni caracteres especiales y no superar los 50 caracteres.");
+            JOptionPane.showMessageDialog(null, "Error: El nombre debe iniciar con mayúsculas, sin números ni caracteres especiales.");
             return false;
         }
         
@@ -30,7 +30,7 @@ public class registroPropietario {
         }
         
         if (!validarTelefono(telefono)) {
-            JOptionPane.showMessageDialog(null, "Error: El teléfono debe contener solo 10 números.");
+            JOptionPane.showMessageDialog(null, "Error: El teléfono debe contener solo 8 números.");
             return false;
         }
 
@@ -83,11 +83,11 @@ public class registroPropietario {
 
     // 🚀 VALIDACIONES
     
-    // ✅ Validar Nombre (Empieza con mayúscula, sin números ni caracteres especiales, y <= 50 caracteres)
-    private boolean validarNombre(String nombre) {
+    // ✅ Validar Nombre (Empieza con mayúscula, sin números ni caracteres especiales, y <= 20 caracteres)
+    public boolean validarNombre(String nombre) {
         // Verificar longitud
-        if (nombre.length() < 10 || nombre.length() > 50) {
-            JOptionPane.showMessageDialog(null, "Error: El nombre completo debe tener entre 10 y 50 caracteres.");
+        if (nombre.length() < 10 || nombre.length() > 20) {
+            JOptionPane.showMessageDialog(null, "Error: El nombre completo excede en limite de caracteres.");
             return false;
         }
 
@@ -101,31 +101,39 @@ public class registroPropietario {
     }
 
     // ✅ Validar CI (Solo números, exactamente 10 caracteres)
-    private boolean validarCI(String ci) {
-        if (ci.contains(" ")) {
-        JOptionPane.showMessageDialog(null, "Error: El CI no debe contener espacios.");
+    public boolean validarCI(String ci) {
+    if (ci == null || ci.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Error: El CI no puede estar vacío.");
         return false;
-        }
-        return ci.matches("^[0-9]{10}$");
     }
-
-    // ✅ Validar Teléfono (Solo números, exactamente 10 caracteres)
-    private boolean validarTelefono(String telefono) {
-        if (telefono.contains(" ")) {
-        JOptionPane.showMessageDialog(null, "Error: El CI no debe contener espacios.");
+    if (!ci.matches("\\d{10}")) {
+        JOptionPane.showMessageDialog(null, "Error: El CI debe contener exactamente 10 dígitos numéricos.");
         return false;
+    }
+    return true;
+}
+
+    // ✅ Validar Teléfono (Solo números, exactamente 8 caracteres)
+    public boolean validarTelefono(String telefono) {
+        if (telefono == null || telefono.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Error: El teléfono no puede estar vacío.");
+            return false;
         }
-        return telefono.matches("^[0-9]{10}$");
+        if (!telefono.matches("\\d{8}")) {
+            JOptionPane.showMessageDialog(null, "Error: El teléfono debe contener exactamente 8 dígitos.");
+            return false;
+        }
+        return true;
     }
 
     // ✅ Validar Dirección (No más de 250 caracteres)
-    private boolean validarDireccion(String direccion) {
-        return direccion.length() <= 250;
+    public boolean validarDireccion(String direccion) {
+        return direccion.length() <= 50;
     }
 
     // ✅ Validar Correo Electrónico (Debe contener '@' y no superar los 50 caracteres)
-    private boolean validarCorreo(String correo) {
+    public boolean validarCorreo(String correo) {
         return correo.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$") && correo.length() <= 50;
     }
-}
+} 
 
