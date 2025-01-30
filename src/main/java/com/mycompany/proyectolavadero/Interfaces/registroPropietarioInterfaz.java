@@ -369,6 +369,30 @@ public class registroPropietarioInterfaz extends javax.swing.JFrame {
         String direccion = jTextField5.getText().trim();
         String correo = jTextField6.getText().trim();
 
+        // Verificar si hay campos vacíos
+        StringBuilder mensaje = new StringBuilder();
+        if (nombre.isEmpty()) {
+            mensaje.append("- Debes ingresar el nombre.\n");
+        }
+        if (ci.isEmpty()) {
+            mensaje.append("- Debes ingresar el CI o NIT.\n");
+        }
+        if (telefono.isEmpty()) {
+            mensaje.append("- Debes ingresar el teléfono.\n");
+        }
+        if (direccion.isEmpty()) {
+            mensaje.append("- Debes ingresar la dirección.\n");
+        }
+        if (correo.isEmpty()) {
+            mensaje.append("- Debes ingresar el correo.\n");
+        }
+
+        // Mostrar alerta si hay campos vacíos
+        if (mensaje.length() > 0) {
+            JOptionPane.showMessageDialog(this, "Faltan los siguientes datos:\n" + mensaje.toString(), "Datos Incompletos", JOptionPane.WARNING_MESSAGE);
+            return;  // Detener la ejecución si faltan datos
+        }
+
         // Instancia del Backend
         registroPropietario registro = new registroPropietario();
 
