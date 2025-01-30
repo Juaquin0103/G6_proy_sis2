@@ -4,6 +4,7 @@
  */
 package com.mycompany.proyectolavadero.Interfaces;
 import com.mycompany.proyectolavadero.Backend.registroEmpleado;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Windows
@@ -124,7 +125,7 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
         BarraLateralLayout.setVerticalGroup(
             BarraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BarraLateralLayout.createSequentialGroup()
-                .addGap(324, 324, 324)
+                .addGap(266, 266, 266)
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
@@ -140,7 +141,7 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
                 .addComponent(jButton8)
                 .addGap(18, 18, 18)
                 .addComponent(jButton9)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         BarraSuperior.setBackground(new java.awt.Color(236, 240, 241));
@@ -212,7 +213,7 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
         });
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Equipo 1", "Equipo 2", "Equipo 3" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "E1", "E2", "E3" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -313,22 +314,23 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundLayout.createSequentialGroup()
                 .addComponent(BarraLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(BackgroundLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BarraSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BarraSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(BackgroundLayout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(BarraCentral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BarraLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(BackgroundLayout.createSequentialGroup()
-                .addComponent(BarraSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(BarraCentral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(BarraLateral, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, BackgroundLayout.createSequentialGroup()
+                        .addComponent(BarraSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(BarraCentral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -339,7 +341,9 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 31, Short.MAX_VALUE))
         );
 
         pack();
@@ -379,7 +383,36 @@ if (resultado) {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
+        // Obtener los valores de los campos
+        String nombre = jTextField2.getText().trim();
+        String apellido = jTextField3.getText().trim();
+        String ci = jTextField4.getText().trim();
+        String telefono = jTextField5.getText().trim();
+        String direccion = jTextField6.getText().trim();
+        String correo = jTextField7.getText().trim();
+        String equipoLavado = jComboBox1.getSelectedItem().toString();
+
+        // Validar si hay campos vacíos
+        if (nombre.isEmpty() || apellido.isEmpty() || ci.isEmpty() || telefono.isEmpty() || direccion.isEmpty() || correo.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Error: Todos los campos deben ser llenados.");
+            return;
+        }
+
+        // Instanciar la clase de registro y registrar los datos
+        registroEmpleado registro = new registroEmpleado();
+        boolean resultado = registro.registrarEmpleado(nombre, apellido, ci, telefono, direccion, correo, equipoLavado);
+
+        // Si la operación fue exitosa, limpiar los campos
+        if (resultado) {
+            JOptionPane.showMessageDialog(null, "Datos guardados correctamente.");
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField6.setText("");
+            jTextField7.setText("");
+            jComboBox1.setSelectedIndex(0);
+        }
     }//GEN-LAST:event_jButton13ActionPerformed
 
     /**

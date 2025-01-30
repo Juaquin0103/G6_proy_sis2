@@ -6,7 +6,6 @@ import com.mycompany.proyectolavadero.ConexionSQLServer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 public class registroEmpleado {
@@ -14,24 +13,23 @@ public class registroEmpleado {
     public boolean registrarEmpleado(String nombre, String apellido, String ci, String telefono, String direccion, String correo, String equipoLavado) {
         boolean registrado = false;
 
+        // Validaciones
         if (!validarNombre(nombre)) {
-            JOptionPane.showMessageDialog(null, "Error: El nombre debe iniciar con mayúsculas, sin números ni caracteres especiales y no superar los 50 caracteres.");
+            JOptionPane.showMessageDialog(null, "Error: El nombre debe iniciar con mayúsculas y contener solo letras. Máximo 20 caracteres.");
             return false;
         }
-        
-        if (!validarApellido(apellido)){
-            JOptionPane.showMessageDialog(null,"Error: El apellido debe iniciar con mayúsculas, sin números ni caracteres especiales y no superar los 50 caracteres.");
+
+        if (!validarApellido(apellido)) {
+            JOptionPane.showMessageDialog(null, "Error: El apellido debe iniciar con mayúsculas y contener solo letras. Máximo 30 caracteres.");
             return false;
         }
-        
+
         if (!validarCI(ci)) {
-            JOptionPane.showMessageDialog(null, "Error: El CI debe tener exactamente 10 caracteres y no contener símbolos o letras.");
-            return false;
+            return false;  // Los mensajes de error están en la función validarCI
         }
-        
+
         if (!validarTelefono(telefono)) {
-            JOptionPane.showMessageDialog(null, "Error: El teléfono debe contener solo 10 números.");
-            return false;
+            return false;  // Los mensajes de error están en la función validarTelefono
         }
 
         if (!validarDireccion(direccion)) {
@@ -48,15 +46,16 @@ public class registroEmpleado {
             JOptionPane.showMessageDialog(null, "Error: Seleccione un equipo de lavado válido.");
             return false;
         }
-        
+
+        // Conexión y registro en la base de datos
         Connection conexion = null;
         PreparedStatement stmt = null;
-        
+
         try {
             ConexionSQLServer conexionDB = new ConexionSQLServer();
             conexion = conexionDB.obtenerConexion();
 
-            String sql = "INSERT INTO empleado (Nombre, Apellido, CI, Telefono, Direccion, Correo, Equipo_Lavado) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Empleados (Nombre_Empleado, Apellidos_Empleado, CI, Telefono, Direccion, Email, EquipoLavado) VALUES (?, ?, ?, ?, ?, ?, ?)";
             stmt = conexion.prepareStatement(sql);
             stmt.setString(1, nombre);
             stmt.setString(2, apellido);
@@ -64,14 +63,14 @@ public class registroEmpleado {
             stmt.setString(4, telefono);
             stmt.setString(5, direccion);
             stmt.setString(6, correo);
-            stmt.setString(7, equipoLavado); // Tomamos el equipo seleccionado del JComboBox
+            stmt.setString(7, equipoLavado);
 
             int filasInsertadas = stmt.executeUpdate();
             if (filasInsertadas > 0) {
                 registrado = true;
                 JOptionPane.showMessageDialog(null, "Empleado registrado exitosamente.");
             }
-            
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al registrar empleado: " + e.getMessage());
             e.printStackTrace();
@@ -83,24 +82,58 @@ public class registroEmpleado {
                 e.printStackTrace();
             }
         }
-        
+
         return registrado;
     }
 
+    // Validaciones
+
     private boolean validarNombre(String nombre) {
-        return nombre.matches("^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+( [A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)*$") && nombre.length() <= 50;
+        if (nombre.length() > 20) {
+            JOptionPane.showMessageDialog(null, "Error: El nombre no puede superar los 20 caracteres.");
+            return false;
+        }
+        if (!nombre.matches("^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+( [A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)*$")) {
+            JOptionPane.showMessageDialog(null, "Error: El nombre debe comenzar con mayúsculas y no contener números o caracteres especiales.");
+            return false;
+        }
+        return true;
     }
 
-    private boolean validarApellido(String apellido){
-        return apellido.matches("^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+( [A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)*$") && apellido.length() <= 50;
+    private boolean validarApellido(String apellido) {
+        if (apellido.length() > 30) {
+            JOptionPane.showMessageDialog(null, "Error: El apellido no puede superar los 30 caracteres.");
+            return false;
+        }
+        if (!apellido.matches("^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+( [A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)*$")) {
+            JOptionPane.showMessageDialog(null, "Error: El apellido debe comenzar con mayúsculas y no contener números o caracteres especiales.");
+            return false;
+        }
+        return true;
     }
 
     private boolean validarCI(String ci) {
-        return ci.matches("^[0-9]{10}$");
+        if (ci.contains(" ")) {
+            JOptionPane.showMessageDialog(null, "Error: El CI no debe contener espacios.");
+            return false;
+        }
+        if (!ci.matches("^[0-9]{10}$")) {
+            JOptionPane.showMessageDialog(null, "Error: El CI debe contener exactamente 10 dígitos.");
+            return false;
+        }
+        return true;
     }
 
     private boolean validarTelefono(String telefono) {
-        return telefono.matches("^[0-9]{10}$");
+        if (telefono.contains(" ")) {
+            JOptionPane.showMessageDialog(null, "Error: El teléfono no debe contener espacios.");
+            return false;
+        }
+        if (!telefono.matches("^[0-9]{10}$")) {
+            JOptionPane.showMessageDialog(null, "Error: El teléfono debe contener exactamente 10 dígitos.");
+            return false;
+        }
+        return true;
     }
 
     private boolean validarDireccion(String direccion) {
@@ -108,12 +141,20 @@ public class registroEmpleado {
     }
 
     private boolean validarCorreo(String correo) {
-        return  correo.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$") && correo.length() <= 50;
+        if (correo.contains(" ")) {
+            JOptionPane.showMessageDialog(null, "Error: El correo no debe contener espacios.");
+            return false;
+        }
+        if (!correo.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")) {
+            JOptionPane.showMessageDialog(null, "Error: El correo debe ser válido y contener '@'.");
+            return false;
+        }
+        return correo.length() <= 50;
     }
 
     private boolean validarEquipoLavado(String equipoLavado) {
-        return equipoLavado.equals("Equipo de lavado 1") || 
-               equipoLavado.equals("Equipo de lavado 2") || 
-               equipoLavado.equals("Equipo de lavado 3");
+        return equipoLavado.equals("E1") || 
+               equipoLavado.equals("E2") || 
+               equipoLavado.equals("E3");
     }
 }
