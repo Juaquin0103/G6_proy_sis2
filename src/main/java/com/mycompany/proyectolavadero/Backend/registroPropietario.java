@@ -30,7 +30,7 @@ public class registroPropietario {
         }
         
         if (!validarTelefono(telefono)) {
-            JOptionPane.showMessageDialog(null, "Error: El teléfono debe contener solo 10 números.");
+            JOptionPane.showMessageDialog(null, "Error: El teléfono debe contener solo 8 números.");
             return false;
         }
 

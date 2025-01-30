@@ -92,7 +92,7 @@ public class registroEmpleado {
 
     // Validaciones
 
-    private boolean validarNombre(String nombre) {
+    public boolean validarNombre(String nombre) {
         if (nombre.length() > 20) {
             JOptionPane.showMessageDialog(null, "Error: El nombre no puede superar los 20 caracteres.");
             return false;
@@ -104,7 +104,7 @@ public class registroEmpleado {
         return true;
     }
 
-    private boolean validarApellido(String apellido) {
+    public boolean validarApellido(String apellido) {
         if (apellido.length() > 30) {
             JOptionPane.showMessageDialog(null, "Error: El apellido no puede superar los 30 caracteres.");
             return false;
@@ -116,35 +116,37 @@ public class registroEmpleado {
         return true;
     }
 
-    private boolean validarCI(String ci) {
-        if (ci.contains(" ")) {
-            JOptionPane.showMessageDialog(null, "Error: El CI no debe contener espacios.");
-            return false;
+    // ✅ Validar CI (Solo números, exactamente 10 caracteres)
+    boolean validarCI(String ci) {
+        if (ci == null || ci.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Error: El CI no puede estar vacío.");
+        return false;
         }
-        if (!ci.matches("^[0-9]{10}$")) {
-            JOptionPane.showMessageDialog(null, "Error: El CI debe contener exactamente 10 dígitos.");
-            return false;
-        }
-        return true;
-    }
-
-    private boolean validarTelefono(String telefono) {
-        if (telefono.contains(" ")) {
-            JOptionPane.showMessageDialog(null, "Error: El teléfono no debe contener espacios.");
-            return false;
-        }
-        if (!telefono.matches("^[0-9]{10}$")) {
-            JOptionPane.showMessageDialog(null, "Error: El teléfono debe contener exactamente 10 dígitos.");
+        if (!ci.matches("\\d{10}")) {
+            JOptionPane.showMessageDialog(null, "Error: El CI debe contener exactamente 10 dígitos numéricos.");
             return false;
         }
         return true;
     }
 
-    private boolean validarDireccion(String direccion) {
-        return direccion.length() <= 250;
+    // ✅ Validar Teléfono (Solo números, exactamente 10 caracteres)
+    boolean validarTelefono(String telefono) {
+        if (telefono == null || telefono.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Error: El teléfono no puede estar vacío.");
+            return false;
+        }
+        if (!telefono.matches("\\d{8}")) {
+            JOptionPane.showMessageDialog(null, "Error: El teléfono debe contener exactamente 8 dígitos.");
+            return false;
+        }
+        return true;
     }
 
-    private boolean validarCorreo(String correo) {
+    public boolean validarDireccion(String direccion) {
+        return direccion.length() <= 50;
+    }
+
+    public boolean validarCorreo(String correo) {
         if (correo.contains(" ")) {
             JOptionPane.showMessageDialog(null, "Error: El correo no debe contener espacios.");
             return false;
@@ -156,7 +158,7 @@ public class registroEmpleado {
         return correo.length() <= 50;
     }
 
-    private boolean validarEquipoLavado(String equipoLavado) {
+    public boolean validarEquipoLavado(String equipoLavado) {
         return equipoLavado.equals("E1") || 
                equipoLavado.equals("E2") || 
                equipoLavado.equals("E3");
