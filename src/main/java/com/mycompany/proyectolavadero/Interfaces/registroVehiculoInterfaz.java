@@ -4,8 +4,6 @@
  */
 package com.mycompany.proyectolavadero.Interfaces;
 
-import com.mycompany.proyectolavadero.Backend.registroVehiculo;
-
 /**
  *
  * @author juaco
@@ -449,33 +447,7 @@ public class registroVehiculoInterfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // Obtener datos de los JTextFields y eliminar espacios en blanco innecesarios
-        String Color = jTextField2.getText().trim();
-        String tipo_vehiculo = jTextField3.getText().trim();
-        String Placa = jTextField4.getText().trim();
-        String Modelo = jTextField5.getText().trim();
-        String Marca = jTextField6.getText().trim();
-        String Chasis = jTextField7.getText().trim();
-        String id_cliente = jTextField8.getText().trim();
-        String preferencia = jTextArea1.getText().trim();
-
-        // Instancia del Backend
-        registroVehiculo registro = new registroVehiculo();
-
-        // Llamar a la función de validación y registro
-        boolean resultado = registro.registrarVehiculo(Placa, Chasis, tipo_vehiculo, Color, Modelo, Marca, id_cliente, preferencia);
-
-        // Si el registro fue exitoso, limpiar los campos
-        if (resultado) {
-            jTextField2.setText("");
-            jTextField3.setText("");
-            jTextField4.setText("");
-            jTextField5.setText("");
-            jTextField6.setText("");
-            jTextField7.setText("");
-            jTextField8.setText("");
-            jTextArea1.setText("");
-        }
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton13ActionPerformed
 
     /**
