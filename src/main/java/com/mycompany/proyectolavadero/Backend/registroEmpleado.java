@@ -1,108 +1,98 @@
+
+
 package com.mycompany.proyectolavadero.Backend;
 
 import com.mycompany.proyectolavadero.ConexionSQLServer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.ResultSet;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 public class registroEmpleado {
+    
+    public boolean registrarEmpleado(String nombre, String apellido, String ci, String telefono, String direccion, String correo, String equipoLavado) {
+        boolean registrado = false;
 
-    public boolean registrarEmpleado(String nombre, String apellido, String ci, String telefono, String direccion, String correo, String equipo) {
-        if (!validarNombre(nombre) || !validarNombre(apellido) || !validarCI(ci) || 
-            !validarTelefono(telefono) || !validarDireccion(direccion) || !validarCorreo(correo) || !validarEquipo(equipo)) {
+        if (!validarNombre(nombre)) {
+            JOptionPane.showMessageDialog(null, "Error: El nombre debe iniciar con mayúsculas, sin números ni caracteres especiales y no superar los 50 caracteres.");
+            return false;
+        }
+        
+        if (!validarApellido(apellido)){
+            JOptionPane.showMessageDialog(null,"Error: El apellido debe iniciar con mayúsculas, sin números ni caracteres especiales y no superar los 50 caracteres.");
+            return false;
+        }
+        
+        if (!validarCI(ci)) {
+            JOptionPane.showMessageDialog(null, "Error: El CI debe tener exactamente 10 caracteres y no contener símbolos o letras.");
+            return false;
+        }
+        
+        if (!validarTelefono(telefono)) {
+            JOptionPane.showMessageDialog(null, "Error: El teléfono debe contener solo 10 números.");
             return false;
         }
 
-        String sql = "INSERT INTO empleado (Nombre, Apellido, CI, Telefono, Direccion, Correo, Equipo) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        if (!validarDireccion(direccion)) {
+            JOptionPane.showMessageDialog(null, "Error: La dirección no puede superar los 250 caracteres.");
+            return false;
+        }
 
-        try (Connection conexion = new ConexionSQLServer().obtenerConexion();
-             PreparedStatement stmt = conexion.prepareStatement(sql)) {
+        if (!validarCorreo(correo)) {
+            JOptionPane.showMessageDialog(null, "Error: El correo debe ser válido y contener '@'. Máximo 50 caracteres.");
+            return false;
+        }
 
+        if (!validarEquipoLavado(equipoLavado)) {
+            JOptionPane.showMessageDialog(null, "Error: Seleccione un equipo de lavado válido.");
+            return false;
+        }
+        
+        Connection conexion = null;
+        PreparedStatement stmt = null;
+        
+        try {
+            ConexionSQLServer conexionDB = new ConexionSQLServer();
+            conexion = conexionDB.obtenerConexion();
+
+            String sql = "INSERT INTO empleado (Nombre, Apellido, CI, Telefono, Direccion, Correo, Equipo_Lavado) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            stmt = conexion.prepareStatement(sql);
             stmt.setString(1, nombre);
             stmt.setString(2, apellido);
             stmt.setString(3, ci);
             stmt.setString(4, telefono);
             stmt.setString(5, direccion);
             stmt.setString(6, correo);
-            stmt.setString(7, equipo);
+            stmt.setString(7, equipoLavado); // Tomamos el equipo seleccionado del JComboBox
 
-            return stmt.executeUpdate() > 0;
-
-        } catch (SQLException e) {
-            System.err.println("Error al registrar empleado: " + e.getMessage());
-            return false;
-        }
-    }
-
-    public void cargarDatosEnTabla(JTable tabla) {
-        String sql = "SELECT CI, Nombre, Apellido, Telefono, Direccion, Correo, Equipo FROM empleado";
-        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
-        modelo.setRowCount(0);
-
-        try (Connection conexion = new ConexionSQLServer().obtenerConexion();
-             PreparedStatement stmt = conexion.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-
-            while (rs.next()) {
-                modelo.addRow(new Object[]{
-                    rs.getString("CI"),
-                    rs.getString("Nombre"),
-                    rs.getString("Apellido"),
-                    rs.getString("Telefono"),
-                    rs.getString("Direccion"),
-                    rs.getString("Correo"),
-                    rs.getString("Equipo")
-                });
+            int filasInsertadas = stmt.executeUpdate();
+            if (filasInsertadas > 0) {
+                registrado = true;
+                JOptionPane.showMessageDialog(null, "Empleado registrado exitosamente.");
             }
+            
         } catch (SQLException e) {
-            System.err.println("Error al cargar datos: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al registrar empleado: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            try {
+                if (stmt != null) stmt.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+        
+        return registrado;
     }
 
-    public boolean actualizarEmpleadoDesdeTabla(JTable tabla) {
-        int filaSeleccionada = tabla.getSelectedRow();
-        if (filaSeleccionada == -1) return false;
-
-        String ci = tabla.getValueAt(filaSeleccionada, 0).toString();
-        String nombre = tabla.getValueAt(filaSeleccionada, 1).toString();
-        String apellido = tabla.getValueAt(filaSeleccionada, 2).toString();
-        String telefono = tabla.getValueAt(filaSeleccionada, 3).toString();
-        String direccion = tabla.getValueAt(filaSeleccionada, 4).toString();
-        String correo = tabla.getValueAt(filaSeleccionada, 5).toString();
-        String equipo = tabla.getValueAt(filaSeleccionada, 6).toString();
-
-        if (!validarNombre(nombre) || !validarNombre(apellido) || !validarCI(ci) || 
-            !validarTelefono(telefono) || !validarDireccion(direccion) || !validarCorreo(correo) || !validarEquipo(equipo)) {
-            return false;
-        }
-
-        String sql = "UPDATE empleado SET Nombre=?, Apellido=?, Telefono=?, Direccion=?, Correo=?, Equipo=? WHERE CI=?";
-
-        try (Connection conexion = new ConexionSQLServer().obtenerConexion();
-             PreparedStatement stmt = conexion.prepareStatement(sql)) {
-
-            stmt.setString(1, nombre);
-            stmt.setString(2, apellido);
-            stmt.setString(3, telefono);
-            stmt.setString(4, direccion);
-            stmt.setString(5, correo);
-            stmt.setString(6, equipo);
-            stmt.setString(7, ci);
-
-            return stmt.executeUpdate() > 0;
-
-        } catch (SQLException e) {
-            System.err.println("Error al actualizar empleado: " + e.getMessage());
-            return false;
-        }
-    }
-
-    // 🚀 Métodos de Validación
     private boolean validarNombre(String nombre) {
         return nombre.matches("^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+( [A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)*$") && nombre.length() <= 50;
+    }
+
+    private boolean validarApellido(String apellido){
+        return apellido.matches("^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+( [A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)*$") && apellido.length() <= 50;
     }
 
     private boolean validarCI(String ci) {
@@ -118,12 +108,12 @@ public class registroEmpleado {
     }
 
     private boolean validarCorreo(String correo) {
-        return correo.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$") && correo.length() <= 50;
+        return  correo.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$") && correo.length() <= 50;
     }
 
-    private boolean validarEquipo(String equipo) {
-        return equipo.equals("Equipo de lavado 1") || 
-               equipo.equals("Equipo de lavado 2") || 
-               equipo.equals("Equipo de lavado 3");
+    private boolean validarEquipoLavado(String equipoLavado) {
+        return equipoLavado.equals("Equipo de lavado 1") || 
+               equipoLavado.equals("Equipo de lavado 2") || 
+               equipoLavado.equals("Equipo de lavado 3");
     }
 }

@@ -4,7 +4,6 @@
  */
 package com.mycompany.proyectolavadero.Interfaces;
 import com.mycompany.proyectolavadero.Backend.registroEmpleado;
-import javax.swing.JOptionPane;
 /**
  *
  * @author Windows
@@ -102,7 +101,7 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
         jButton9.setBackground(new java.awt.Color(17, 17, 29));
         jButton9.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/catalogar.png"))); // NOI18N
+        //jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/catalogar.png"))); // NOI18N
         jButton9.setText("Catalogo");
 
         javax.swing.GroupLayout BarraLateralLayout = new javax.swing.GroupLayout(BarraLateral);
@@ -200,6 +199,11 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
                 jButton13MouseClicked(evt);
             }
         });
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,6 +213,11 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Equipo 1", "Equipo 2", "Equipo 3" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout BarraCentralLayout = new javax.swing.GroupLayout(BarraCentral);
         BarraCentral.setLayout(BarraCentralLayout);
@@ -342,26 +351,36 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
 
     private void jButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseClicked
         String nombre = jTextField2.getText().trim();
-        String apellido = jTextField3.getText().trim();
-        String ci = jTextField4.getText().trim();
-        String telefono = jTextField5.getText().trim();
-        String correo = jTextField6.getText().trim();
-        String direccion = jTextField7.getText().trim();
-        String equipoLavado = jComboBox1.getSelectedItem().toString(); 
+String apellido = jTextField3.getText().trim();
+String ci = jTextField4.getText().trim();
+String telefono = jTextField5.getText().trim();
+String direccion = jTextField7.getText().trim();  // Direccion debe ir antes de correo
+String correo = jTextField6.getText().trim();
+String equipoLavado = jComboBox1.getSelectedItem().toString(); 
 
 registroEmpleado registro = new registroEmpleado();
 
-boolean resultado = registro.registrarEmpleado(nombre, apellido, ci, telefono, correo, direccion, equipoLavado);
+boolean resultado = registro.registrarEmpleado(nombre, apellido, ci, telefono, direccion, correo, equipoLavado);
 
 if (resultado) {
+    // Limpiar los campos si la operación fue exitosa
     jTextField2.setText("");
     jTextField3.setText("");
     jTextField4.setText("");
     jTextField5.setText("");
     jTextField6.setText("");
-    jComboBox1.setSelectedIndex(0); 
+    jTextField7.setText(""); // Aseguramos también limpiar la dirección
+    jComboBox1.setSelectedIndex(0);  // Devolver el JComboBox al primer índice
 }
     }//GEN-LAST:event_jButton13MouseClicked
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton13ActionPerformed
 
     /**
      * @param args the command line arguments
