@@ -146,7 +146,7 @@ public class listaDePropietariosInterfaz extends javax.swing.JFrame {
         jButton12.setBackground(new java.awt.Color(17, 17, 29));
         jButton12.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton12.setForeground(new java.awt.Color(255, 255, 255));
-        //jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/catalogar.png"))); // NOI18N
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/catalogar.png"))); // NOI18N
         jButton12.setText("Catalogo");
 
         jButton13.setBackground(new java.awt.Color(17, 17, 29));
@@ -161,29 +161,30 @@ public class listaDePropietariosInterfaz extends javax.swing.JFrame {
         BarraLateral.setLayout(BarraLateralLayout);
         BarraLateralLayout.setHorizontalGroup(
             BarraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraLateralLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(BarraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton12)
-                    .addComponent(jButton11)
-                    .addComponent(jButton10)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6)
-                    .addComponent(jButton9))
-                .addGap(35, 35, 35))
             .addGroup(BarraLateralLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton13)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(BarraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(BarraLateralLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton13))
+                    .addGroup(BarraLateralLayout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addGroup(BarraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton12)
+                            .addComponent(jButton11)
+                            .addComponent(jButton10)
+                            .addComponent(jButton7)
+                            .addComponent(jButton8)
+                            .addComponent(jButton5)
+                            .addComponent(jButton6)
+                            .addComponent(jButton9))))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         BarraLateralLayout.setVerticalGroup(
             BarraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BarraLateralLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jButton13)
-                .addGap(18, 18, 18)
+                .addGap(157, 157, 157)
                 .addComponent(jButton5)
                 .addGap(18, 18, 18)
                 .addComponent(jButton6)
@@ -282,24 +283,26 @@ public class listaDePropietariosInterfaz extends javax.swing.JFrame {
         BarraSuperiorLayout.setHorizontalGroup(
             BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraSuperiorLayout.createSequentialGroup()
-                .addGap(71, 71, 71)
+                .addGap(72, 72, 72)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 317, Short.MAX_VALUE)
                 .addComponent(jButton3)
-                .addGap(81, 81, 81)
+                .addGap(80, 80, 80)
                 .addComponent(jButton4)
                 .addGap(54, 54, 54))
         );
         BarraSuperiorLayout.setVerticalGroup(
             BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BarraSuperiorLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton4)
-                    .addGroup(BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton3)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(55, 55, 55)
+                .addComponent(jButton4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraSuperiorLayout.createSequentialGroup()
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addGroup(BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3))
+                .addGap(38, 38, 38))
         );
 
         javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
@@ -307,25 +310,28 @@ public class listaDePropietariosInterfaz extends javax.swing.JFrame {
         BackgroundLayout.setHorizontalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(BarraLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BarraSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, 1067, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
+                    .addGroup(BackgroundLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
                         .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(BarraTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 1009, Short.MAX_VALUE)
-                            .addComponent(BarraCentral, javax.swing.GroupLayout.DEFAULT_SIZE, 1009, Short.MAX_VALUE))
-                        .addGap(31, 31, 31))))
+                            .addComponent(BarraCentral, javax.swing.GroupLayout.DEFAULT_SIZE, 1009, Short.MAX_VALUE)))
+                    .addGroup(BackgroundLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BarraSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, 1067, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundLayout.createSequentialGroup()
-                .addComponent(BarraSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BarraSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(BarraTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BarraCentral, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(9, 9, 9))
             .addComponent(BarraLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -333,7 +339,7 @@ public class listaDePropietariosInterfaz extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, 1391, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
