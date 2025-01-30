@@ -11,7 +11,7 @@ import com.mycompany.proyectolavadero.Interfaces.registroPropietarioInterfaz;
  * @author juaco
  */
 public class ProyectoLavadero {
-
+    //Clase main
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
