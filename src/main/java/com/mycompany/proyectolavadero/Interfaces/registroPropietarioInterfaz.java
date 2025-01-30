@@ -68,55 +68,62 @@ public class registroPropietarioInterfaz extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(17, 17, 29));
         jButton1.setForeground(new java.awt.Color(17, 17, 29));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/Logo.png"))); // NOI18N
+        jButton1.setText("hola");
         jButton1.setBorder(null);
 
         jButton4.setBackground(new java.awt.Color(17, 17, 29));
         jButton4.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/casa (4).png"))); // NOI18N
         jButton4.setText("Inicio");
 
         jButton5.setBackground(new java.awt.Color(17, 17, 29));
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/carro-de-la-carretilla.png"))); // NOI18N
         jButton5.setText("Cotizacion");
 
         jButton6.setBackground(new java.awt.Color(17, 17, 29));
         jButton6.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/coche frontal.png"))); // NOI18N
         jButton6.setText("Vehiculos");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setBackground(new java.awt.Color(17, 17, 29));
         jButton7.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/clientes.png"))); // NOI18N
         jButton7.setText("Clientes");
 
         jButton8.setBackground(new java.awt.Color(17, 17, 29));
         jButton8.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/trabajo-en-equipo.png"))); // NOI18N
         jButton8.setText("Equipo de Lavado");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setBackground(new java.awt.Color(17, 17, 29));
         jButton9.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/envio.png"))); // NOI18N
         jButton9.setText("Inventario");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setBackground(new java.awt.Color(17, 17, 29));
         jButton10.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton10.setForeground(new java.awt.Color(255, 255, 255));
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/informe-seo.png"))); // NOI18N
         jButton10.setText("Reportes");
 
         jButton11.setBackground(new java.awt.Color(17, 17, 29));
         jButton11.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton11.setForeground(new java.awt.Color(255, 255, 255));
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/catalogar.png"))); // NOI18N
         jButton11.setText("Catalogo");
 
         javax.swing.GroupLayout BarraLateralLayout = new javax.swing.GroupLayout(BarraLateral);
@@ -124,28 +131,29 @@ public class registroPropietarioInterfaz extends javax.swing.JFrame {
         BarraLateralLayout.setHorizontalGroup(
             BarraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BarraLateralLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraLateralLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(BarraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton11)
-                    .addComponent(jButton10)
-                    .addComponent(jButton9)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8))
-                .addGap(33, 33, 33))
+                    .addGroup(BarraLateralLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1))
+                    .addGroup(BarraLateralLayout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addGroup(BarraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton11)
+                            .addComponent(jButton10)
+                            .addComponent(jButton9)
+                            .addComponent(jButton4)
+                            .addComponent(jButton5)
+                            .addComponent(jButton6)
+                            .addComponent(jButton7)
+                            .addComponent(jButton8))))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         BarraLateralLayout.setVerticalGroup(
             BarraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BarraLateralLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(152, 152, 152)
                 .addComponent(jButton4)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5)
@@ -171,36 +179,37 @@ public class registroPropietarioInterfaz extends javax.swing.JFrame {
 
         jButton2.setBackground(new java.awt.Color(236, 240, 241));
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/soporte-en-linea (1).png"))); // NOI18N
         jButton2.setText("Soporte");
 
         jButton3.setBackground(new java.awt.Color(236, 240, 241));
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/avatar.png"))); // NOI18N
 
         javax.swing.GroupLayout BarraSuperiorLayout = new javax.swing.GroupLayout(BarraSuperior);
         BarraSuperior.setLayout(BarraSuperiorLayout);
         BarraSuperiorLayout.setHorizontalGroup(
             BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BarraSuperiorLayout.createSequentialGroup()
-                .addGap(75, 75, 75)
+                .addGap(76, 76, 76)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
-                .addGap(55, 55, 55)
+                .addGap(56, 56, 56)
                 .addComponent(jButton3)
                 .addGap(81, 81, 81))
         );
         BarraSuperiorLayout.setVerticalGroup(
             BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BarraSuperiorLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
                 .addGroup(BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3)
-                    .addGroup(BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                    .addGroup(BarraSuperiorLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addGroup(BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2)))
+                    .addGroup(BarraSuperiorLayout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jButton3)))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(236, 240, 241));
@@ -236,11 +245,14 @@ public class registroPropietarioInterfaz extends javax.swing.JFrame {
         });
 
         jButton12.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosRegistroPropietario/Close.png"))); // NOI18N
         jButton12.setText("Cancelar");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton13.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosRegistroPropietario/Ok.png"))); // NOI18N
         jButton13.setText("Guardar Cliente");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -325,36 +337,35 @@ public class registroPropietarioInterfaz extends javax.swing.JFrame {
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundLayout.createSequentialGroup()
                 .addComponent(BarraLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(BackgroundLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BarraSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(BackgroundLayout.createSequentialGroup()
-                        .addGap(66, 66, 66)
+                        .addComponent(BarraSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BackgroundLayout.createSequentialGroup()
+                        .addGap(0, 78, Short.MAX_VALUE)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 56, Short.MAX_VALUE))))
+                        .addGap(82, 82, 82))))
         );
         BackgroundLayout.setVerticalGroup(
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(BarraLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(BackgroundLayout.createSequentialGroup()
                 .addComponent(BarraSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 31, Short.MAX_VALUE))
+                .addGap(36, 36, 36))
+            .addComponent(BarraLateral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, 1441, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, 823, Short.MAX_VALUE)
+            .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -369,24 +380,44 @@ public class registroPropietarioInterfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // Obtener datos de los JTextFields
-        String nombre = jTextField2.getText();
-        String ci = jTextField3.getText();
-        String telefono = jTextField4.getText();
-        String direccion = jTextField5.getText();
-        String correo = jTextField6.getText();
+        // Obtener datos de los JTextFields y eliminar espacios en blanco innecesarios
+        String nombre = jTextField2.getText().trim();
+        String ci = jTextField3.getText().trim();
+        String telefono = jTextField4.getText().trim();
+        String direccion = jTextField5.getText().trim();
+        String correo = jTextField6.getText().trim();
 
-        // Validar que los campos no estén vacíos
-        if (nombre.isEmpty() || ci.isEmpty() || telefono.isEmpty() || direccion.isEmpty() || correo.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+        // Verificar si hay campos vacíos
+        StringBuilder mensaje = new StringBuilder();
+        if (nombre.isEmpty()) {
+            mensaje.append("- Debes ingresar el nombre.\n");
+        }
+        if (ci.isEmpty()) {
+            mensaje.append("- Debes ingresar el CI o NIT.\n");
+        }
+        if (telefono.isEmpty()) {
+            mensaje.append("- Debes ingresar el teléfono.\n");
+        }
+        if (direccion.isEmpty()) {
+            mensaje.append("- Debes ingresar la dirección.\n");
+        }
+        if (correo.isEmpty()) {
+            mensaje.append("- Debes ingresar el correo.\n");
         }
 
-        // Instancia del Backend para registrar el cliente
+        // Mostrar alerta si hay campos vacíos
+        if (mensaje.length() > 0) {
+            JOptionPane.showMessageDialog(this, "Faltan los siguientes datos:\n" + mensaje.toString(), "Datos Incompletos", JOptionPane.WARNING_MESSAGE);
+            return;  // Detener la ejecución si faltan datos
+        }
+
+        // Instancia del Backend
         registroPropietario registro = new registroPropietario();
+
+        // Llamar a la función de validación y registro
         boolean resultado = registro.registrarCliente(nombre, ci, telefono, direccion, correo);
 
-        // Si se registró correctamente, limpiar los campos
+        // Si el registro fue exitoso, limpiar los campos
         if (resultado) {
             jTextField2.setText("");
             jTextField3.setText("");
@@ -395,6 +426,41 @@ public class registroPropietarioInterfaz extends javax.swing.JFrame {
             jTextField6.setText("");
         }
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        // Abrir la interfaz de lista de propietarios
+        listaDePropietariosInterfaz ventanaLista = new listaDePropietariosInterfaz();
+        ventanaLista.setVisible(true);
+        ventanaLista.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+
+        // Cerrar la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        listaDeVehiculosInterfaz ventanaListaVehiculos = new listaDeVehiculosInterfaz();
+        ventanaListaVehiculos.setVisible(true);
+        ventanaListaVehiculos.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+
+        // Cerrar la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        asignarEquipoLavado ventanaAsignarEquipoLavado = new asignarEquipoLavado();
+        ventanaAsignarEquipoLavado.setVisible(true);
+        ventanaAsignarEquipoLavado.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+
+        // Cerrar la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments

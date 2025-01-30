@@ -24,7 +24,7 @@ public class ConexionSQLServer {
     
     public Connection obtenerConexion() {
         try {
-            // Cargar el driver (opcional en versiones recientes de Java).
+            // Cargar el driver (opcional en versiones recientes de Java)
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
             // Cadena de conexión
