@@ -119,7 +119,6 @@ public class registroVehiculo {
     // Comprobar si el color no supera los 10 caracteres
     return Color != null && Color.length() <= 10;
     }
-    
     public boolean validarModelo(String Modelo) {
     // Comprobar si el modelo no supera los 50 caracteres
     return Modelo != null && Modelo.length() <= 50;
