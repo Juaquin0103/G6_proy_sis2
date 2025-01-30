@@ -14,10 +14,10 @@ public class registroVehiculoTest {
 
     @BeforeEach
     public void setUp() {
-        instance = new registroVehiculo();  // Asegúrate de que se crea una nueva instancia antes de cada prueba
+        instance = new registroVehiculo();  // Crea una nueva instancia antes de cada prueba
     }
 
-    // Test para validar formato de la placa.
+    // Test para validar formato de la placa 
     
     @Test
     public void testValidarPlacaAlfanumerica() {
