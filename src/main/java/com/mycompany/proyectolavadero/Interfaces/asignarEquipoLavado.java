@@ -4,6 +4,8 @@
  */
 package com.mycompany.proyectolavadero.Interfaces;
 
+import com.mycompany.proyectolavadero.Backend.ListarEquipoLavado;
+
 /**
  *
  * @author gabom
@@ -15,6 +17,8 @@ public class asignarEquipoLavado extends javax.swing.JFrame {
      */
     public asignarEquipoLavado() {
         initComponents();
+        ListarEquipoLavado listar = new ListarEquipoLavado();
+        listar.cargarDatosEnTabla(jTable4, jTable2, jTable3);  // Llamada a la función con las tablas correspondientes
     }
 
     /**

@@ -15,32 +15,35 @@ import java.sql.*;
  */
 public class ListarEquipoLavado {
     public void cargarDatosEnTabla(JTable tablaEquipo1, JTable tablaEquipo2, JTable tablaEquipo3) {
+        // Definir los modelos de las tablas
         DefaultTableModel modeloEquipo1 = new DefaultTableModel(new String[]{"Nombre", "Apellido"}, 0);
         DefaultTableModel modeloEquipo2 = new DefaultTableModel(new String[]{"Nombre", "Apellido"}, 0);
         DefaultTableModel modeloEquipo3 = new DefaultTableModel(new String[]{"Nombre", "Apellido"}, 0);
 
-        String sql = "SELECT Nombre, Apellido, Equipo_Lavado FROM empleado";
+        // Consulta SQL para obtener los empleados y sus respectivos equipos
+        String sql = "SELECT Nombre_empleado, Apellidos_empleado, EquipoLavado FROM Empleados";
 
         try (Connection conexion = new ConexionSQLServer().obtenerConexion();
              Statement stmt = conexion.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
+            // Recorrer los resultados de la consulta
             while (rs.next()) {
-                String nombre = rs.getString("Nombre");
-                String apellido = rs.getString("Apellido");
-                String equipo = rs.getString("Equipo_Lavado");
+                String nombre = rs.getString("Nombre_empleado");
+                String apellido = rs.getString("Apellidos_empleado");
+                String equipo = rs.getString("EquipoLavado");
 
                 Object[] fila = {nombre, apellido};
 
-                // Agregar cada empleado a la tabla correspondiente según su equipo
-                switch (equipo.toLowerCase()) {
-                    case "e1":
+                // Verificar y agregar cada empleado a la tabla correspondiente según su equipo
+                switch (equipo) {
+                    case "E1":
                         modeloEquipo1.addRow(fila);
                         break;
-                    case "e2":
+                    case "E2":
                         modeloEquipo2.addRow(fila);
                         break;
-                    case "e3":
+                    case "E3":
                         modeloEquipo3.addRow(fila);
                         break;
                     default:
@@ -57,4 +60,5 @@ public class ListarEquipoLavado {
             JOptionPane.showMessageDialog(null, "Error al cargar los datos en las tablas: " + e.getMessage());
         }
     }
+
 }
