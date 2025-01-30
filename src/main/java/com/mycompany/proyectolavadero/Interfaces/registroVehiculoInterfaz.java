@@ -143,7 +143,7 @@ public class registroVehiculoInterfaz extends javax.swing.JFrame {
                             .addComponent(jButton9)
                             .addComponent(jButton10)
                             .addComponent(jButton11))))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         BarraLateralLayout.setVerticalGroup(
             BarraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,6 +251,11 @@ public class registroVehiculoInterfaz extends javax.swing.JFrame {
 
         jTextField6.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jTextField6.setBorder(null);
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Black", 0, 20)); // NOI18N
         jLabel7.setText("Chasis:");
@@ -280,6 +285,11 @@ public class registroVehiculoInterfaz extends javax.swing.JFrame {
 
         jTextField8.setBackground(new java.awt.Color(236, 240, 241));
         jTextField8.setText("Buscar");
+        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField8ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -310,6 +320,11 @@ public class registroVehiculoInterfaz extends javax.swing.JFrame {
         jButton12.setMaximumSize(new java.awt.Dimension(267, 71));
         jButton12.setMinimumSize(new java.awt.Dimension(267, 71));
         jButton12.setPreferredSize(new java.awt.Dimension(267, 71));
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton13.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jButton13.setText("Guardar vehiculo");
@@ -463,7 +478,7 @@ public class registroVehiculoInterfaz extends javax.swing.JFrame {
         registroVehiculo registro = new registroVehiculo();
 
         // Llamar a la función de validación y registro
-        boolean resultado = registro.registrarVehiculo(Placa, Chasis, tipo_vehiculo, Color, Modelo, Marca, id_cliente, preferencia);
+        boolean resultado = registro.registrarVehiculo(Placa, Chasis, Color, Modelo, Marca, id_cliente, tipo_vehiculo, preferencia);
 
         // Si el registro fue exitoso, limpiar los campos
         if (resultado) {
@@ -477,6 +492,23 @@ public class registroVehiculoInterfaz extends javax.swing.JFrame {
             jTextArea1.setText("");
         }
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField8ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        listaDeVehiculosInterfaz ventanaListaVehiculos = new listaDeVehiculosInterfaz();
+        ventanaListaVehiculos.setVisible(true);
+        ventanaListaVehiculos.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+
+        // Cerrar la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
      * @param args the command line arguments

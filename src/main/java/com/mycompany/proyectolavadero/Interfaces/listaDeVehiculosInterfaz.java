@@ -4,6 +4,10 @@
  */
 package com.mycompany.proyectolavadero.Interfaces;
 
+import com.mycompany.proyectolavadero.Backend.listarVehiculos;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author juaco
@@ -13,9 +17,33 @@ public class listaDeVehiculosInterfaz extends javax.swing.JFrame {
     /**
      * Creates new form listaDeVehiculosInterfaz
      */
+    listarVehiculos listar;
     public listaDeVehiculosInterfaz() {
         initComponents();
+        listar = new listarVehiculos();
+        configurarTabla();
+        cargarDatosEnTabla();
     }
+
+        private void configurarTabla() {
+        jTable1.setModel(new DefaultTableModel(
+            new Object[][]{},
+            new String[]{
+                "Cliente", "Placa", "Tipo de Vehiculo"
+            }
+        ) {
+            boolean[] canEdit = new boolean[]{false,true, true };
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+        }
+         private void cargarDatosEnTabla() {
+            listar.cargarDatosEnTabla(jTable1);
+        }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,13 +88,11 @@ public class listaDeVehiculosInterfaz extends javax.swing.JFrame {
         jButton5.setBackground(new java.awt.Color(17, 17, 29));
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/casa (4).png"))); // NOI18N
         jButton5.setText("Inicio");
 
         jButton6.setBackground(new java.awt.Color(17, 17, 29));
         jButton6.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/carro-de-la-carretilla.png"))); // NOI18N
         jButton6.setText("Cotizacion");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,41 +103,34 @@ public class listaDeVehiculosInterfaz extends javax.swing.JFrame {
         jButton7.setBackground(new java.awt.Color(17, 17, 29));
         jButton7.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/coche frontal.png"))); // NOI18N
         jButton7.setText("Vehiculos");
 
         jButton8.setBackground(new java.awt.Color(17, 17, 29));
         jButton8.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/clientes.png"))); // NOI18N
         jButton8.setText("Clientes");
 
         jButton9.setBackground(new java.awt.Color(17, 17, 29));
         jButton9.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/trabajo-en-equipo.png"))); // NOI18N
         jButton9.setText("Equipo de Lavado");
 
         jButton10.setBackground(new java.awt.Color(17, 17, 29));
         jButton10.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton10.setForeground(new java.awt.Color(255, 255, 255));
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/envio.png"))); // NOI18N
         jButton10.setText("Inventario");
 
         jButton11.setBackground(new java.awt.Color(17, 17, 29));
         jButton11.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton11.setForeground(new java.awt.Color(255, 255, 255));
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/informe-seo.png"))); // NOI18N
         jButton11.setText("Reportes");
 
         jButton12.setBackground(new java.awt.Color(17, 17, 29));
         jButton12.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jButton12.setForeground(new java.awt.Color(255, 255, 255));
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/catalogar.png"))); // NOI18N
         jButton12.setText("Catalogo");
 
         jButton13.setBackground(new java.awt.Color(17, 17, 29));
-        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/Logo.png"))); // NOI18N
         jButton13.setBorder(null);
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,14 +188,17 @@ public class listaDeVehiculosInterfaz extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(236, 240, 241));
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/soporte-en-linea (1).png"))); // NOI18N
         jButton3.setText("Soporte");
 
         jButton4.setBackground(new java.awt.Color(236, 240, 241));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/avatar.png"))); // NOI18N
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jTextField1.setText("Buscar");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout BarraSuperiorLayout = new javax.swing.GroupLayout(BarraSuperior);
         BarraSuperior.setLayout(BarraSuperiorLayout);
@@ -185,7 +207,7 @@ public class listaDeVehiculosInterfaz extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraSuperiorLayout.createSequentialGroup()
                 .addGap(67, 67, 67)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 319, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 321, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addGap(84, 84, 84)
                 .addComponent(jButton4)
@@ -200,7 +222,7 @@ public class listaDeVehiculosInterfaz extends javax.swing.JFrame {
                     .addGroup(BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton3)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         BarraTitulo.setBackground(new java.awt.Color(236, 240, 241));
@@ -246,7 +268,6 @@ public class listaDeVehiculosInterfaz extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/coche (2).png"))); // NOI18N
         jButton1.setText("Nuevo vehiculo");
         jButton1.setPreferredSize(new java.awt.Dimension(279, 89));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -256,7 +277,6 @@ public class listaDeVehiculosInterfaz extends javax.swing.JFrame {
         });
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/dibujar (2).png"))); // NOI18N
         jButton2.setText("Editar Vehiculo");
         jButton2.setPreferredSize(new java.awt.Dimension(263, 69));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -333,11 +353,24 @@ public class listaDeVehiculosInterfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+            // TODO add your handling code here:
+        // Abrir la interfaz de registro de propietarios
+        registroVehiculoInterfaz ventanaRegistroVehiculo = new registroVehiculoInterfaz();
+        ventanaRegistroVehiculo.setVisible(true);
+        ventanaRegistroVehiculo.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+        // Cerrar la ventana actual
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+       
+        boolean actualizado = listar.actualizarVehiculoDesdeTabla(jTable1);
+
+        if (actualizado) {
+            cargarDatosEnTabla();  // Recargar los datos después de actualizar
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo actualizar el Vehiculo. Verifica los datos.");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -347,6 +380,10 @@ public class listaDeVehiculosInterfaz extends javax.swing.JFrame {
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
