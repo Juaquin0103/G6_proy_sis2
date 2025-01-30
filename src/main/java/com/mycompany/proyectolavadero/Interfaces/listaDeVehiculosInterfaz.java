@@ -4,6 +4,10 @@
  */
 package com.mycompany.proyectolavadero.Interfaces;
 
+import com.mycompany.proyectolavadero.Backend.listarVehiculos;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author juaco
@@ -13,9 +17,33 @@ public class listaDeVehiculosInterfaz extends javax.swing.JFrame {
     /**
      * Creates new form listaDeVehiculosInterfaz
      */
+    listarVehiculos listar;
     public listaDeVehiculosInterfaz() {
         initComponents();
+        listar = new listarVehiculos();
+        configurarTabla();
+        cargarDatosEnTabla();
     }
+
+        private void configurarTabla() {
+        jTable1.setModel(new DefaultTableModel(
+            new Object[][]{},
+            new String[]{
+                "Cliente", "Placa", "Tipo de Vehiculo"
+            }
+        ) {
+            boolean[] canEdit = new boolean[]{false,true, true };
+
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+        }
+         private void cargarDatosEnTabla() {
+            listar.cargarDatosEnTabla(jTable1);
+        }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,21 +54,336 @@ public class listaDeVehiculosInterfaz extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSeparator1 = new javax.swing.JSeparator();
+        Background = new javax.swing.JPanel();
+        BarraLateral = new javax.swing.JPanel();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
+        jButton13 = new javax.swing.JButton();
+        BarraSuperior = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        BarraTitulo = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        BarraCentral = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        Background.setBackground(new java.awt.Color(255, 255, 255));
+        Background.setPreferredSize(new java.awt.Dimension(1440, 1024));
+
+        BarraLateral.setBackground(new java.awt.Color(17, 17, 29));
+
+        jButton5.setBackground(new java.awt.Color(17, 17, 29));
+        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setText("Inicio");
+
+        jButton6.setBackground(new java.awt.Color(17, 17, 29));
+        jButton6.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Cotizacion");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setBackground(new java.awt.Color(17, 17, 29));
+        jButton7.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
+        jButton7.setText("Vehiculos");
+
+        jButton8.setBackground(new java.awt.Color(17, 17, 29));
+        jButton8.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
+        jButton8.setText("Clientes");
+
+        jButton9.setBackground(new java.awt.Color(17, 17, 29));
+        jButton9.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(255, 255, 255));
+        jButton9.setText("Equipo de Lavado");
+
+        jButton10.setBackground(new java.awt.Color(17, 17, 29));
+        jButton10.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        jButton10.setForeground(new java.awt.Color(255, 255, 255));
+        jButton10.setText("Inventario");
+
+        jButton11.setBackground(new java.awt.Color(17, 17, 29));
+        jButton11.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        jButton11.setForeground(new java.awt.Color(255, 255, 255));
+        jButton11.setText("Reportes");
+
+        jButton12.setBackground(new java.awt.Color(17, 17, 29));
+        jButton12.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        jButton12.setForeground(new java.awt.Color(255, 255, 255));
+        jButton12.setText("Catalogo");
+
+        jButton13.setBackground(new java.awt.Color(17, 17, 29));
+        jButton13.setBorder(null);
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout BarraLateralLayout = new javax.swing.GroupLayout(BarraLateral);
+        BarraLateral.setLayout(BarraLateralLayout);
+        BarraLateralLayout.setHorizontalGroup(
+            BarraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraLateralLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(BarraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton12)
+                    .addComponent(jButton11)
+                    .addComponent(jButton10)
+                    .addComponent(jButton7)
+                    .addComponent(jButton8)
+                    .addComponent(jButton5)
+                    .addComponent(jButton6)
+                    .addComponent(jButton9))
+                .addGap(35, 35, 35))
+            .addGroup(BarraLateralLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton13)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        BarraLateralLayout.setVerticalGroup(
+            BarraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BarraLateralLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton13)
+                .addGap(35, 35, 35)
+                .addComponent(jButton5)
+                .addGap(18, 18, 18)
+                .addComponent(jButton6)
+                .addGap(18, 18, 18)
+                .addComponent(jButton7)
+                .addGap(18, 18, 18)
+                .addComponent(jButton8)
+                .addGap(18, 18, 18)
+                .addComponent(jButton9)
+                .addGap(18, 18, 18)
+                .addComponent(jButton10)
+                .addGap(18, 18, 18)
+                .addComponent(jButton11)
+                .addGap(18, 18, 18)
+                .addComponent(jButton12)
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+
+        BarraSuperior.setBackground(new java.awt.Color(236, 240, 241));
+        BarraSuperior.setPreferredSize(new java.awt.Dimension(1124, 90));
+
+        jButton3.setBackground(new java.awt.Color(236, 240, 241));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        jButton3.setText("Soporte");
+
+        jButton4.setBackground(new java.awt.Color(236, 240, 241));
+
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        jTextField1.setText("Buscar");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout BarraSuperiorLayout = new javax.swing.GroupLayout(BarraSuperior);
+        BarraSuperior.setLayout(BarraSuperiorLayout);
+        BarraSuperiorLayout.setHorizontalGroup(
+            BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraSuperiorLayout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 321, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(84, 84, 84)
+                .addComponent(jButton4)
+                .addGap(51, 51, 51))
+        );
+        BarraSuperiorLayout.setVerticalGroup(
+            BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BarraSuperiorLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton4)
+                    .addGroup(BarraSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton3)))
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+
+        BarraTitulo.setBackground(new java.awt.Color(236, 240, 241));
+        BarraTitulo.setPreferredSize(new java.awt.Dimension(984, 145));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
+        jLabel1.setText("Lista de vehículos");
+
+        javax.swing.GroupLayout BarraTituloLayout = new javax.swing.GroupLayout(BarraTitulo);
+        BarraTitulo.setLayout(BarraTituloLayout);
+        BarraTituloLayout.setHorizontalGroup(
+            BarraTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraTituloLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(333, 333, 333))
+        );
+        BarraTituloLayout.setVerticalGroup(
+            BarraTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BarraTituloLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel1)
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
+
+        BarraCentral.setBackground(new java.awt.Color(236, 240, 241));
+        BarraCentral.setPreferredSize(new java.awt.Dimension(984, 631));
+
+        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Cliente", "Placa", "Tipo de Vehiculo", "Estado"
+            }
+        ));
+        jTable1.setToolTipText("");
+        jTable1.setPreferredSize(new java.awt.Dimension(909, 309));
+        jScrollPane1.setViewportView(jTable1);
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        jButton1.setText("Nuevo vehiculo");
+        jButton1.setPreferredSize(new java.awt.Dimension(279, 89));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
+        jButton2.setText("Editar Vehiculo");
+        jButton2.setPreferredSize(new java.awt.Dimension(263, 69));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout BarraCentralLayout = new javax.swing.GroupLayout(BarraCentral);
+        BarraCentral.setLayout(BarraCentralLayout);
+        BarraCentralLayout.setHorizontalGroup(
+            BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BarraCentralLayout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addGroup(BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(BarraCentralLayout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 806, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(106, Short.MAX_VALUE))
+        );
+        BarraCentralLayout.setVerticalGroup(
+            BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BarraCentralLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
+        Background.setLayout(BackgroundLayout);
+        BackgroundLayout.setHorizontalGroup(
+            BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BackgroundLayout.createSequentialGroup()
+                .addComponent(BarraLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(BackgroundLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BarraSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, 1067, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(BackgroundLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(BarraTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 1007, Short.MAX_VALUE)
+                            .addComponent(BarraCentral, javax.swing.GroupLayout.DEFAULT_SIZE, 1007, Short.MAX_VALUE)))))
+        );
+        BackgroundLayout.setVerticalGroup(
+            BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BackgroundLayout.createSequentialGroup()
+                .addComponent(BarraSuperior, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(BarraTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(BarraCentral, javax.swing.GroupLayout.PREFERRED_SIZE, 493, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(BarraLateral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, 1385, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, 815, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+            // TODO add your handling code here:
+        // Abrir la interfaz de registro de propietarios
+        registroVehiculoInterfaz ventanaRegistroVehiculo = new registroVehiculoInterfaz();
+        ventanaRegistroVehiculo.setVisible(true);
+        ventanaRegistroVehiculo.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+        // Cerrar la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       
+        boolean actualizado = listar.actualizarVehiculoDesdeTabla(jTable1);
+
+        if (actualizado) {
+            cargarDatosEnTabla();  // Recargar los datos después de actualizar
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo actualizar el Vehiculo. Verifica los datos.");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +421,28 @@ public class listaDeVehiculosInterfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Background;
+    private javax.swing.JPanel BarraCentral;
+    private javax.swing.JPanel BarraLateral;
+    private javax.swing.JPanel BarraSuperior;
+    private javax.swing.JPanel BarraTitulo;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
