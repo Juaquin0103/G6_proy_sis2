@@ -126,7 +126,7 @@ public class registroPropietario {
         return true;
     }
 
-    // ✅ Validar Dirección (No más de 50 caracteres)
+    // ✅ Val Dirección (No más de 50 caracteres)
     public boolean validarDireccion(String direccion) {
         return direccion.length() <= 50;
     }
