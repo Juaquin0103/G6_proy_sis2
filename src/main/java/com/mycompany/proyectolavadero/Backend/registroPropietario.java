@@ -40,7 +40,7 @@ public class registroPropietario {
         }
 
         if (!validarCorreo(correo)) {
-            JOptionPane.showMessageDialog(null, "Error: El correo debe ser válido y contener '@'. Máximo 50 caracteres.");
+            JOptionPane.showMessageDialog(null, "Error: El correo debe ser válido y  debe contener y un dominio valido'@'. Máximo 50 caracteres.");
             return false;
         }
         
@@ -133,7 +133,8 @@ public class registroPropietario {
 
     // ✅ Validar Correo Electrónico (Debe contener '@' y no superar los 50 caracteres)
     boolean validarCorreo(String correo) {
-        return correo.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$") && correo.length() <= 50;
+        
+        return correo.endsWith("@gmail.com") && correo.endsWith("@hotmail.com") && correo.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$") && correo.length() <= 50 ;
     }
 }
 

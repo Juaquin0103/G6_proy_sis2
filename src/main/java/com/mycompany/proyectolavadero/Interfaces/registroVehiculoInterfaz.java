@@ -5,7 +5,10 @@
 package com.mycompany.proyectolavadero.Interfaces;
 
 import com.mycompany.proyectolavadero.Backend.registroVehiculo;
-
+import com.mycompany.proyectolavadero.ConexionSQLServer;
+import java.sql.*;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author juaco
@@ -62,6 +65,7 @@ public class registroVehiculoInterfaz extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jTextField8 = new javax.swing.JTextField();
+        jButton15 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
@@ -158,7 +162,7 @@ public class registroVehiculoInterfaz extends javax.swing.JFrame {
                             .addComponent(jButton9)
                             .addComponent(jButton10)
                             .addComponent(jButton11))))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         BarraLateralLayout.setVerticalGroup(
             BarraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,7 +303,19 @@ public class registroVehiculoInterfaz extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jTextField8.setBackground(new java.awt.Color(236, 240, 241));
-        jTextField8.setText("Buscar");
+        jTextField8.setText("leche");
+        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField8ActionPerformed(evt);
+            }
+        });
+
+        jButton15.setText("Buscar");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -309,21 +325,26 @@ public class registroVehiculoInterfaz extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 804, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton15)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton15))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Black", 0, 20)); // NOI18N
-        jLabel9.setText("Preferencias:");
+        jLabel9.setText("Observaciones:");
 
         jButton12.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jButton12.setText("Cancelar");
@@ -486,14 +507,14 @@ public class registroVehiculoInterfaz extends javax.swing.JFrame {
         String Modelo = jTextField5.getText().trim();
         String Marca = jTextField6.getText().trim();
         String Chasis = jTextField7.getText().trim();
-        String id_cliente = jTextField8.getText().trim();
+        
         String preferencia = jTextArea1.getText().trim();
 
         // Instancia del Backend
         registroVehiculo registro = new registroVehiculo();
 
         // Llamar a la función de validación y registro
-        boolean resultado = registro.registrarVehiculo(Placa, Chasis, Color, Modelo, Marca, id_cliente, tipo_vehiculo, preferencia);
+        boolean resultado = registro.registrarVehiculo(Placa, Chasis, Color, Modelo, Marca, id_clienteActual, tipo_vehiculo, preferencia);
 
         // Si el registro fue exitoso, limpiar los campos
         if (resultado) {
@@ -548,6 +569,74 @@ public class registroVehiculoInterfaz extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
 
+    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField8ActionPerformed
+    
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+       Connection conexion = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            // Obtener la conexión a la base de datos
+            ConexionSQLServer conexionDB = new ConexionSQLServer();
+            conexion = conexionDB.obtenerConexion();
+
+            // Definir la consulta SQL
+            String sql = "SELECT id_cliente, Ci, Nombre_Completo, telefono, direccion FROM cliente WHERE Ci = ?";
+
+            // Crear el PreparedStatement
+            stmt = conexion.prepareStatement(sql);
+
+            // Asignar el valor del parámetro (Ci)
+            String ci = jTextField8.getText(); // Reemplaza con el valor de Ci que deseas buscar
+            stmt.setString(1, ci);
+
+            // Ejecutar la consulta
+            rs = stmt.executeQuery();
+
+            // Procesar los resultados
+            if (rs.next()) {
+                // Recuperar los valores de las columnas
+                String idCliente = rs.getString("id_cliente");
+                id_clienteActual = idCliente;
+                System.out.println(id_clienteActual);
+                String ciCliente = rs.getString("Ci");
+                String nombreCliente = rs.getString("Nombre_Completo");
+                String telefonoCliente = rs.getString("telefono");
+                String direccionCliente = rs.getString("direccion");
+
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                Object[] fila = {ciCliente, nombreCliente, telefonoCliente, direccionCliente};
+
+                model.addRow(fila);
+
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró ningún cliente con el CI proporcionado." );
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se encontro al cliente con CI " + e );
+            e.printStackTrace();
+        } finally {
+            // Cerrar los recursos
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+   
+
+
+    }//GEN-LAST:event_jButton15ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -583,6 +672,8 @@ public class registroVehiculoInterfaz extends javax.swing.JFrame {
         });
     }
 
+    private  String id_clienteActual;
+    private registroVehiculo registro;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Background;
     private javax.swing.JPanel BarraCentral;
@@ -593,6 +684,7 @@ public class registroVehiculoInterfaz extends javax.swing.JFrame {
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
