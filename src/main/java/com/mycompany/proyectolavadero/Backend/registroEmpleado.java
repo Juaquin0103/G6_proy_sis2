@@ -90,7 +90,7 @@ public class registroEmpleado {
         return registrado;
     }
 
-    // Validaciones
+    // Validaciones del codigo
 
     public boolean validarNombre(String nombre) {
         if (nombre.length() > 20) {
