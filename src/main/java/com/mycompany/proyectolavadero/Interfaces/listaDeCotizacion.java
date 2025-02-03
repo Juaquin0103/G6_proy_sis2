@@ -284,7 +284,7 @@ public class listaDeCotizacion extends javax.swing.JPanel {
         jLabel2.setText("AÑO:");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jLabel3.setText("MES");
+        jLabel3.setText("MES:");
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -293,7 +293,7 @@ public class listaDeCotizacion extends javax.swing.JPanel {
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jLabel4.setText("DIA");
+        jLabel4.setText("DIA:");
         jLabel4.setToolTipText("");
 
         jComboBox3.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
@@ -342,10 +342,11 @@ public class listaDeCotizacion extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addGroup(BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton14)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(14, 14, 14))
         );
 

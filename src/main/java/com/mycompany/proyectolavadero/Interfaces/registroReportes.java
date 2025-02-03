@@ -58,7 +58,7 @@ public class registroReportes extends javax.swing.JPanel {
         jLabel4.setText("Periodicidad del informe");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jLabel5.setText("Tipo de imporme:");
+        jLabel5.setText("Tipo de informe:");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel6.setText("Detalles del reporte");
@@ -110,7 +110,7 @@ public class registroReportes extends javax.swing.JPanel {
                     .addGroup(BarraCentralLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, 0, 219, Short.MAX_VALUE))
+                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(BarraCentralLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
