@@ -241,7 +241,7 @@ public class listaDeReportes extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Fecha de Inicio", "Fecha de Fin", "Tipo de Reporte"
+                "Fecha", "Periodo de Reporte", "Tipo de Reporte"
             }
         ));
         jTable1.setToolTipText("");
@@ -277,9 +277,9 @@ public class listaDeReportes extends javax.swing.JPanel {
         BarraCentralLayout.setVerticalGroup(
             BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BarraCentralLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(43, 43, 43)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addGroup(BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
