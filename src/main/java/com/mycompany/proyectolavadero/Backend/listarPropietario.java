@@ -44,7 +44,7 @@ public class listarPropietario {
             JOptionPane.showMessageDialog(null, "Error al cargar los datos: " + e.getMessage());
         } finally {
             try {
-                if (rs != null) rs.close();
+                //if (rs != null) rs.close();
                 if (stmt != null) stmt.close();
                 if (conexion != null) conexion.close();
             } catch (SQLException e) {

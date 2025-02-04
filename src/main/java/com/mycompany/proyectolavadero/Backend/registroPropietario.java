@@ -25,7 +25,7 @@ public class registroPropietario {
         }
         
         if (!validarCI(ci)) {
-            JOptionPane.showMessageDialog(null, "Error: El CI debe tener exactamente 10 caracteres y no contener símbolos o letras.");
+            JOptionPane.showMessageDialog(null, "Error: El CI debe tener exactamente 8 o 10 caracteres y no contener símbolos o letras.");
             return false;
         }
         
@@ -106,8 +106,8 @@ public class registroPropietario {
         JOptionPane.showMessageDialog(null, "Error: El CI no puede estar vacío.");
         return false;
         }
-        if (!ci.matches("\\d{10}")) {
-            JOptionPane.showMessageDialog(null, "Error: El CI debe contener exactamente 10 dígitos numéricos.");
+        if (!ci.matches("\\d{8,10}")) {
+            JOptionPane.showMessageDialog(null, "Error: El CI debe contener exactamente  8 o 10 dígitos numéricos.");
             return false;
         }
         return true;
@@ -131,9 +131,10 @@ public class registroPropietario {
         return direccion.length() <= 50;
     }
 
-    // ✅ Validar Correo Electrónico (Debe contener '@' y no superar los 50 caracteres)
+    // ✅ Validar Correo Electrónico (Debe contener  un dominio valido y '@',  y no superar los 50 caracteres)
     boolean validarCorreo(String correo) {
-        return correo.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$") && correo.length() <= 50;
+        
+        return (correo.endsWith("@gmail.com") || correo.endsWith("@hotmail.com") )&& correo.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$") && correo.length() <= 50 ;
     }
 }
 

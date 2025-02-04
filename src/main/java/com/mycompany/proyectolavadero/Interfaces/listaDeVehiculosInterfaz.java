@@ -5,6 +5,11 @@
 package com.mycompany.proyectolavadero.Interfaces;
 
 import com.mycompany.proyectolavadero.Backend.listarVehiculo;
+import com.mycompany.proyectolavadero.ConexionSQLServer;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -166,7 +171,7 @@ public class listaDeVehiculosInterfaz extends javax.swing.JFrame {
                 .addComponent(jButton13)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraLateralLayout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addGroup(BarraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton12)
                     .addComponent(jButton11)
@@ -207,12 +212,16 @@ public class listaDeVehiculosInterfaz extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(236, 240, 241));
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jButton3.setText("Soporte");
+        jButton3.setText("Buscar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(236, 240, 241));
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jTextField1.setText("Buscar");
 
         javax.swing.GroupLayout BarraSuperiorLayout = new javax.swing.GroupLayout(BarraSuperior);
         BarraSuperior.setLayout(BarraSuperiorLayout);
@@ -221,9 +230,9 @@ public class listaDeVehiculosInterfaz extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraSuperiorLayout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3)
-                .addGap(80, 80, 80)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addGap(51, 51, 51))
         );
@@ -442,6 +451,62 @@ public class listaDeVehiculosInterfaz extends javax.swing.JFrame {
         // Cerrar la ventana actual
         this.dispose();
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        String placa = jTextField1.getText().trim();
+        Connection conexion = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            // Obtener la conexión a la base de datos
+            ConexionSQLServer conexionDB = new ConexionSQLServer();
+            conexion = conexionDB.obtenerConexion();
+
+            // Definir la consulta SQL
+            String sql = "select * from Vehiculos where placa = ?;";
+
+            // Crear el PreparedStatement
+            stmt = conexion.prepareStatement(sql);
+
+            // Asignar el valor del parámetro (Ci)
+            stmt.setString(1, placa);
+
+            // Ejecutar la consulta
+            rs = stmt.executeQuery();
+
+            // Procesar los resultados
+            if (rs.next()) {
+                // Recuperar los valores de las columnas
+                String cliente = rs.getString("Ci");
+                String placaDB = rs.getString("Placa");
+                String Tipo_Vehiculo = rs.getString("Tipo_Vehiculo");
+
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                Object[] fila = {cliente, placaDB, Tipo_Vehiculo};
+
+                model.addRow(fila);
+
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontro ningu auto con la placa." + placa );
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se encontro al vehiculo con placa " + placa );
+            e.printStackTrace();
+        } finally {
+            // Cerrar los recursos
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
