@@ -4,6 +4,15 @@
  */
 package com.mycompany.proyectolavadero.Interfaces;
 
+import com.mycompany.proyectolavadero.Backend.listarReporte;
+import com.mycompany.proyectolavadero.ConexionSQLServer;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.sql.Connection;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Windows
@@ -15,8 +24,25 @@ public class listaDeReportes extends javax.swing.JFrame {
      */
     public listaDeReportes() {
         initComponents();
+        cargarTablaReportes();
     }
+    private void cargarTablaReportes() {
+        try {
+            ConexionSQLServer conexionSQL = new ConexionSQLServer();
+            Connection connection = conexionSQL.obtenerConexion();
+            listarReporte listar = new listarReporte(connection);
 
+            ArrayList<String[]> reportes = listar.obtenerReportes();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+
+            for (String[] reporte : reportes) {
+                model.addRow(reporte);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar los reportes: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -149,6 +175,11 @@ public class listaDeReportes extends javax.swing.JFrame {
         jButton11.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jButton11.setForeground(new java.awt.Color(255, 255, 255));
         jButton11.setText("Reportes");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton12.setBackground(new java.awt.Color(17, 17, 29));
         jButton12.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
@@ -261,6 +292,11 @@ public class listaDeReportes extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jButton1.setText("Imprimir Reporte");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout BarraCentralLayout = new javax.swing.GroupLayout(BarraCentral);
         BarraCentral.setLayout(BarraCentralLayout);
@@ -343,18 +379,42 @@ public class listaDeReportes extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        listaDeCotizacion ventanaListaDeCotizacion = new listaDeCotizacion();
+        ventanaListaDeCotizacion.setVisible(true);
+        ventanaListaDeCotizacion.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+
+        // Cerrar la ventana actual
+        this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        listaDeVehiculosInterfaz ventanaListaVehiculos = new listaDeVehiculosInterfaz();
+        ventanaListaVehiculos.setVisible(true);
+        ventanaListaVehiculos.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
 
+        // Cerrar la ventana actual
+        this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        listaDePropietariosInterfaz ventanaListaPropietarios = new listaDePropietariosInterfaz();
+        ventanaListaPropietarios.setVisible(true);
+        ventanaListaPropietarios.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
 
+        // Cerrar la ventana actual
+        this.dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        asignarEquipoLavado ventanaAsignarEquipoLavado = new asignarEquipoLavado();
+        ventanaAsignarEquipoLavado.setVisible(true);
+        ventanaAsignarEquipoLavado.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
 
+        // Cerrar la ventana actual
+        this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
@@ -362,8 +422,54 @@ public class listaDeReportes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        registroReportes ventanaRegistroReportes = new registroReportes();
+        ventanaRegistroReportes.setVisible(true);
+        ventanaRegistroReportes.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
 
+        // Cerrar la ventana actual
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTable1.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un reporte para imprimir.");
+            return;
+        }
+
+        String fecha = jTable1.getValueAt(selectedRow, 0).toString();
+        try {
+            ConexionSQLServer conexionSQL = new ConexionSQLServer();
+            Connection connection = conexionSQL.obtenerConexion();
+            listarReporte listar = new listarReporte(connection);
+
+            byte[] pdfData = listar.obtenerPdfReporte(fecha);
+
+            if (pdfData != null) {
+                File outputFile = new File("Reporte_" + fecha + ".pdf");
+                try (FileOutputStream fos = new FileOutputStream(outputFile)) {
+                    fos.write(pdfData);
+                }
+                JOptionPane.showMessageDialog(this, "Reporte descargado correctamente: " + outputFile.getAbsolutePath());
+            } else {
+                JOptionPane.showMessageDialog(this, "No se encontró el archivo PDF del reporte seleccionado.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al imprimir el reporte: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        listaDeReportes ventanaListaDeReportes  = new listaDeReportes ();
+        ventanaListaDeReportes.setVisible(true);
+        ventanaListaDeReportes.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+
+        // Cerrar la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments

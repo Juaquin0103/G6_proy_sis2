@@ -4,6 +4,8 @@
  */
 package com.mycompany.proyectolavadero.Interfaces;
 
+import com.mycompany.proyectolavadero.Backend.nuevaCotizacion;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Windows
@@ -15,6 +17,14 @@ public class registroCotizacionInterfaz extends javax.swing.JFrame {
      */
     public registroCotizacionInterfaz() {
         initComponents();
+        nuevaCotizacion cotizacion = new nuevaCotizacion();
+        int ultimoCodigo = cotizacion.obtenerUltimoCodigoCotizacion();
+    
+    // Incrementar el código de cotización para asignarlo al nuevo campo
+        int nuevoCodigo = ultimoCodigo + 1;
+
+    // Asignar el nuevo código a jTextField7
+        jTextField7.setText(String.valueOf(nuevoCodigo));
     }
 
     /**
@@ -44,6 +54,11 @@ public class registroCotizacionInterfaz extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,7 +101,7 @@ public class registroCotizacionInterfaz extends javax.swing.JFrame {
         jTextField5.setBorder(null);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Black", 0, 20)); // NOI18N
-        jLabel7.setText("Cod. cotazacion:");
+        jLabel7.setText("Cod. cotizacion:");
 
         jTextField7.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jTextField7.setBorder(null);
@@ -107,10 +122,28 @@ public class registroCotizacionInterfaz extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTextArea1);
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lavado Exterior", "Lavado Interior", "Lavado Completo" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un Servicio", "Lavado Exterior", "Lavado Interior", "Lavado Completo" }));
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jButton1.setText("Volver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel6.setText("Metodo de pago:");
+
+        jComboBox2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "QR", "Tarjeta", "Transferencia Bancaria" }));
+
+        jLabel8.setText("Ej. 2024-01-31");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel10.setText("Ci Propietario:");
+
+        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
 
         javax.swing.GroupLayout BarraCentralLayout = new javax.swing.GroupLayout(BarraCentral);
         BarraCentral.setLayout(BarraCentralLayout);
@@ -119,38 +152,49 @@ public class registroCotizacionInterfaz extends javax.swing.JFrame {
             .addGroup(BarraCentralLayout.createSequentialGroup()
                 .addGroup(BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(BarraCentralLayout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel9)
-                            .addComponent(jScrollPane2)
-                            .addGroup(BarraCentralLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(22, 22, 22)
-                                .addComponent(jTextField4)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(BarraCentralLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(BarraCentralLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraCentralLayout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(BarraCentralLayout.createSequentialGroup()
                         .addGap(194, 194, 194)
-                        .addComponent(jLabel1)))
-                .addGap(0, 37, Short.MAX_VALUE))
+                        .addComponent(jLabel1))
+                    .addGroup(BarraCentralLayout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addGroup(BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(BarraCentralLayout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel9)
+                                .addComponent(jScrollPane2)
+                                .addGroup(BarraCentralLayout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addGap(22, 22, 22)
+                                    .addComponent(jTextField4)
+                                    .addGap(48, 48, 48)
+                                    .addComponent(jLabel5)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel8))
+                                .addGroup(BarraCentralLayout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraCentralLayout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel7)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraCentralLayout.createSequentialGroup()
+                                    .addComponent(jButton1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(BarraCentralLayout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(0, 42, Short.MAX_VALUE))
         );
         BarraCentralLayout.setVerticalGroup(
             BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,28 +207,35 @@ public class registroCotizacionInterfaz extends javax.swing.JFrame {
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
                     .addGroup(BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8)
                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
+                .addGroup(BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel9)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(BarraCentralLayout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(77, 77, 77))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(55, 55, 55))
         );
 
         javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
@@ -225,8 +276,67 @@ public class registroCotizacionInterfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        try {
+        String placa = jTextField2.getText().trim();
+        String tipo_Servicio = jComboBox1.getSelectedItem().toString().trim();
+        String Precio = jTextField4.getText().trim();
+        String fecha_Cotizacion = jTextField5.getText().trim();
+        String detalles_preferencias = jTextArea1.getText().trim();
+        int cod_cotizacion = Integer.parseInt(jTextField7.getText().trim());
+        String metodo_Pago = jComboBox2.getSelectedItem().toString().trim();
+        int Ci_cliente = Integer.parseInt(jTextField3.getText().trim());
 
+        // Validación de campos vacíos
+        if (placa.isEmpty() || tipo_Servicio.isEmpty() || Precio.isEmpty() || fecha_Cotizacion.isEmpty() ||
+            detalles_preferencias.isEmpty() || metodo_Pago.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos antes de guardar.");
+            return;  // No continua si hay campos vacíos
+        }
+
+        nuevaCotizacion cotizacion = new nuevaCotizacion();
+        boolean resultado = cotizacion.nuevaCotizacion(cod_cotizacion, tipo_Servicio, fecha_Cotizacion,
+                                                      detalles_preferencias, metodo_Pago, Ci_cliente, placa, Precio);
+
+        if (resultado) {
+            // Limpiar campos después de guardar
+            jTextField2.setText("");
+            jComboBox1.setSelectedIndex(0); // Selecciona el primer elemento
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextArea1.setText("");
+            jTextField7.setText("");
+            jComboBox2.setSelectedIndex(0);
+            jTextField3.setText("");
+
+            // Mostrar mensaje de éxito
+            JOptionPane.showMessageDialog(null, "Cotización guardada correctamente.");
+
+            // Cerrar la ventana actual
+            this.dispose();  // Cierra la ventana actual (JFrame)
+
+            // Abrir la ventana listaDeCotizacion
+            listaDeCotizacion listaCotizaciones = new listaDeCotizacion(); // Crear la instancia de la nueva ventana
+            listaCotizaciones.setVisible(true); // Mostrar la nueva ventana
+        }
+
+        } catch (NumberFormatException e) {
+            // En caso de error en el parseo de los números
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos en los campos numéricos.");
+        } catch (Exception e) {
+            // En caso de cualquier otro error inesperado
+            JOptionPane.showMessageDialog(null, "Error inesperado: " + e.getMessage());
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        listaDeCotizacion ventanaListaDeCotizacion = new listaDeCotizacion();
+        ventanaListaDeCotizacion.setVisible(true);
+        ventanaListaDeCotizacion.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+
+        // Cerrar la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,16 +379,21 @@ public class registroCotizacionInterfaz extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton13;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField7;

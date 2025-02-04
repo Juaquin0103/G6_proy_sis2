@@ -245,6 +245,11 @@ public class asignarEquipoLavado extends javax.swing.JFrame {
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jButton4.setText("Asignar trabajo");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jButton5.setText("Añadir Empleado");
@@ -403,13 +408,19 @@ public class asignarEquipoLavado extends javax.swing.JFrame {
 
     private void CotizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CotizacionActionPerformed
         // TODO add your handling code here:
+        listaDeCotizacion ventanaListaDeCotizacion = new listaDeCotizacion();
+        ventanaListaDeCotizacion.setVisible(true);
+        ventanaListaDeCotizacion.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+
+        // Cerrar la ventana actual
+        this.dispose();
     }//GEN-LAST:event_CotizacionActionPerformed
 
     private void VehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VehiculosActionPerformed
         // TODO add your handling code here:
-        listaDePropietariosInterfaz ventanaListaPropietarios = new listaDePropietariosInterfaz();
-        ventanaListaPropietarios.setVisible(true);
-        ventanaListaPropietarios.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+        listaDeVehiculosInterfaz ventanaListaDeVehiculosInterfaz = new listaDeVehiculosInterfaz();
+        ventanaListaDeVehiculosInterfaz.setVisible(true);
+        ventanaListaDeVehiculosInterfaz.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
 
         // Cerrar la ventana actual
         this.dispose();
@@ -441,6 +452,12 @@ public class asignarEquipoLavado extends javax.swing.JFrame {
 
     private void ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportesActionPerformed
         // TODO add your handling code here:
+        listaDeReportes ventanaListaDeReportes  = new listaDeReportes ();
+        ventanaListaDeReportes.setVisible(true);
+        ventanaListaDeReportes.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+
+        // Cerrar la ventana actual
+        this.dispose();
     }//GEN-LAST:event_ReportesActionPerformed
 
     private void CatalogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CatalogoActionPerformed
@@ -456,6 +473,10 @@ public class asignarEquipoLavado extends javax.swing.JFrame {
         // Cerrar la ventana actual
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

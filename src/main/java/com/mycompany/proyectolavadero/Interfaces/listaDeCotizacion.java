@@ -149,6 +149,11 @@ public class listaDeCotizacion extends javax.swing.JFrame {
         jButton11.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jButton11.setForeground(new java.awt.Color(255, 255, 255));
         jButton11.setText("Reportes");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton12.setBackground(new java.awt.Color(17, 17, 29));
         jButton12.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
@@ -348,18 +353,41 @@ public class listaDeCotizacion extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        listaDeCotizacion ventanaListaDeCotizacion = new listaDeCotizacion();
+        ventanaListaDeCotizacion.setVisible(true);
+        ventanaListaDeCotizacion.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+
+        // Cerrar la ventana actual
+        this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        listaDeVehiculosInterfaz ventanaListaDeVehiculosInterfaz = new listaDeVehiculosInterfaz();
+        ventanaListaDeVehiculosInterfaz.setVisible(true);
+        ventanaListaDeVehiculosInterfaz.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
 
+        // Cerrar la ventana actual
+        this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        listaDePropietariosInterfaz ventanaListaPropietarios = new listaDePropietariosInterfaz();
+        ventanaListaPropietarios.setVisible(true);
+        ventanaListaPropietarios.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
 
+        // Cerrar la ventana actual
+        this.dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        asignarEquipoLavado ventanaAsignarEquipoLavado = new asignarEquipoLavado();
+        ventanaAsignarEquipoLavado.setVisible(true);
+        ventanaAsignarEquipoLavado.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
 
+        // Cerrar la ventana actual
+        this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
@@ -367,12 +395,28 @@ public class listaDeCotizacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        registroCotizacionInterfaz ventanaRegistroCotizacionInterfaz  = new registroCotizacionInterfaz();
+        ventanaRegistroCotizacionInterfaz.setVisible(true);
+        ventanaRegistroCotizacionInterfaz.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
 
+        // Cerrar la ventana actual
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        listaDeReportes ventanaListaDeReportes  = new listaDeReportes ();
+        ventanaListaDeReportes.setVisible(true);
+        ventanaListaDeReportes.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+
+        // Cerrar la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments

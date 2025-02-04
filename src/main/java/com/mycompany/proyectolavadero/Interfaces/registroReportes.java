@@ -4,6 +4,13 @@
  */
 package com.mycompany.proyectolavadero.Interfaces;
 
+import com.itextpdf.text.DocumentException;
+import com.mycompany.proyectolavadero.Backend.registroReporte;
+import com.mycompany.proyectolavadero.ConexionSQLServer;
+import java.io.IOException;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Windows
@@ -16,7 +23,11 @@ public class registroReportes extends javax.swing.JFrame {
     public registroReportes() {
         initComponents();
     }
-
+    
+    private boolean validarFormatoFecha(String fecha) {
+        return fecha.matches("\\d{4}-\\d{2}-\\d{2}");
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,6 +51,7 @@ public class registroReportes extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +97,13 @@ public class registroReportes extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jButton1.setText("Volver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Ej. 2024-01-31");
 
         javax.swing.GroupLayout BarraCentralLayout = new javax.swing.GroupLayout(BarraCentral);
         BarraCentral.setLayout(BarraCentralLayout);
@@ -105,7 +124,9 @@ public class registroReportes extends javax.swing.JFrame {
                     .addGroup(BarraCentralLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField2))
+                        .addComponent(jTextField2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3))
                     .addGroup(BarraCentralLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
@@ -125,7 +146,8 @@ public class registroReportes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
@@ -181,8 +203,55 @@ public class registroReportes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13MouseClicked
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        String fecha = jTextField2.getText().trim();
+        String periodicidad = (String) jComboBox3.getSelectedItem();
+        String tipoInforme = (String) jComboBox1.getSelectedItem();
+        String detalle = jTextArea1.getText().trim();
 
+        try {
+            // Validaciones
+            if (fecha.isEmpty()) {
+                throw new Exception("El campo 'Fecha' es obligatorio.");
+            }
+            if (!validarFormatoFecha(fecha)) {
+                throw new Exception("La fecha es inválida. Debe ser en el formato 'YYYY-MM-DD'.");
+            }
+            if (detalle.isEmpty()) {
+                throw new Exception("El campo 'Detalle del reporte' es obligatorio.");
+            }
+
+            // Conexión a la base de datos
+            ConexionSQLServer conexionSQL = new ConexionSQLServer();
+            Connection connection = conexionSQL.obtenerConexion();
+            registroReporte registro = new registroReporte(connection);
+
+            // Guardar en la base de datos y generar PDF
+            registro.guardarReporte(fecha, periodicidad, tipoInforme, detalle);
+
+            // Mostrar mensaje de éxito
+            JOptionPane.showMessageDialog(this, "Reporte guardado exitosamente.");
+
+            // Cerrar esta ventana y abrir listaDeReportes
+            this.dispose();
+            listaDeReportes nuevaVentana = new listaDeReportes();
+            nuevaVentana.setVisible(true);
+
+        } catch (DocumentException | IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error al generar el PDF: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        listaDeReportes ventanaListaDeReportes = new listaDeReportes();
+        ventanaListaDeReportes.setVisible(true);
+        ventanaListaDeReportes.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+
+        // Cerrar la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,6 +297,7 @@ public class registroReportes extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

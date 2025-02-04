@@ -4,7 +4,7 @@
 
 package com.mycompany.proyectolavadero;
 
-import com.mycompany.proyectolavadero.Interfaces.registroPropietarioInterfaz;
+import com.mycompany.proyectolavadero.Interfaces.listaDePropietariosInterfaz;
 
 /**
  *
@@ -15,7 +15,7 @@ public class ProyectoLavadero {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                registroPropietarioInterfaz ventana = new registroPropietarioInterfaz();
+                listaDePropietariosInterfaz ventana = new listaDePropietariosInterfaz();
                 ventana.setVisible(true); // Mostrar la ventana
                 ventana.setLocationRelativeTo(null); // Centrar la ventana en la pantalla
                 /*

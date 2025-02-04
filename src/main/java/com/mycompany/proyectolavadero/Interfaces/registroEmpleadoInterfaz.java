@@ -106,6 +106,11 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jButton1.setText("Volver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout BarraCentralLayout = new javax.swing.GroupLayout(BarraCentral);
         BarraCentral.setLayout(BarraCentralLayout);
@@ -289,6 +294,16 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
             jComboBox1.setSelectedIndex(0);  // Devolver el JComboBox al primer índice
         }
     }//GEN-LAST:event_jButton13MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        asignarEquipoLavado ventanaAsignarEquipoLavado = new asignarEquipoLavado();
+        ventanaAsignarEquipoLavado.setVisible(true);
+        ventanaAsignarEquipoLavado.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+
+        // Cerrar la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
