@@ -4,7 +4,13 @@
  */
 package com.mycompany.proyectolavadero.Backend;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfDocument;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.mycompany.proyectolavadero.ConexionSQLServer;
+import java.io.ByteArrayOutputStream;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,12 +18,13 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author Windows
  */
 public class nuevaCotizacion {
-    public boolean registrarCotizacion(int cod_cotizacion,String tipo_Servicio,String fecha_Cotizacion, String detalles_preferencias,String metodo_Pago, int Ci_cliente, String placa, String Precio){
+    public boolean registrarCotizacion(int cod_cotizacion,String tipo_Servicio,String fecha_Cotizacion, String detalles_preferencias,String metodo_Pago, int Ci_cliente, String placa,String Precio){
         boolean cotizacionRegistrada = false;
          if (!validarServicio(tipo_Servicio)) {
             JOptionPane.showMessageDialog(null, "Error: Seleccione un servicio");
@@ -45,8 +52,8 @@ public class nuevaCotizacion {
             return false;
         }
         
-        if (!validarPrecio(Precio)) {
-            JOptionPane.showMessageDialog(null, "Error: Añada el precio del Servicio");
+         if (cotizacionDuplicada(placa, fecha_Cotizacion)) {
+            JOptionPane.showMessageDialog(null, "Error: Ya existe una cotización con esta placa en la fecha indicada");
             return false;
         }
         
@@ -57,15 +64,18 @@ public class nuevaCotizacion {
             ConexionSQLServer conexionDB = new ConexionSQLServer();
             conexion = conexionDB.obtenerConexion();
 
-            String sql = "INSERT INTO Cotizaciones (cod_cotizacion, tipo_Servicio,fecha_Cotizacion,detalles_preferencias,metodo_Pago,Ci_cliente,placa,Precio) VALUES (?, ?, ?, ?, ?, ?,?)";
+            String sql = "INSERT INTO Cotizaciones (tipo_Servicio,fecha_Cotizacion,detalles_preferencias,metodo_Pago,Ci_cliente,placa,Precio,Pdf_Cotizacion) VALUES (?, ?, ?, ?, ?, ?,?,?)";
             stmt = conexion.prepareStatement(sql);
-            stmt.setInt(1,cod_cotizacion);
-            stmt.setString(2,tipo_Servicio);
-            stmt.setString(3,fecha_Cotizacion);
-            stmt.setString(4,detalles_preferencias);
-            stmt.setString(5, metodo_Pago);
-            stmt.setInt(6,Ci_cliente);
-            stmt.setString(7,placa);
+            stmt.setString(1,tipo_Servicio);
+            stmt.setString(2,fecha_Cotizacion);
+            stmt.setString(3,detalles_preferencias);
+            stmt.setString(4, metodo_Pago);
+            stmt.setInt(5,Ci_cliente);
+            stmt.setString(6,placa);
+            stmt.setBigDecimal(7, new BigDecimal(Precio)); // CORREGIDO
+            
+            byte[] pdfBytes = generarPDF(cod_cotizacion, tipo_Servicio, fecha_Cotizacion, detalles_preferencias, metodo_Pago, Precio);
+            stmt.setBytes(8, pdfBytes);
             
             int filasInsertadas = stmt.executeUpdate();
             if (filasInsertadas > 0) {
@@ -116,15 +126,6 @@ public class nuevaCotizacion {
     return detalles_preferencias != null && !detalles_preferencias.trim().isEmpty();
     }
     
-    public boolean validarPrecio(String precio) {
-    try {
-        double valor = Double.parseDouble(precio);
-        return valor > 0;
-    } catch (NumberFormatException e) {
-        return false; // Retorna false si el precio no es un número válido
-    }
-    }
-    
     private boolean validarCiCliente(int Ci_cliente) {
     Connection conexion = null;
     PreparedStatement stmt = null;
@@ -169,7 +170,7 @@ public class nuevaCotizacion {
         conexion = conexionDB.obtenerConexion();
 
         // Verificar si el vehículo con esa placa existe en la base de datos
-        String sql = "SELECT COUNT(*) FROM Vehiculo WHERE placa = ?";
+        String sql = "SELECT COUNT(*) FROM Vehiculos WHERE placa = ?";
         stmt = conexion.prepareStatement(sql);
         stmt.setString(1, placa);
         
@@ -193,6 +194,65 @@ public class nuevaCotizacion {
 
     return false; // Si no se encuentra el vehículo
 }
+    
+    private boolean cotizacionDuplicada(String placa, String fecha_Cotizacion) {
+        Connection conexion = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        boolean existe = false;
+
+        try {
+            ConexionSQLServer conexionDB = new ConexionSQLServer();
+            conexion = conexionDB.obtenerConexion();
+
+            String sql = "SELECT COUNT(*) FROM Cotizaciones WHERE placa = ? AND fecha_Cotizacion = ?";
+            stmt = conexion.prepareStatement(sql);
+            stmt.setString(1, placa);
+            stmt.setString(2, fecha_Cotizacion);
+
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                existe = rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al verificar cotización duplicada: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return existe;
+    }
+    
+    private byte[] generarPDF(int cod_cotizacion, String tipo_Servicio, String fecha_Cotizacion,
+                          String detalles_preferencias, String metodo_Pago, String Precio) {
+    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+    try {
+        Document document = new Document();
+        PdfWriter.getInstance(document, byteArrayOutputStream);
+        document.open();
+
+        document.add(new Paragraph("Factura de Cotización"));
+        document.add(new Paragraph("Código de Cotización: " + cod_cotizacion));
+        document.add(new Paragraph("Tipo de Servicio: " + tipo_Servicio));
+        document.add(new Paragraph("Fecha de Cotización: " + fecha_Cotizacion));
+        document.add(new Paragraph("Detalles: " + detalles_preferencias));
+        document.add(new Paragraph("Método de Pago: " + metodo_Pago));
+        document.add(new Paragraph("Precio: " + Precio));
+
+        document.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return byteArrayOutputStream.toByteArray();
+}
+
+    
     public int obtenerUltimoCodigoCotizacion() {
     Connection conexion = null;
     PreparedStatement stmt = null;

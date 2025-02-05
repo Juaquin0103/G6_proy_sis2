@@ -437,6 +437,33 @@ public class listaDeCotizacion extends javax.swing.JFrame {
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
+        int selectedRow = jTable1.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una cotizacion para imprimir factura.");
+            return;
+        }
+
+        int cod_cotizacion = Integer.parseInt(jTable1.getValueAt(selectedRow, 0).toString());
+        try {
+            ConexionSQLServer conexionSQL = new ConexionSQLServer();
+            Connection connection = conexionSQL.obtenerConexion();
+            listarCotizacion listar = new listarCotizacion(connection);
+
+            byte[] pdfData = listar.obtenerPdfCotizacion(cod_cotizacion);
+
+            if (pdfData != null) {
+                File outputFile = new File("Cotizacion" + cod_cotizacion  + ".pdf");
+                try (FileOutputStream fos = new FileOutputStream(outputFile)) {
+                    fos.write(pdfData);
+                }
+                JOptionPane.showMessageDialog(this, "Cotizacion descargada correctamente: " + outputFile.getAbsolutePath());
+            } else {
+                JOptionPane.showMessageDialog(this, "No se encontró el archivo PDF de la cotizacion seleccionada.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al imprimir la cotizacion: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed

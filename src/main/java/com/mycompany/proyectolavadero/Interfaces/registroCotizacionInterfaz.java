@@ -27,7 +27,37 @@ public class registroCotizacionInterfaz extends javax.swing.JFrame {
     // Asignar el nuevo código a jTextField7
         jTextField7.setText(String.valueOf(nuevoCodigo));
         jTextField7.setEditable(false);
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+        actualizarPrecio(); 
+        }
+        });
+
+// Hacer que el campo de precio no sea editable
+        jTextField4.setEditable(false);
+        
+        
     }
+    private void actualizarPrecio() {
+    String servicioSeleccionado = (String) jComboBox1.getSelectedItem();
+    String precio = "";
+
+    switch (servicioSeleccionado) {
+        case "Lavado Exterior":
+            precio = "50";  // Precio para Lavado Exterior
+            break;
+        case "Lavado Interior":
+            precio = "70";  // Precio para Lavado Interior
+            break;
+        case "Lavado Completo":
+            precio = "100"; // Precio para Lavado Completo
+            break;
+        default:
+            precio = ""; // Si no se selecciona una opción válida, dejar vacío
+    }
+
+    jTextField4.setText(precio);
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -95,6 +125,11 @@ public class registroCotizacionInterfaz extends javax.swing.JFrame {
 
         jTextField4.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jTextField4.setBorder(null);
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 20)); // NOI18N
         jLabel5.setText("Fecha de ingreso");
@@ -129,7 +164,12 @@ public class registroCotizacionInterfaz extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTextArea1);
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un Servicio", "Lavado Exterior", "Lavado Interior", "Lavado Completo" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lavado Exterior", "Lavado Interior", "Lavado Completo" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jButton1.setText("Volver");
@@ -209,7 +249,7 @@ public class registroCotizacionInterfaz extends javax.swing.JFrame {
                                 .addComponent(jLabel10)
                                 .addGap(18, 18, 18)
                                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
         BarraCentralLayout.setVerticalGroup(
             BarraCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,6 +339,7 @@ public class registroCotizacionInterfaz extends javax.swing.JFrame {
         String fechaCotizacion = jTextField5.getText().trim();
         String detallesPreferencias = jTextArea1.getText().trim();
         String metodoPago = jComboBox2.getSelectedItem().toString().trim();
+        String Precio = jTextField4.getText().trim();
 
         // Verificar que no haya campos vacíos
         if (placa.isEmpty() || tipoServicio.equals("Seleccione un Servicio") || precio.isEmpty() ||
@@ -322,7 +363,7 @@ public class registroCotizacionInterfaz extends javax.swing.JFrame {
         // Crear la cotización con los valores ingresados
         nuevaCotizacion cotizacion = new nuevaCotizacion();
         boolean resultado = cotizacion.registrarCotizacion(codCotizacion, tipoServicio, fechaCotizacion, 
-                                                          detallesPreferencias, metodoPago, ciCliente, placa, precio);
+                                                          detallesPreferencias, metodoPago, ciCliente, placa,Precio);
 
         if (resultado) {
             // Limpiar los campos después del registro
@@ -360,6 +401,14 @@ public class registroCotizacionInterfaz extends javax.swing.JFrame {
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
     /**
      * @param args the command line arguments
