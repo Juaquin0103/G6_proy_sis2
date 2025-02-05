@@ -323,40 +323,70 @@ public class registroVehiculoInterfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
-        String Color = jTextField2.getText().trim();
-        String tipo_vehiculo = jTextField3.getText().trim();
-        String Placa = jTextField4.getText().trim();
-        String Modelo = jTextField5.getText().trim();
-        String Marca = jTextField6.getText().trim();
-        String Chasis = jTextField7.getText().trim();
-        String preferencia = jTextArea1.getText().trim();
+        String color = jTextField2.getText().trim();
+        String chasis = jTextField7.getText().trim();
+        String tipoVehiculo = jTextField3.getText().trim();
+        String placa = jTextField4.getText().trim();
+        String modelo = jTextField5.getText().trim();
+        String marca = jTextField6.getText().trim();
+        String observaciones = jTextArea1.getText().trim();
 
-        // Instancia del Backend
-        registroVehiculo registro = new registroVehiculo();
         int filaSeleccionada = jTable1.getSelectedRow();
-        if(filaSeleccionada == -1){
-            JOptionPane.showMessageDialog(null, "Seleccione un cliente de la tabla");
-            return ;
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un cliente de la tabla.");
+            return;
         }
-        int Ci = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
 
-        // Llamar a la función de validación y registro
-        boolean resultado = registro.registrarVehiculo(Placa, Chasis, Color, Modelo, Marca, tipo_vehiculo, preferencia, Ci);
+        int ciCliente = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
 
-        // Si el registro fue exitoso, limpiar los campos
+        registroVehiculo registro = new registroVehiculo();
+
+        if (!registro.validarColor(color)) {
+            return;
+        }
+        if (!registro.validarChasis(chasis)) {
+            return;
+        }
+        if (!registro.validarTipoVehiculo(tipoVehiculo)) {
+            return;
+        }
+        if (!registro.validarPlaca(placa)) {
+            return;
+        }
+        if (!registro.validarModelo(modelo)) {
+            return;
+        }
+        if (!registro.validarMarca(marca)) {
+            return;
+        }
+        if (!registro.validarPreferencias(observaciones)) {
+            return;
+        }
+
+        boolean resultado = registro.registrarVehiculo(placa, chasis, color, modelo, marca, tipoVehiculo, observaciones, ciCliente);
+
         if (resultado) {
-            jTextField2.setText("");
-            jTextField3.setText("");
-            jTextField4.setText("");
-            jTextField5.setText("");
-            jTextField6.setText("");
-            jTextField7.setText("");
-            jTextField8.setText("");
-            jTextArea1.setText("");
+            JOptionPane.showMessageDialog(null, "Vehículo registrado exitosamente.");
+            limpiarCampos();
+            abrirListaDeVehiculos();
         }
     }//GEN-LAST:event_jButton13ActionPerformed
-
+    private void limpiarCampos() {
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        jTextField6.setText("");
+        jTextField7.setText("");
+        jTextArea1.setText("");
+    }
+    private void abrirListaDeVehiculos() {
+        listaDeVehiculosInterfaz ventanaLista = new listaDeVehiculosInterfaz();
+        ventanaLista.setVisible(true);
+        ventanaLista.setLocationRelativeTo(null);
+        this.dispose();
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         listaDeVehiculosInterfaz ventanaListaDeVehiculosInterfaz = new listaDeVehiculosInterfaz();

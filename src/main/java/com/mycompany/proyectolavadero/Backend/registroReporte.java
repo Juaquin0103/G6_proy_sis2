@@ -4,113 +4,185 @@
  */
 package com.mycompany.proyectolavadero.Backend;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.mycompany.proyectolavadero.ConexionSQLServer;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfWriter;
-import java.io.ByteArrayOutputStream;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Windows
  */
 public class registroReporte {
-    private final Connection connection;
-
-    public registroReporte(Connection connection) {
-        this.connection = connection;
+    // Validación de la fecha
+    public String validarFecha(String fecha) {
+        if (fecha.isEmpty()) {
+            return "Debes ingresar una fecha.";
+        }
+        if (!fecha.matches("\\d{4}-\\d{2}-\\d{2}")) {
+            return "La fecha debe tener el formato 'YYYY-MM-DD'.";
+        }
+        return "";
     }
 
-    public boolean validarFecha(String fecha) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        dateFormat.setLenient(false);
-        try {
-            dateFormat.parse(fecha);
-            return true;
-        } catch (ParseException e) {
-            return false;
+    // Validación del detalle del reporte
+    public String validarDetalleReporte(String detalle) {
+        if (detalle.isEmpty()) {
+            return "Debes ingresar un detalle para el reporte.";
         }
-    }
-
-    public boolean guardarReporte(String fecha, String periodicidad, String tipoInforme, String detalle) throws Exception {
-        if (!validarFecha(fecha)) {
-            throw new Exception("La fecha es inválida. Debe tener el formato 'YYYY-MM-DD'.");
-        }
-
         if (detalle.length() > 200) {
-            throw new Exception("El detalle del reporte excede los 200 caracteres.");
+            return "El detalle del reporte no puede superar los 200 caracteres.";
         }
+        return "";
+    }
 
-        ArrayList<String> datosAdicionales = obtenerDatosAdicionales(tipoInforme);
-        byte[] pdfBytes = generarPDF(fecha, periodicidad, tipoInforme, detalle, datosAdicionales);
+    // Registro del reporte en la base de datos
+    public boolean registrarReporte(String fecha, String periodicidad, String tipoInforme, String detalle) {
+        Connection conexion = null;
+        PreparedStatement stmt = null;
+        boolean registrado = false;
 
-        String sql = "INSERT INTO Reportes (Fecha_Reporte, Periodicidad_Informe, Tipo_Informe, Detalle_Reporte, Pdf_Reporte) "
-                   + "VALUES (?, ?, ?, ?, ?)";
+        try {
+            ConexionSQLServer conexionDB = new ConexionSQLServer();
+            conexion = conexionDB.obtenerConexion();
 
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setDate(1, java.sql.Date.valueOf(fecha));
+            String sql = "INSERT INTO Reportes (Fecha_Reporte, Periodicidad_Informe, Tipo_Informe, Detalle_Reporte) VALUES (?, ?, ?, ?)";
+            stmt = conexion.prepareStatement(sql);
+            stmt.setString(1, fecha);
             stmt.setString(2, periodicidad);
             stmt.setString(3, tipoInforme);
             stmt.setString(4, detalle);
-            stmt.setBytes(5, pdfBytes);
 
-            stmt.executeUpdate();
+            int filasInsertadas = stmt.executeUpdate();
+            if (filasInsertadas > 0) {
+                registrado = true;
+            }
+
         } catch (SQLException e) {
-            throw new SQLException("Error al guardar el reporte en la base de datos: " + e.getMessage(), e);
-        }
-
-        return true;
-    }
-
-    private ArrayList<String> obtenerDatosAdicionales(String tipoInforme) throws SQLException {
-        ArrayList<String> datos = new ArrayList<>();
-        String sql;
-
-        if (tipoInforme.equals("Clientes frecuentes")) {
-            sql = "SELECT Nombre_Completo FROM cliente";
-        } else if (tipoInforme.equals("Autos lavados")) {
-            sql = "SELECT Placa, Marca FROM Vehiculos";
-        } else {
-            return datos;
-        }
-
-        try (PreparedStatement stmt = connection.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                if (tipoInforme.equals("Clientes frecuentes")) {
-                    datos.add("Cliente: " + rs.getString("Nombre_Completo"));
-                } else if (tipoInforme.equals("Autos lavados")) {
-                    datos.add("Vehículo: " + rs.getString("Placa") + " - Marca: " + rs.getString("Marca"));
-                }
+            JOptionPane.showMessageDialog(null, "Error al registrar el reporte: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try {
+                if (stmt != null) stmt.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
 
-        return datos;
+        return registrado;
     }
 
-    private byte[] generarPDF(String fecha, String periodicidad, String tipoInforme, String detalle, ArrayList<String> datosAdicionales) throws DocumentException {
-        Document document = new Document();
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PdfWriter.getInstance(document, outputStream);
+    // Generación del PDF con datos dinámicos
+    public void generarPDFReporte(String fecha, String periodicidad, String tipoInforme, String detalle) throws DocumentException, IOException {
+        Document documento = new Document();
+        PdfWriter.getInstance(documento, new FileOutputStream("Reporte.pdf"));
 
-        document.open();
-        document.add(new Paragraph("Reporte Generado"));
-        document.add(new Paragraph("Fecha: " + fecha));
-        document.add(new Paragraph("Periodicidad: " + periodicidad));
-        document.add(new Paragraph("Tipo de Informe: " + tipoInforme));
-        document.add(new Paragraph("Detalle: " + detalle));
-        document.add(new Paragraph(" "));
+        documento.open();
+        documento.add(new Paragraph("Reporte generado"));
+        documento.add(new Paragraph("Fecha: " + fecha));
+        documento.add(new Paragraph("Periodicidad: " + periodicidad));
+        documento.add(new Paragraph("Tipo de Informe: " + tipoInforme));
+        documento.add(new Paragraph("Detalle: " + detalle));
+        documento.add(new Paragraph("\n"));
 
-        document.add(new Paragraph("Datos adicionales:"));
-        for (String dato : datosAdicionales) {
-            document.add(new Paragraph(dato));
+        if (tipoInforme.equals("Clientes frecuentes")) {
+            agregarClientesFrecuentes(documento, fecha);
+        } else if (tipoInforme.equals("Autos lavados")) {
+            agregarAutosLavados(documento, fecha);
         }
 
-        document.close();
-        return outputStream.toByteArray();
+        documento.close();
+    }
+
+    private void agregarClientesFrecuentes(Document documento, String fecha) throws DocumentException {
+        Connection conexion = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            ConexionSQLServer conexionDB = new ConexionSQLServer();
+            conexion = conexionDB.obtenerConexion();
+
+            String sql = "SELECT c.Nombre_Completo, COUNT(co.Fecha_Cotizacion) AS DiasAsistidos " +
+                         "FROM cliente c " +
+                         "JOIN Cotizaciones co ON c.Ci = co.Ci_cliente " +
+                         "WHERE MONTH(co.Fecha_Cotizacion) = MONTH(?) AND YEAR(co.Fecha_Cotizacion) = YEAR(?) " +
+                         "GROUP BY c.Nombre_Completo " +
+                         "HAVING COUNT(co.Fecha_Cotizacion) > 3";
+
+            stmt = conexion.prepareStatement(sql);
+            stmt.setString(1, fecha);
+            stmt.setString(2, fecha);
+            rs = stmt.executeQuery();
+
+            documento.add(new Paragraph("Clientes frecuentes (asistieron más de 3 días en el mes):"));
+
+            while (rs.next()) {
+                String nombreCliente = rs.getString("Nombre_Completo");
+                int diasAsistidos = rs.getInt("DiasAsistidos");
+                documento.add(new Paragraph("- " + nombreCliente + " (Días asistidos: " + diasAsistidos + ")"));
+            }
+
+        } catch (SQLException e) {
+            documento.add(new Paragraph("Error al obtener los clientes frecuentes: " + e.getMessage()));
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void agregarAutosLavados(Document documento, String fecha) throws DocumentException {
+        Connection conexion = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            ConexionSQLServer conexionDB = new ConexionSQLServer();
+            conexion = conexionDB.obtenerConexion();
+
+            String sql = "SELECT v.Placa, v.Modelo, v.Marca, COUNT(co.Fecha_Cotizacion) AS LavadosRealizados " +
+                         "FROM Vehiculos v " +
+                         "JOIN Cotizaciones co ON v.Placa = co.Placa " +
+                         "WHERE MONTH(co.Fecha_Cotizacion) = MONTH(?) AND YEAR(co.Fecha_Cotizacion) = YEAR(?) " +
+                         "GROUP BY v.Placa, v.Modelo, v.Marca";
+
+            stmt = conexion.prepareStatement(sql);
+            stmt.setString(1, fecha);
+            stmt.setString(2, fecha);
+            rs = stmt.executeQuery();
+
+            documento.add(new Paragraph("Vehículos lavados en el mes:"));
+
+            while (rs.next()) {
+                String placa = rs.getString("Placa");
+                String modelo = rs.getString("Modelo");
+                String marca = rs.getString("Marca");
+                int lavadosRealizados = rs.getInt("LavadosRealizados");
+                documento.add(new Paragraph("- Placa: " + placa + ", Modelo: " + modelo + ", Marca: " + marca + ", Lavados: " + lavadosRealizados));
+            }
+
+        } catch (SQLException e) {
+            documento.add(new Paragraph("Error al obtener los vehículos lavados: " + e.getMessage()));
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
