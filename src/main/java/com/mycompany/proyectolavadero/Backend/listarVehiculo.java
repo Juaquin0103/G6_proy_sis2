@@ -5,10 +5,14 @@
 package com.mycompany.proyectolavadero.Backend;
 
 import com.mycompany.proyectolavadero.ConexionSQLServer;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
-import java.sql.*;
 
 public class listarVehiculo {
     // Cargar datos desde la base de datos al JTable

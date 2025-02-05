@@ -153,6 +153,11 @@ public class listaDeVehiculosInterfaz extends javax.swing.JFrame {
         jButton12.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jButton12.setForeground(new java.awt.Color(255, 255, 255));
         jButton12.setText("Catalogo");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton13.setBackground(new java.awt.Color(17, 17, 29));
         jButton13.setBorder(null);
@@ -506,6 +511,16 @@ public class listaDeVehiculosInterfaz extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        listaDeServiciosInterfaz ventanaListaDeServiciosInterfaz = new listaDeServiciosInterfaz();
+        ventanaListaDeServiciosInterfaz.setVisible(true);
+        ventanaListaDeServiciosInterfaz.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+
+        // Cerrar la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
      * @param args the command line arguments
