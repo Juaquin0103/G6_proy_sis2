@@ -5,10 +5,13 @@
 package com.mycompany.proyectolavadero.Backend;
 
 import com.mycompany.proyectolavadero.ConexionSQLServer;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
-import java.sql.*;
+import java.sql.Statement;
 /**
  *
  * @author Windows

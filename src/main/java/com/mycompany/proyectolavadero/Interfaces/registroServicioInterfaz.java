@@ -312,9 +312,9 @@ public class registroServicioInterfaz extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        listaDeVehiculosInterfaz ventanaListaDeVehiculosInterfaz = new listaDeVehiculosInterfaz();
-        ventanaListaDeVehiculosInterfaz.setVisible(true);
-        ventanaListaDeVehiculosInterfaz.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+        listaDeServiciosInterfaz ventanaListaDeServiciosInterfaz = new listaDeServiciosInterfaz();
+        ventanaListaDeServiciosInterfaz.setVisible(true);
+        ventanaListaDeServiciosInterfaz.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
 
         // Cerrar la ventana actual
         this.dispose();
