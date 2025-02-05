@@ -232,8 +232,6 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
-        // Obtener los valores de los campos
         String nombre = jTextField2.getText().trim();
         String apellido = jTextField3.getText().trim();
         String ci = jTextField4.getText().trim();
@@ -242,35 +240,41 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
         String correo = jTextField7.getText().trim();
         String equipoLavado = jComboBox1.getSelectedItem().toString();
 
-        // Validar si hay campos vacíos
-        if (nombre.isEmpty() || apellido.isEmpty() || ci.isEmpty() || telefono.isEmpty() || direccion.isEmpty() || correo.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Error: Todos los campos deben ser llenados.");
-            return;
-        }
-
-        // Instanciar la clase de registro y registrar los datos
         registroEmpleado registro = new registroEmpleado();
-        boolean resultado = registro.registrarEmpleado(nombre, apellido, ci, telefono, direccion, correo, equipoLavado);
+        
+        if (!registro.validarNombre(nombre)) return;
+        if (!registro.validarApellido(apellido)) return;
+        if (!registro.validarCI(ci)) return;
+        if (!registro.validarTelefono(telefono)) return;
+        if (!registro.validarDireccion(direccion)) return;
+        if (!registro.validarCorreo(correo)) return;
+        if (!registro.validarEquipoLavado(equipoLavado)) return;
 
-        // Si la operación fue exitosa, limpiar los campos
-        if (resultado) {
-            JOptionPane.showMessageDialog(null, "Datos guardados correctamente.");
-            jTextField2.setText("");
-            jTextField3.setText("");
-            jTextField4.setText("");
-            jTextField5.setText("");
-            jTextField6.setText("");
-            jTextField7.setText("");
-            jComboBox1.setSelectedIndex(0);
+        if (registro.registrarEmpleado(nombre, apellido, ci, telefono, direccion, correo, equipoLavado)) {
+            JOptionPane.showMessageDialog(null, "Trabajador registrado correctamente.");
+            limpiarCampos();
+            this.dispose();
+            asignarEquipoLavado nuevaVentana = new asignarEquipoLavado();
+            nuevaVentana.setVisible(true);
+            nuevaVentana.setLocationRelativeTo(null);
         }
     }//GEN-LAST:event_jButton13ActionPerformed
 
+    private void limpiarCampos() {
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        jTextField6.setText("");
+        jTextField7.setText("");
+        jComboBox1.setSelectedIndex(0);
+    }
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseClicked
-        // TODO add your handling code here:
+        /*
         String nombre = jTextField2.getText().trim();
         String apellido = jTextField3.getText().trim();
         String ci = jTextField4.getText().trim();
@@ -292,7 +296,7 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
             jTextField6.setText("");
             jTextField7.setText(""); // Aseguramos también limpiar la dirección
             jComboBox1.setSelectedIndex(0);  // Devolver el JComboBox al primer índice
-        }
+        }*/
     }//GEN-LAST:event_jButton13MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

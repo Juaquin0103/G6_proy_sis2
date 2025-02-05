@@ -7,6 +7,7 @@ package com.mycompany.proyectolavadero.Backend;
 import com.mycompany.proyectolavadero.ConexionSQLServer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 /**
@@ -17,40 +18,6 @@ public class registroEmpleado {
     public boolean registrarEmpleado(String nombre, String apellido, String ci, String telefono, String direccion, String correo, String equipoLavado) {
         boolean registrado = false;
 
-        // Validaciones
-        if (!validarNombre(nombre)) {
-            JOptionPane.showMessageDialog(null, "Error: El nombre debe iniciar con mayúsculas y contener solo letras. Máximo 20 caracteres.");
-            return false;
-        }
-
-        if (!validarApellido(apellido)) {
-            JOptionPane.showMessageDialog(null, "Error: El apellido debe iniciar con mayúsculas y contener solo letras. Máximo 30 caracteres.");
-            return false;
-        }
-
-        if (!validarCI(ci)) {
-            return false;  // Los mensajes de error están en la función validarCI
-        }
-
-        if (!validarTelefono(telefono)) {
-            return false;  // Los mensajes de error están en la función validarTelefono
-        }
-
-        if (!validarDireccion(direccion)) {
-            JOptionPane.showMessageDialog(null, "Error: La dirección no puede superar los 250 caracteres.");
-            return false;
-        }
-
-        if (!validarCorreo(correo)) {
-            JOptionPane.showMessageDialog(null, "Error: El correo debe ser válido y contener '@'. Máximo 50 caracteres.");
-            return false;
-        }
-
-        if (!validarEquipoLavado(equipoLavado)) {
-            JOptionPane.showMessageDialog(null, "Error: Seleccione un equipo de lavado válido.");
-            return false;
-        }
-
         // Conexión y registro en la base de datos
         Connection conexion = null;
         PreparedStatement stmt = null;
@@ -59,7 +26,7 @@ public class registroEmpleado {
             ConexionSQLServer conexionDB = new ConexionSQLServer();
             conexion = conexionDB.obtenerConexion();
 
-            String sql = "INSERT INTO Empleados (Nombre_Empleado, Apellidos_Empleado, CI, Telefono, Direccion, Email, EquipoLavado) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Empleados (Nombre_empleado, Apellidos_empleado, Ci, Telefono, Direccion, Email, EquipoLavado) VALUES (?, ?, ?, ?, ?, ?, ?)";
             stmt = conexion.prepareStatement(sql);
             stmt.setString(1, nombre);
             stmt.setString(2, apellido);
@@ -91,76 +58,179 @@ public class registroEmpleado {
     }
 
     // Validaciones
-
     public boolean validarNombre(String nombre) {
-        if (nombre.length() > 20) {
-            JOptionPane.showMessageDialog(null, "Error: El nombre no puede superar los 20 caracteres.");
+        if (nombre.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Error: El nombre no puede estar vacío.");
             return false;
         }
-        if (!nombre.matches("^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+( [A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)*$")) {
-            JOptionPane.showMessageDialog(null, "Error: El nombre debe comenzar con mayúsculas y no contener números o caracteres especiales.");
+        if (nombre.length() > 50) {
+            JOptionPane.showMessageDialog(null, "Error: El nombre no puede superar los 50 caracteres.");
+            return false;
+        }
+        if (!nombre.matches("^[A-Z][a-z]+( [A-Z][a-z]+)*$")) {
+            JOptionPane.showMessageDialog(null, "Error: El nombre debe comenzar con mayúsculas y no contener números o símbolos.");
             return false;
         }
         return true;
     }
 
     public boolean validarApellido(String apellido) {
-        if (apellido.length() > 30) {
-            JOptionPane.showMessageDialog(null, "Error: El apellido no puede superar los 30 caracteres.");
+        if (apellido.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Error: El apellido no puede estar vacío.");
             return false;
         }
-        if (!apellido.matches("^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+( [A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)*$")) {
-            JOptionPane.showMessageDialog(null, "Error: El apellido debe comenzar con mayúsculas y no contener números o caracteres especiales.");
+        if (apellido.length() > 50) {
+            JOptionPane.showMessageDialog(null, "Error: El apellido no puede superar los 50 caracteres.");
             return false;
         }
-        return true;
-    }
-
-    // ✅ Validar CI (Solo números, exactamente 10 caracteres)
-    boolean validarCI(String ci) {
-        if (ci == null || ci.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Error: El CI no puede estar vacío.");
-        return false;
-        }
-        if (!ci.matches("\\d{10}")) {
-            JOptionPane.showMessageDialog(null, "Error: El CI debe contener exactamente 10 dígitos numéricos.");
+        if (!apellido.matches("^[A-Z][a-z]+( [A-Z][a-z]+)*$")) {
+            JOptionPane.showMessageDialog(null, "Error: El apellido debe comenzar con mayúsculas y no contener números o símbolos.");
             return false;
         }
         return true;
     }
 
-    // ✅ Validar Teléfono (Solo números, exactamente 10 caracteres)
-    boolean validarTelefono(String telefono) {
-        if (telefono == null || telefono.isEmpty()) {
+    public boolean validarCI(String ci) {
+        if (ci.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Error: El CI no puede estar vacío.");
+            return false;
+        }
+        if (ci.contains(" ")) {
+            JOptionPane.showMessageDialog(null, "Error: El CI no debe contener espacios.");
+            return false;
+        }
+        if (!ci.matches("\\d{8}")) {
+            JOptionPane.showMessageDialog(null, "Error: El CI debe contener exactamente 8 dígitos y no contener letras o simbolos.");
+            return false;
+        }
+        if (existeCIEnBD(ci)) {
+            JOptionPane.showMessageDialog(null, "Error: El CI ingresado ya está registrado.");
+            return false;
+        }
+        
+        return true;
+    }
+
+    public boolean validarTelefono(String telefono) {
+        if (telefono.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Error: El teléfono no puede estar vacío.");
             return false;
         }
         if (!telefono.matches("\\d{8}")) {
-            JOptionPane.showMessageDialog(null, "Error: El teléfono debe contener exactamente 8 dígitos.");
+            JOptionPane.showMessageDialog(null, "Error: El teléfono debe contener exactamente 8 dígitos y no contener letras o simbolos.");
+            return false;
+        }
+        if (telefono.contains(" ")) {
+            JOptionPane.showMessageDialog(null, "Error: El teléfono no debe contener espacios.");
+            return false;
+        }
+        if (existeCIEnBD(telefono)) {
+            JOptionPane.showMessageDialog(null, "Error: El telefono ingresado ya está registrado.");
             return false;
         }
         return true;
     }
 
     public boolean validarDireccion(String direccion) {
-        return direccion.length() <= 50;
+        if (direccion.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Error: La dirección no puede estar vacía.");
+            return false;
+        }
+        if (direccion.length() > 250) {
+            JOptionPane.showMessageDialog(null, "Error: La dirección no puede superar los 250 caracteres.");
+            return false;
+        }
+        return true;
     }
 
     public boolean validarCorreo(String correo) {
-        if (correo.contains(" ")) {
-            JOptionPane.showMessageDialog(null, "Error: El correo no debe contener espacios.");
+        if (correo.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Error: El correo no puede estar vacío.");
             return false;
         }
         if (!correo.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")) {
-            JOptionPane.showMessageDialog(null, "Error: El correo debe ser válido y contener '@'.");
+            JOptionPane.showMessageDialog(null, "Error: El formato del correo es incorrecto.");
             return false;
         }
-        return correo.length() <= 50;
+        if (correo.length() > 100) {
+            JOptionPane.showMessageDialog(null, "Error: El correo no puede superar los 100 caracteres.");
+            return false;
+        }
+        return true;
     }
 
     public boolean validarEquipoLavado(String equipoLavado) {
-        return equipoLavado.equals("E1") || 
-               equipoLavado.equals("E2") || 
-               equipoLavado.equals("E3");
+        if (!(equipoLavado.equals("E1") || equipoLavado.equals("E2") || equipoLavado.equals("E3"))) {
+            JOptionPane.showMessageDialog(null, "Error: Seleccione un equipo de lavado válido.");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean existeCIEnBD(String ci) {
+        Connection conexion = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        boolean existe = false;
+
+        try {
+            ConexionSQLServer conexionDB = new ConexionSQLServer();
+            conexion = conexionDB.obtenerConexion();
+
+            String sql = "SELECT COUNT(*) FROM Empleados WHERE Ci = ?";
+            stmt = conexion.prepareStatement(sql);
+            stmt.setString(1, ci);
+            rs = stmt.executeQuery();
+
+            if (rs.next() && rs.getInt(1) > 0) {
+                existe = true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return existe;
+    }
+    private boolean existeTelefonoEnBD(String telefono) {
+        Connection conexion = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        boolean existe = false;
+
+        try {
+            ConexionSQLServer conexionDB = new ConexionSQLServer();
+            conexion = conexionDB.obtenerConexion();
+
+            String sql = "SELECT COUNT(*) FROM Empleados WHERE Telefono = ?";
+            stmt = conexion.prepareStatement(sql);
+            stmt.setString(1, telefono);
+            rs = stmt.executeQuery();
+
+            if (rs.next() && rs.getInt(1) > 0) {
+                existe = true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conexion != null) conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return existe;
     }
 }
