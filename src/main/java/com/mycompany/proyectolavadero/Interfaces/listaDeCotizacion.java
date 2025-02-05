@@ -4,6 +4,15 @@
  */
 package com.mycompany.proyectolavadero.Interfaces;
 
+import com.mycompany.proyectolavadero.Backend.listarCotizacion;
+import com.mycompany.proyectolavadero.ConexionSQLServer;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.sql.Connection;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Windows
@@ -15,6 +24,25 @@ public class listaDeCotizacion extends javax.swing.JFrame {
      */
     public listaDeCotizacion() {
         initComponents();
+        cargarTablaCotizaciones();
+    }
+    
+    private void cargarTablaCotizaciones() {
+        try {
+            ConexionSQLServer conexionSQL = new ConexionSQLServer();
+            Connection connection = conexionSQL.obtenerConexion();
+            listarCotizacion listar = new listarCotizacion(connection);
+
+            ArrayList<String[]> reportes = listar.obtenerCotizacion();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+
+            for (String[] reporte : reportes) {
+                model.addRow(reporte);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar las cotizaciones: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -405,7 +433,7 @@ public class listaDeCotizacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed

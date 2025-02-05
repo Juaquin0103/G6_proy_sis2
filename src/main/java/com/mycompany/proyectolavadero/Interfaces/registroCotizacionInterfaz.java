@@ -4,12 +4,13 @@
  */
 package com.mycompany.proyectolavadero.Interfaces;
 
-import com.mycompany.proyectolavadero.Backend.nuevaCotizacion;
+import com.mycompany.proyectolavadero.Backend.NuevaCotizacion;
 import javax.swing.JOptionPane;
 /**
  *
  * @author Windows
  */
+//
 public class registroCotizacionInterfaz extends javax.swing.JFrame {
 
     /**
@@ -17,7 +18,7 @@ public class registroCotizacionInterfaz extends javax.swing.JFrame {
      */
     public registroCotizacionInterfaz() {
         initComponents();
-        nuevaCotizacion cotizacion = new nuevaCotizacion();
+        NuevaCotizacion cotizacion = new NuevaCotizacion();
         int ultimoCodigo = cotizacion.obtenerUltimoCodigoCotizacion();
     
     // Incrementar el código de cotización para asignarlo al nuevo campo
@@ -25,6 +26,7 @@ public class registroCotizacionInterfaz extends javax.swing.JFrame {
 
     // Asignar el nuevo código a jTextField7
         jTextField7.setText(String.valueOf(nuevoCodigo));
+        jTextField7.setEditable(false);
     }
 
     /**
@@ -278,55 +280,58 @@ public class registroCotizacionInterfaz extends javax.swing.JFrame {
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         try {
         String placa = jTextField2.getText().trim();
-        String tipo_Servicio = jComboBox1.getSelectedItem().toString().trim();
-        String Precio = jTextField4.getText().trim();
-        String fecha_Cotizacion = jTextField5.getText().trim();
-        String detalles_preferencias = jTextArea1.getText().trim();
-        int cod_cotizacion = Integer.parseInt(jTextField7.getText().trim());
-        String metodo_Pago = jComboBox2.getSelectedItem().toString().trim();
-        int Ci_cliente = Integer.parseInt(jTextField3.getText().trim());
+        String tipoServicio = jComboBox1.getSelectedItem().toString().trim();
+        String precio = jTextField4.getText().trim();
+        String fechaCotizacion = jTextField5.getText().trim();
+        String detallesPreferencias = jTextArea1.getText().trim();
+        String metodoPago = jComboBox2.getSelectedItem().toString().trim();
 
-        // Validación de campos vacíos
-        if (placa.isEmpty() || tipo_Servicio.isEmpty() || Precio.isEmpty() || fecha_Cotizacion.isEmpty() ||
-            detalles_preferencias.isEmpty() || metodo_Pago.isEmpty()) {
+        // Verificar que no haya campos vacíos
+        if (placa.isEmpty() || tipoServicio.equals("Seleccione un Servicio") || precio.isEmpty() ||
+            fechaCotizacion.isEmpty() || detallesPreferencias.isEmpty() || metodoPago.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos antes de guardar.");
-            return;  // No continua si hay campos vacíos
+            return;
         }
 
-        nuevaCotizacion cotizacion = new nuevaCotizacion();
-        boolean resultado = cotizacion.nuevaCotizacion(cod_cotizacion, tipo_Servicio, fecha_Cotizacion,
-                                                      detalles_preferencias, metodo_Pago, Ci_cliente, placa, Precio);
+        // Validación de CI Cliente y Código de Cotización
+        int codCotizacion;
+        int ciCliente;
+        
+        try {
+            codCotizacion = Integer.parseInt(jTextField7.getText().trim());
+            ciCliente = Integer.parseInt(jTextField3.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El código de cotización y el CI del cliente deben ser números válidos.");
+            return;
+        }
+
+        // Crear la cotización con los valores ingresados
+        NuevaCotizacion cotizacion = new NuevaCotizacion();
+        boolean resultado = cotizacion.registrarCotizacion(codCotizacion, tipoServicio, fechaCotizacion, 
+                                                          detallesPreferencias, metodoPago, ciCliente, placa, precio);
 
         if (resultado) {
-            // Limpiar campos después de guardar
+            // Limpiar los campos después del registro
             jTextField2.setText("");
-            jComboBox1.setSelectedIndex(0); // Selecciona el primer elemento
+            jComboBox1.setSelectedIndex(0);
             jTextField4.setText("");
             jTextField5.setText("");
             jTextArea1.setText("");
-            jTextField7.setText("");
+            jTextField7.setText(""); 
             jComboBox2.setSelectedIndex(0);
             jTextField3.setText("");
 
-            // Mostrar mensaje de éxito
             JOptionPane.showMessageDialog(null, "Cotización guardada correctamente.");
 
-            // Cerrar la ventana actual
-            this.dispose();  // Cierra la ventana actual (JFrame)
-
-            // Abrir la ventana listaDeCotizacion
-            listaDeCotizacion listaCotizaciones = new listaDeCotizacion(); // Crear la instancia de la nueva ventana
-            listaCotizaciones.setVisible(true); // Mostrar la nueva ventana
+            // Cerrar la ventana actual y abrir la lista de cotizaciones
+            this.dispose();
+            listaDeCotizacion listaCotizaciones = new listaDeCotizacion();
+            listaCotizaciones.setVisible(true);
         }
-
-        } catch (NumberFormatException e) {
-            // En caso de error en el parseo de los números
-            JOptionPane.showMessageDialog(null, "Por favor, ingrese valores válidos en los campos numéricos.");
-        } catch (Exception e) {
-            // En caso de cualquier otro error inesperado
-            JOptionPane.showMessageDialog(null, "Error inesperado: " + e.getMessage());
-            e.printStackTrace();
-        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error inesperado: " + e.getMessage());
+        e.printStackTrace();
+    }
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
