@@ -32,15 +32,15 @@ public class asignarEquipoLavado extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        Inicio = new javax.swing.JButton();
-        Cotizacion = new javax.swing.JButton();
-        Vehiculos = new javax.swing.JButton();
-        Clientes = new javax.swing.JButton();
-        EquipoLavado = new javax.swing.JButton();
-        Inventario = new javax.swing.JButton();
-        Reportes = new javax.swing.JButton();
-        Catalogo = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
+        jButton13 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -66,97 +66,89 @@ public class asignarEquipoLavado extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(12, 12, 29));
         jPanel2.setPreferredSize(new java.awt.Dimension(312, 815));
 
-        Inicio.setBackground(new java.awt.Color(12, 12, 29));
-        Inicio.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        Inicio.setForeground(new java.awt.Color(255, 255, 255));
-        Inicio.setText("Inicio");
-        Inicio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        Inicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InicioActionPerformed(evt);
-            }
-        });
-
-        Cotizacion.setBackground(new java.awt.Color(12, 12, 29));
-        Cotizacion.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        Cotizacion.setForeground(new java.awt.Color(255, 255, 255));
-        Cotizacion.setText("Cotizacion");
-        Cotizacion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        Cotizacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CotizacionActionPerformed(evt);
-            }
-        });
-
-        Vehiculos.setBackground(new java.awt.Color(12, 12, 29));
-        Vehiculos.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        Vehiculos.setForeground(new java.awt.Color(255, 255, 255));
-        Vehiculos.setText("Vehiculos");
-        Vehiculos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        Vehiculos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VehiculosActionPerformed(evt);
-            }
-        });
-
-        Clientes.setBackground(new java.awt.Color(12, 12, 29));
-        Clientes.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        Clientes.setForeground(new java.awt.Color(255, 255, 255));
-        Clientes.setText("Clientes");
-        Clientes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        Clientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ClientesActionPerformed(evt);
-            }
-        });
-
-        EquipoLavado.setBackground(new java.awt.Color(12, 12, 29));
-        EquipoLavado.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        EquipoLavado.setForeground(new java.awt.Color(255, 255, 255));
-        EquipoLavado.setText("Equipo de Lavado");
-        EquipoLavado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        EquipoLavado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EquipoLavadoActionPerformed(evt);
-            }
-        });
-
-        Inventario.setBackground(new java.awt.Color(12, 12, 29));
-        Inventario.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        Inventario.setForeground(new java.awt.Color(255, 255, 255));
-        Inventario.setText("Inventario");
-        Inventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        Inventario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InventarioActionPerformed(evt);
-            }
-        });
-
-        Reportes.setBackground(new java.awt.Color(12, 12, 29));
-        Reportes.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        Reportes.setForeground(new java.awt.Color(255, 255, 255));
-        Reportes.setText("Reportes");
-        Reportes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        Reportes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReportesActionPerformed(evt);
-            }
-        });
-
-        Catalogo.setBackground(new java.awt.Color(12, 12, 29));
-        Catalogo.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
-        Catalogo.setForeground(new java.awt.Color(255, 255, 255));
-        Catalogo.setText("Catalogo");
-        Catalogo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        Catalogo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CatalogoActionPerformed(evt);
-            }
-        });
-
         jButton3.setBackground(new java.awt.Color(17, 17, 29));
         jButton3.setForeground(new java.awt.Color(17, 17, 29));
         jButton3.setBorder(null);
+
+        jButton6.setBackground(new java.awt.Color(17, 17, 29));
+        jButton6.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
+        jButton6.setText("Inicio");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setBackground(new java.awt.Color(17, 17, 29));
+        jButton7.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
+        jButton7.setText("Cotizacion");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jButton8.setBackground(new java.awt.Color(17, 17, 29));
+        jButton8.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
+        jButton8.setText("Vehiculos");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        jButton9.setBackground(new java.awt.Color(17, 17, 29));
+        jButton9.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(255, 255, 255));
+        jButton9.setText("Clientes");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        jButton10.setBackground(new java.awt.Color(17, 17, 29));
+        jButton10.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jButton10.setForeground(new java.awt.Color(255, 255, 255));
+        jButton10.setText("Equipo de Lavado");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
+        jButton11.setBackground(new java.awt.Color(17, 17, 29));
+        jButton11.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jButton11.setForeground(new java.awt.Color(255, 255, 255));
+        jButton11.setText("Inventario");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
+        jButton12.setBackground(new java.awt.Color(17, 17, 29));
+        jButton12.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jButton12.setForeground(new java.awt.Color(255, 255, 255));
+        jButton12.setText("Reportes");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+
+        jButton13.setBackground(new java.awt.Color(17, 17, 29));
+        jButton13.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jButton13.setForeground(new java.awt.Color(255, 255, 255));
+        jButton13.setText("Catalogo");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -164,41 +156,45 @@ public class asignarEquipoLavado extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jButton3)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Catalogo)
-                    .addComponent(Cotizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Vehiculos, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Clientes, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(EquipoLavado)
-                    .addComponent(Inventario)
-                    .addComponent(Reportes))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addGap(0, 274, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(43, 43, 43)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButton13)
+                        .addComponent(jButton12)
+                        .addComponent(jButton11)
+                        .addComponent(jButton8)
+                        .addComponent(jButton9)
+                        .addComponent(jButton6)
+                        .addComponent(jButton7)
+                        .addComponent(jButton10))
+                    .addContainerGap(44, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jButton3)
-                .addGap(155, 155, 155)
-                .addComponent(Inicio)
-                .addGap(18, 18, 18)
-                .addComponent(Cotizacion)
-                .addGap(18, 18, 18)
-                .addComponent(Vehiculos)
-                .addGap(18, 18, 18)
-                .addComponent(Clientes)
-                .addGap(18, 18, 18)
-                .addComponent(EquipoLavado)
-                .addGap(18, 18, 18)
-                .addComponent(Inventario)
-                .addGap(18, 18, 18)
-                .addComponent(Reportes)
-                .addGap(18, 18, 18)
-                .addComponent(Catalogo)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(632, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(117, 117, 117)
+                    .addComponent(jButton6)
+                    .addGap(18, 18, 18)
+                    .addComponent(jButton7)
+                    .addGap(18, 18, 18)
+                    .addComponent(jButton8)
+                    .addGap(18, 18, 18)
+                    .addComponent(jButton9)
+                    .addGap(18, 18, 18)
+                    .addComponent(jButton10)
+                    .addGap(18, 18, 18)
+                    .addComponent(jButton11)
+                    .addGap(18, 18, 18)
+                    .addComponent(jButton12)
+                    .addGap(18, 18, 18)
+                    .addComponent(jButton13)
+                    .addContainerGap(117, Short.MAX_VALUE)))
         );
 
         jPanel3.setBackground(new java.awt.Color(236, 240, 241));
@@ -402,74 +398,6 @@ public class asignarEquipoLavado extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void InicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InicioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InicioActionPerformed
-
-    private void CotizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CotizacionActionPerformed
-        // TODO add your handling code here:
-        listaDeCotizacion ventanaListaDeCotizacion = new listaDeCotizacion();
-        ventanaListaDeCotizacion.setVisible(true);
-        ventanaListaDeCotizacion.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
-
-        // Cerrar la ventana actual
-        this.dispose();
-    }//GEN-LAST:event_CotizacionActionPerformed
-
-    private void VehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VehiculosActionPerformed
-        // TODO add your handling code here:
-        listaDeVehiculosInterfaz ventanaListaDeVehiculosInterfaz = new listaDeVehiculosInterfaz();
-        ventanaListaDeVehiculosInterfaz.setVisible(true);
-        ventanaListaDeVehiculosInterfaz.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
-
-        // Cerrar la ventana actual
-        this.dispose();
-    }//GEN-LAST:event_VehiculosActionPerformed
-
-    private void ClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClientesActionPerformed
-        // TODO add your handling code here:
-        listaDePropietariosInterfaz ventanaListaPropietarios = new listaDePropietariosInterfaz();
-        ventanaListaPropietarios.setVisible(true);
-        ventanaListaPropietarios.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
-
-        // Cerrar la ventana actual
-        this.dispose();
-    }//GEN-LAST:event_ClientesActionPerformed
-
-    private void EquipoLavadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EquipoLavadoActionPerformed
-        // TODO add your handling code here:
-        asignarEquipoLavado ventanaAsignarEquipoLavado = new asignarEquipoLavado();
-        ventanaAsignarEquipoLavado.setVisible(true);
-        ventanaAsignarEquipoLavado.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
-
-        // Cerrar la ventana actual
-        this.dispose();
-    }//GEN-LAST:event_EquipoLavadoActionPerformed
-
-    private void InventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InventarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InventarioActionPerformed
-
-    private void ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportesActionPerformed
-        // TODO add your handling code here:
-        listaDeReportes ventanaListaDeReportes  = new listaDeReportes ();
-        ventanaListaDeReportes.setVisible(true);
-        ventanaListaDeReportes.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
-
-        // Cerrar la ventana actual
-        this.dispose();
-    }//GEN-LAST:event_ReportesActionPerformed
-
-    private void CatalogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CatalogoActionPerformed
-        // TODO add your handling code here:
-        listaDeServiciosInterfaz ventanaListaDeServiciosInterfaz = new listaDeServiciosInterfaz();
-        ventanaListaDeServiciosInterfaz.setVisible(true);
-        ventanaListaDeServiciosInterfaz.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
-
-        // Cerrar la ventana actual
-        this.dispose();
-    }//GEN-LAST:event_CatalogoActionPerformed
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         registroEmpleadoInterfaz ventanaRegistroEmpleadoInterfaz = new registroEmpleadoInterfaz();
@@ -483,6 +411,74 @@ public class asignarEquipoLavado extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        listaDeCotizacion ventanaListaDeCotizacion = new listaDeCotizacion();
+        ventanaListaDeCotizacion.setVisible(true);
+        ventanaListaDeCotizacion.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+
+        // Cerrar la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        listaDeVehiculosInterfaz ventanaListaVehiculos = new listaDeVehiculosInterfaz();
+        ventanaListaVehiculos.setVisible(true);
+        ventanaListaVehiculos.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+
+        // Cerrar la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        listaDePropietariosInterfaz ventanaListaPropietarios = new listaDePropietariosInterfaz();
+        ventanaListaPropietarios.setVisible(true);
+        ventanaListaPropietarios.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+
+        // Cerrar la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        asignarEquipoLavado ventanaAsignarEquipoLavado = new asignarEquipoLavado();
+        ventanaAsignarEquipoLavado.setVisible(true);
+        ventanaAsignarEquipoLavado.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+
+        // Cerrar la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        listaDeReportes ventanaListaDeReportes  = new listaDeReportes ();
+        ventanaListaDeReportes.setVisible(true);
+        ventanaListaDeReportes.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+
+        // Cerrar la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+        listaDeServiciosInterfaz ventanaListaDeServiciosInterfaz = new listaDeServiciosInterfaz();
+        ventanaListaDeServiciosInterfaz.setVisible(true);
+        ventanaListaDeServiciosInterfaz.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+
+        // Cerrar la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -520,19 +516,19 @@ public class asignarEquipoLavado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Catalogo;
-    private javax.swing.JButton Clientes;
-    private javax.swing.JButton Cotizacion;
-    private javax.swing.JButton EquipoLavado;
-    private javax.swing.JButton Inicio;
-    private javax.swing.JButton Inventario;
-    private javax.swing.JButton Reportes;
-    private javax.swing.JButton Vehiculos;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

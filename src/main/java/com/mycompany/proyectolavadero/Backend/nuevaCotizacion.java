@@ -6,7 +6,6 @@ package com.mycompany.proyectolavadero.Backend;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfDocument;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.mycompany.proyectolavadero.ConexionSQLServer;
 import java.io.ByteArrayOutputStream;
