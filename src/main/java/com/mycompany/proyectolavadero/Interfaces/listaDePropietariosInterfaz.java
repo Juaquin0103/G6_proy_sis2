@@ -226,7 +226,6 @@ public class listaDePropietariosInterfaz extends javax.swing.JFrame {
         BarraCentral.setBackground(new java.awt.Color(236, 240, 241));
         BarraCentral.setPreferredSize(new java.awt.Dimension(984, 631));
 
-        T.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         T.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},

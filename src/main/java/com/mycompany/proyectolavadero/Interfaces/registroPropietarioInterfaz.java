@@ -222,56 +222,67 @@ public class registroPropietarioInterfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // Obtener datos de los JTextFields y eliminar espacios en blanco innecesarios
+        // Obtener datos de los campos
         String nombre = jTextField2.getText().trim();
         String ci = jTextField3.getText().trim();
         String telefono = jTextField4.getText().trim();
         String direccion = jTextField5.getText().trim();
         String correo = jTextField6.getText().trim();
 
-        // Verificar si hay campos vacíos
-        StringBuilder mensaje = new StringBuilder();
-        if (nombre.isEmpty()) {
-            mensaje.append("- Debes ingresar el nombre.\n");
-        }
-        if (ci.isEmpty()) {
-            mensaje.append("- Debes ingresar el CI o NIT.\n");
-        }
-        if (telefono.isEmpty()) {
-            mensaje.append("- Debes ingresar el teléfono.\n");
-        }
-        if (direccion.isEmpty()) {
-            mensaje.append("- Debes ingresar la dirección.\n");
-        }
-        if (correo.isEmpty()) {
-            mensaje.append("- Debes ingresar el correo.\n");
-        }
-
-        // Mostrar alerta si hay campos vacíos
-        if (mensaje.length() > 0) {
-            JOptionPane.showMessageDialog(this, "Faltan los siguientes datos:\n" + mensaje.toString(), "Datos Incompletos", JOptionPane.WARNING_MESSAGE);
-            return;  // Detener la ejecución si faltan datos
-        }
-
-        // Instancia del Backend
+        // Instancia de la clase de funcionalidad
         registroPropietario registro = new registroPropietario();
 
-        // Llamar a la función de validación y registro
+        // Validaciones y mensajes de error
+        StringBuilder mensajesError = new StringBuilder();
+
+        String errorNombre = registro.validarNombre(nombre);
+        if (!errorNombre.isEmpty()) mensajesError.append(errorNombre).append("\n");
+
+        String errorCI = registro.validarCI(ci);
+        if (!errorCI.isEmpty()) mensajesError.append(errorCI).append("\n");
+
+        String errorTelefono = registro.validarTelefono(telefono);
+        if (!errorTelefono.isEmpty()) mensajesError.append(errorTelefono).append("\n");
+
+        String errorDireccion = registro.validarDireccion(direccion);
+        if (!errorDireccion.isEmpty()) mensajesError.append(errorDireccion).append("\n");
+
+        String errorCorreo = registro.validarCorreo(correo);
+        if (!errorCorreo.isEmpty()) mensajesError.append(errorCorreo).append("\n");
+
+        // Mostrar todos los errores acumulados
+        if (mensajesError.length() > 0) {
+            JOptionPane.showMessageDialog(this, "Errores de validación:\n" + mensajesError.toString(), "Validación de datos", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Verificar duplicados
+        if (registro.esNombreDuplicado(nombre)) return;
+        if (registro.esCIDuplicado(ci)) return;
+        if (registro.esTelefonoDuplicado(telefono)) return;
+        if (registro.esCorreoDuplicado(correo)) return;
+
+        // Registrar cliente en la base de datos
         boolean resultado = registro.registrarCliente(nombre, ci, telefono, direccion, correo);
 
-        // Si el registro fue exitoso, limpiar los campos
+        // Si el registro es exitoso
         if (resultado) {
+            // Limpiar los campos
             jTextField2.setText("");
             jTextField3.setText("");
             jTextField4.setText("");
             jTextField5.setText("");
             jTextField6.setText("");
+
+            // Cerrar la ventana actual
+            this.dispose();
+
+            // Abrir la nueva interfaz 'listaDePropietariosInterfaz'
+            listaDePropietariosInterfaz ventanaLista = new listaDePropietariosInterfaz();
+            ventanaLista.setVisible(true);
+            ventanaLista.setLocationRelativeTo(null);  // Centrar la nueva ventana en la pantalla
         }
     }//GEN-LAST:event_jButton13ActionPerformed
-
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -282,6 +293,10 @@ public class registroPropietarioInterfaz extends javax.swing.JFrame {
         // Cerrar la ventana actual
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
 
     /**
      * @param args the command line arguments

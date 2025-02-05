@@ -171,7 +171,7 @@ public class listaDeVehiculosInterfaz extends javax.swing.JFrame {
                 .addComponent(jButton13)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraLateralLayout.createSequentialGroup()
-                .addContainerGap(45, Short.MAX_VALUE)
+                .addContainerGap(48, Short.MAX_VALUE)
                 .addGroup(BarraLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton12)
                     .addComponent(jButton11)
@@ -276,7 +276,6 @@ public class listaDeVehiculosInterfaz extends javax.swing.JFrame {
         BarraCentral.setBackground(new java.awt.Color(236, 240, 241));
         BarraCentral.setPreferredSize(new java.awt.Dimension(984, 631));
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

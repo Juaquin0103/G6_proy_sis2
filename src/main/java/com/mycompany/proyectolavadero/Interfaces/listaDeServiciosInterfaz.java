@@ -8,12 +8,12 @@ package com.mycompany.proyectolavadero.Interfaces;
  *
  * @author Windows
  */
-public class listaDeCotizacion extends javax.swing.JFrame {
+public class listaDeServiciosInterfaz extends javax.swing.JFrame {
 
     /**
-     * Creates new form listaDeCotizacion1
+     * Creates new form listaDeServiciosInterfaz
      */
-    public listaDeCotizacion() {
+    public listaDeServiciosInterfaz() {
         initComponents();
     }
 
@@ -217,7 +217,7 @@ public class listaDeCotizacion extends javax.swing.JFrame {
         BarraTitulo.setPreferredSize(new java.awt.Dimension(984, 145));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 40)); // NOI18N
-        jLabel1.setText("COTIZACION");
+        jLabel1.setText("CATALOGO DE SERVICIOS");
 
         javax.swing.GroupLayout BarraTituloLayout = new javax.swing.GroupLayout(BarraTitulo);
         BarraTitulo.setLayout(BarraTituloLayout);
@@ -247,7 +247,7 @@ public class listaDeCotizacion extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Codigo de cotizacion", "Placa de Vehiculo", "Servicio", "Precio"
+                "Nombre de servicio", "Tiempo estimado", "Tipo de limpieza", "Precio"
             }
         ));
         jTable1.setToolTipText("");
@@ -255,7 +255,7 @@ public class listaDeCotizacion extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jButton1.setText("Nuevo Cotizacion");
+        jButton1.setText("Nuevo servicio");
         jButton1.setPreferredSize(new java.awt.Dimension(279, 89));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -264,7 +264,7 @@ public class listaDeCotizacion extends javax.swing.JFrame {
         });
 
         jButton14.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jButton14.setText("Imprimir factura");
+        jButton14.setText("Imprimir catalogo");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14ActionPerformed(evt);
@@ -389,6 +389,16 @@ public class listaDeCotizacion extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
 
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        listaDeReportes ventanaListaDeReportes  = new listaDeReportes ();
+        ventanaListaDeReportes.setVisible(true);
+        ventanaListaDeReportes.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
+
+        // Cerrar la ventana actual
+        this.dispose();
+    }//GEN-LAST:event_jButton11ActionPerformed
+
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton13ActionPerformed
@@ -407,16 +417,6 @@ public class listaDeCotizacion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton14ActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
-        listaDeReportes ventanaListaDeReportes  = new listaDeReportes ();
-        ventanaListaDeReportes.setVisible(true);
-        ventanaListaDeReportes.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
-
-        // Cerrar la ventana actual
-        this.dispose();
-    }//GEN-LAST:event_jButton11ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -434,21 +434,20 @@ public class listaDeCotizacion extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(listaDeCotizacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(listaDeServiciosInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(listaDeCotizacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(listaDeServiciosInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(listaDeCotizacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(listaDeServiciosInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(listaDeCotizacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(listaDeServiciosInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new listaDeCotizacion().setVisible(true);
+                new listaDeServiciosInterfaz().setVisible(true);
             }
         });
     }

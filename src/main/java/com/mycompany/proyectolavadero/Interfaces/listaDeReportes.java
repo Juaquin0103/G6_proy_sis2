@@ -265,7 +265,6 @@ public class listaDeReportes extends javax.swing.JFrame {
         BarraCentral.setBackground(new java.awt.Color(236, 240, 241));
         BarraCentral.setPreferredSize(new java.awt.Dimension(984, 631));
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
