@@ -208,43 +208,51 @@ public class registroReportes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13MouseClicked
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // Obtener los datos ingresados
         String fecha = jTextField2.getText().trim();
         String periodicidad = (String) jComboBox3.getSelectedItem();
         String tipoInforme = (String) jComboBox1.getSelectedItem();
         String detalle = jTextArea1.getText().trim();
 
+        // Instancia de la clase de registro
+        registroReporte registro = new registroReporte();
+
+        // Validaciones
+        String mensajeError = "";
+
+        // Validar la fecha
+        String validacionFecha = registro.validarFecha(fecha);
+        if (!validacionFecha.isEmpty()) {
+            mensajeError += validacionFecha + "\n";
+        }
+
+        // Validar el detalle del reporte
+        String validacionDetalle = registro.validarDetalleReporte(detalle);
+        if (!validacionDetalle.isEmpty()) {
+            mensajeError += validacionDetalle + "\n";
+        }
+
+        // Mostrar errores si los hay
+        if (!mensajeError.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Errores encontrados:\n" + mensajeError, "Errores de validación", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Intentar registrar el reporte y generar el PDF
         try {
-            // Validaciones
-            if (fecha.isEmpty()) {
-                throw new Exception("El campo 'Fecha' es obligatorio.");
+            if (registro.registrarReporte(fecha, periodicidad, tipoInforme, detalle)) {
+                registro.generarPDFReporte(fecha, periodicidad, tipoInforme, detalle);
+                JOptionPane.showMessageDialog(this, "Reporte registrado y PDF generado exitosamente.");
+
+                // Cerrar esta ventana y abrir la interfaz de lista de reportes
+                this.dispose();
+                listaDeReportes nuevaVentana = new listaDeReportes();
+                nuevaVentana.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al registrar el reporte. Inténtalo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            if (!validarFormatoFecha(fecha)) {
-                throw new Exception("La fecha es inválida. Debe ser en el formato 'YYYY-MM-DD'.");
-            }
-            if (detalle.isEmpty()) {
-                throw new Exception("El campo 'Detalle del reporte' es obligatorio.");
-            }
-
-            // Conexión a la base de datos
-            ConexionSQLServer conexionSQL = new ConexionSQLServer();
-            Connection connection = conexionSQL.obtenerConexion();
-            registroReporte registro = new registroReporte(connection);
-
-            // Guardar en la base de datos y generar PDF
-            registro.guardarReporte(fecha, periodicidad, tipoInforme, detalle);
-
-            // Mostrar mensaje de éxito
-            JOptionPane.showMessageDialog(this, "Reporte guardado exitosamente.");
-
-            // Cerrar esta ventana y abrir listaDeReportes
-            this.dispose();
-            listaDeReportes nuevaVentana = new listaDeReportes();
-            nuevaVentana.setVisible(true);
-
         } catch (DocumentException | IOException ex) {
             JOptionPane.showMessageDialog(this, "Error al generar el PDF: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton13ActionPerformed
 

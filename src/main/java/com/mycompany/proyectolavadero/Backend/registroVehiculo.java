@@ -16,43 +16,36 @@ import javax.swing.JOptionPane;
  * @author Windows
  */
 public class registroVehiculo {
-
     public boolean registrarVehiculo(String Placa, String Chasis, String Color, String Modelo, String Marca, String Tipo_Vehiculo, String Preferencias, int Ci) {
         boolean registrado = false;
-        if (!validarPlaca(Placa)) {
-            JOptionPane.showMessageDialog(null, "Error: La placa solo debe de tener Numeros y letras");
-            return false;
-        }
 
-        if (!validarChasis(Chasis)) {
-            JOptionPane.showMessageDialog(null, "Error: El Chasis debe tener solo Numeros y letras");
-            return false;
-        }
-
-        if (!validarTipoVehiculo(Tipo_Vehiculo)) {
-            JOptionPane.showMessageDialog(null, "Error: El tipo de vehiculo debe tener 50 caracteres");
-            return false;
-        }
+        // Validaciones
+        String mensajeError = "";
 
         if (!validarColor(Color)) {
-            JOptionPane.showMessageDialog(null, "Error: El color no puede superar los 10 caracteres");
-            return false;
+            mensajeError += "Error: Color inválido.\n";
         }
-
+        if (!validarChasis(Chasis)) {
+            mensajeError += "Error: Chasis inválido.\n";
+        }
+        if (!validarTipoVehiculo(Tipo_Vehiculo)) {
+            mensajeError += "Error: Tipo de vehículo inválido.\n";
+        }
+        if (!validarPlaca(Placa)) {
+            mensajeError += "Error: Placa inválida.\n";
+        }
         if (!validarModelo(Modelo)) {
-            JOptionPane.showMessageDialog(null, "Error: El modelo debe tener un máximo 50 caracteres.");
-            return false;
+            mensajeError += "Error: Modelo inválido.\n";
         }
-
         if (!validarMarca(Marca)) {
-            JOptionPane.showMessageDialog(null, "Error: La marca debe tener un máximo 50 caracteres.");
-            return false;
+            mensajeError += "Error: Marca inválida.\n";
+        }
+        if (!validarPreferencias(Preferencias)) {
+            mensajeError += "Error: Observaciones inválidas.\n";
         }
 
-        
-
-        if (!validarPreferencias(Preferencias)) {
-            JOptionPane.showMessageDialog(null, "Error: El modelo debe tener un máximo 250 caracteres.");
+        if (!mensajeError.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Errores encontrados:\n" + mensajeError, "Errores de validación", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
@@ -63,7 +56,7 @@ public class registroVehiculo {
             ConexionSQLServer conexionDB = new ConexionSQLServer();
             conexion = conexionDB.obtenerConexion();
 
-            String sql = "INSERT INTO Vehiculos (Placa,Chasis,Color,Modelo,Marca,Tipo_Vehiculo,Preferencias, Ci) VALUES (?, ?, ?, ?, ?, ?,?,?)";
+            String sql = "INSERT INTO Vehiculos (Placa, Chasis, Color, Modelo, Marca, Tipo_Vehiculo, Preferencias, Ci) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             stmt = conexion.prepareStatement(sql);
             stmt.setString(1, Placa);
             stmt.setString(2, Chasis);
@@ -77,10 +70,10 @@ public class registroVehiculo {
             int filasInsertadas = stmt.executeUpdate();
             if (filasInsertadas > 0) {
                 registrado = true;
-                JOptionPane.showMessageDialog(null, "Vehiculo registrado exitosamente.");
+                JOptionPane.showMessageDialog(null, "Vehículo registrado exitosamente.");
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al registrar cliente: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al registrar vehículo: " + e.getMessage());
             e.printStackTrace();
         } finally {
             try {
@@ -98,76 +91,164 @@ public class registroVehiculo {
         return registrado;
     }
 
-    public boolean validarPlaca(String Placa) {
-        // Expresión regular para verificar que la placa solo contenga letras y números
-        String regex = "^[a-zA-Z0-9]+$";
-
-        // Comprobar si la placa cumple con el patrón
-        return Placa.matches(regex);
+    // Métodos de validación
+    public boolean validarColor(String Color) {
+        if (Color.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo 'Color' está vacío.");
+            return false;
+        }
+        if (!Character.isUpperCase(Color.charAt(0))) {
+            JOptionPane.showMessageDialog(null, "El color debe comenzar con mayúscula.");
+            return false;
+        }
+        if (!Color.matches("^[A-Za-z]+$")) {
+            JOptionPane.showMessageDialog(null, "El color no debe contener números o símbolos.");
+            return false;
+        }
+        if (Color.length() > 10) {
+            JOptionPane.showMessageDialog(null, "El color no debe superar los 10 caracteres.");
+            return false;
+        }
+        return true;
     }
 
     public boolean validarChasis(String Chasis) {
-        // Expresión regular para verificar que el chasis solo contenga letras y números
-        String regexChasis = "^[a-zA-Z0-9]+$";
-
-        // Comprobar si el chasis cumple con el patrón
-        return Chasis.matches(regexChasis);
+        if (Chasis.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo 'Chasis' está vacío.");
+            return false;
+        }
+        if (Chasis.length() > 15) {
+            JOptionPane.showMessageDialog(null, "El chasis no debe superar los 15 caracteres.");
+            return false;
+        }
+        if (Chasis.contains(" ")) {
+            JOptionPane.showMessageDialog(null, "El chasis no debe contener espacios.");
+            return false;
+        }
+        if (!Chasis.matches("^[A-Z0-9]+$")) {
+            JOptionPane.showMessageDialog(null, "El chasis debe contener solo letras mayúsculas y números.");
+            return false;
+        }
+        return true;
     }
 
     public boolean validarTipoVehiculo(String Tipo_Vehiculo) {
-        // Comprobar si el tipo de vehículo tiene 50 caracteres o menos
-        return Tipo_Vehiculo != null && Tipo_Vehiculo.length() <= 50;
+        if (Tipo_Vehiculo.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo 'Tipo de Vehículo' está vacío.");
+            return false;
+        }
+        if (Tipo_Vehiculo.length() > 50) {
+            JOptionPane.showMessageDialog(null, "El tipo de vehículo no debe superar los 50 caracteres.");
+            return false;
+        }
+        if (!Character.isUpperCase(Tipo_Vehiculo.charAt(0))) {
+            JOptionPane.showMessageDialog(null, "El tipo de vehículo debe comenzar con mayúscula.");
+            return false;
+        }
+        if (!Tipo_Vehiculo.matches("^[A-Za-z ]+$")) {
+            JOptionPane.showMessageDialog(null, "El tipo de vehículo no debe contener números o símbolos.");
+            return false;
+        }
+        return true;
     }
 
-    public boolean validarColor(String Color) {
-        // Comprobar si el color no supera los 10 caracteres
-        return Color != null && Color.length() <= 10;
+    public boolean validarPlaca(String Placa) {
+        if (Placa.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo 'Placa' está vacío.");
+            return false;
+        }
+        if (Placa.length() > 8) {
+            JOptionPane.showMessageDialog(null, "La placa no debe superar los 8 caracteres.");
+            return false;
+        }
+        if (Placa.contains(" ")) {
+            JOptionPane.showMessageDialog(null, "La placa no debe contener espacios.");
+            return false;
+        }
+        if (!Placa.matches("^[A-Z0-9]+$")) {
+            JOptionPane.showMessageDialog(null, "La placa debe contener solo letras mayúsculas y números.");
+            return false;
+        }
+        if (placaExiste(Placa)) {
+            JOptionPane.showMessageDialog(null, "La placa ya está registrada.");
+            return false;
+        }
+        return true;
     }
 
-    public boolean validarModelo(String Modelo) {
-        // Comprobar si el modelo no supera los 50 caracteres
-        return Modelo != null && Modelo.length() <= 50;
-    }
+    private boolean placaExiste(String Placa) {
+        Connection conexion = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        boolean existe = false;
 
-    public boolean validarMarca(String Marca) {
-        // Comprobar si la marca no supera los 50 caracteres
-        return Marca != null && Marca.length() <= 50;
-    }
+        try {
+            ConexionSQLServer conexionDB = new ConexionSQLServer();
+            conexion = conexionDB.obtenerConexion();
 
-    public boolean validarIdCliente(String id_cliente) {
-        System.out.println("ID Cliente recibido: " + id_cliente); // Imprime el ID antes de la consulta
+            String sql = "SELECT COUNT(*) FROM Vehiculos WHERE Placa = ?";
+            stmt = conexion.prepareStatement(sql);
+            stmt.setString(1, Placa);
 
-        ConexionSQLServer conexionSQL = new ConexionSQLServer();
-        Connection conn = conexionSQL.obtenerConexion(); // Obtener la conexión
-        String query = "SELECT COUNT(*) FROM cliente WHERE id_cliente = ?";
-
-        try (PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, id_cliente); // Usar String si la columna es VARCHAR
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    int count = rs.getInt(1);
-                    System.out.println("Número de clientes encontrados: " + count); // Imprime el resultado de la consulta
-                    return count > 0;
-                }
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                existe = rs.getInt(1) > 0;
             }
         } catch (SQLException e) {
-            System.err.println("Error en la consulta: " + e.getMessage());
             e.printStackTrace();
         } finally {
             try {
-                if (conn != null) {
-                    conn.close(); // Cerrar la conexión
-                }
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conexion != null) conexion.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-
-        return false; // Si no encuentra el cliente o ocurre un error
+        return existe;
     }
 
-    public boolean validarPreferencias(String preferencias) {
-        // Comprobar si las preferencias no superan los 250 caracteres
-        return preferencias != null && preferencias.length() <= 250;
+    public boolean validarModelo(String Modelo) {
+        if (Modelo.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo 'Modelo' está vacío.");
+            return false;
+        }
+        if (Modelo.length() > 50) {
+            JOptionPane.showMessageDialog(null, "El modelo no debe superar los 50 caracteres.");
+            return false;
+        }
+        if (!Modelo.matches("^[A-Za-z0-9 ]+$")) {
+            JOptionPane.showMessageDialog(null, "El modelo no debe contener símbolos.");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validarMarca(String Marca) {
+        if (Marca.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo 'Marca' está vacío.");
+            return false;
+        }
+        if (Marca.length() > 20) {
+            JOptionPane.showMessageDialog(null, "La marca no debe superar los 20 caracteres.");
+            return false;
+        }
+        if (!Marca.matches("^[A-Za-z0-9 ]+$")) {
+            JOptionPane.showMessageDialog(null, "La marca no debe contener símbolos.");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validarPreferencias(String Preferencias) {
+        if (Preferencias.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "El campo 'Observaciones' está vacío.");
+            return false;
+        }
+        if (Preferencias.length() > 250) {
+            JOptionPane.showMessageDialog(null, "Las observaciones no deben superar los 250 caracteres.");
+            return false;
+        }
+        return true;
     }
 }
