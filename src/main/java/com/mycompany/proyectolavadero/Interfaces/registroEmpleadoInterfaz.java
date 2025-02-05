@@ -90,11 +90,22 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
             }
         });
 
+        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+
+        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
         });
+
+        jTextField4.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+
+        jTextField5.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+
+        jTextField6.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+
+        jTextField7.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "E1", "E2", "E3" }));
@@ -209,8 +220,8 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
             BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BackgroundLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(BarraCentral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(BarraCentral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -221,7 +232,7 @@ public class registroEmpleadoInterfaz extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

@@ -65,7 +65,7 @@ public class registroServicioInterfaz extends javax.swing.JFrame {
         jLabel1.setToolTipText("");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jTextField2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 20)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jTextField2.setBorder(null);
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,6 +114,7 @@ public class registroServicioInterfaz extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jTextField8.setBackground(new java.awt.Color(236, 240, 241));
+        jTextField8.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField8ActionPerformed(evt);
@@ -166,6 +167,7 @@ public class registroServicioInterfaz extends javax.swing.JFrame {
         });
 
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
 
