@@ -4,6 +4,15 @@
  */
 package com.mycompany.proyectolavadero.Interfaces;
 
+import com.mycompany.proyectolavadero.Backend.listarCotizacion;
+import com.mycompany.proyectolavadero.ConexionSQLServer;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.sql.Connection;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Windows
@@ -15,8 +24,26 @@ public class listaDeCotizacion extends javax.swing.JFrame {
      */
     public listaDeCotizacion() {
         initComponents();
+        cargarTablaCotizaciones();
     }
+    
+    private void cargarTablaCotizaciones() {
+        try {
+            ConexionSQLServer conexionSQL = new ConexionSQLServer();
+            Connection connection = conexionSQL.obtenerConexion();
+            listarCotizacion listar = new listarCotizacion(connection);
 
+            ArrayList<String[]> reportes = listar.obtenerCotizacion();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0);
+
+            for (String[] reporte : reportes) {
+                model.addRow(reporte);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar las cotizaciones: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -351,7 +378,7 @@ public class listaDeCotizacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+                // TODO add your handling code here:
         listaDeCotizacion ventanaListaDeCotizacion = new listaDeCotizacion();
         ventanaListaDeCotizacion.setVisible(true);
         ventanaListaDeCotizacion.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
@@ -370,7 +397,7 @@ public class listaDeCotizacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+         // TODO add your handling code here:
         listaDePropietariosInterfaz ventanaListaPropietarios = new listaDePropietariosInterfaz();
         ventanaListaPropietarios.setVisible(true);
         ventanaListaPropietarios.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
@@ -380,7 +407,7 @@ public class listaDeCotizacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+                // TODO add your handling code here:
         asignarEquipoLavado ventanaAsignarEquipoLavado = new asignarEquipoLavado();
         ventanaAsignarEquipoLavado.setVisible(true);
         ventanaAsignarEquipoLavado.setLocationRelativeTo(null);  // Centrar la ventana en la pantalla
