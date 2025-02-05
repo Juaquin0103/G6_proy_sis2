@@ -37,4 +37,20 @@ public class listarCotizacion {
         return cotizacion;
     }
     
+    public byte[] obtenerPdfCotizacion(int cod_cotizacion) throws SQLException {
+        String sql = "SELECT Pdf_Cotizacion FROM Cotizaciones WHERE cod_cotizacion = ?";
+        byte[] pdfBytes = null;
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, cod_cotizacion);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    pdfBytes = rs.getBytes("Pdf_Cotizacion");
+                }
+            }
+        }
+
+        return pdfBytes;
+    }
+    
 }
