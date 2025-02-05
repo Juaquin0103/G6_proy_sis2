@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author Windows
  */
 public class nuevaCotizacion {
-    public boolean nuevaCotizacion(int cod_cotizacion,String tipo_Servicio,String fecha_Cotizacion, String detalles_preferencias,String metodo_Pago, int Ci_cliente, String placa, String Precio){
+    public boolean registrarCotizacion(int cod_cotizacion,String tipo_Servicio,String fecha_Cotizacion, String detalles_preferencias,String metodo_Pago, int Ci_cliente, String placa, String Precio){
         boolean cotizacionRegistrada = false;
          if (!validarServicio(tipo_Servicio)) {
             JOptionPane.showMessageDialog(null, "Error: Seleccione un servicio");
@@ -100,7 +100,7 @@ public class nuevaCotizacion {
     }
 
     // Definir el formato esperado
-    SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
     formato.setLenient(false); // Desactiva la tolerancia de fechas inválidas (ej. 2024/02/30)
 
     try {

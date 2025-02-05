@@ -166,7 +166,7 @@ public class listaDePropietariosInterfaz extends javax.swing.JFrame {
         jButton12.setBackground(new java.awt.Color(17, 17, 29));
         jButton12.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jButton12.setForeground(new java.awt.Color(255, 255, 255));
-        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/catalogar.png"))); // NOI18N
+        //jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/proyectolavadero/Iconos/IconosListaDeVehiculos/catalogar.png"))); // NOI18N
         jButton12.setText("Catalogo");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
